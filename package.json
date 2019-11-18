@@ -1,0 +1,28 @@
+{
+  "name": "swagger-js-doc",
+  "version": "1.0.0",
+  "description": "parse swagger-doc into js-doc, generate api service and mock data files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "hello": "./hello.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexxyzeng/swagger-js-doc.git"
+  },
+  "keywords": [
+    "swagger",
+    "js-doc",
+    "mock",
+    "data"
+  ],
+  "author": "alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexxyzeng/swagger-js-doc/issues"
+  },
+  "homepage": "https://github.com/alexxyzeng/swagger-js-doc#readme"
+}
