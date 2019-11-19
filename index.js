@@ -27,10 +27,7 @@ http.get(`${baseUrl}${swaggerDocPath}`, res => {
   res.on('end', () => {
     console.log('ended');
     const { paths, definitions } = JSON.parse(result);
-    //  TODO: 增加对paths中各方法的解析
-    //  TODO: 增加对方法参数的解析
-    //  TODO: 增加对definitions的解析
-    generateFiles(paths);
+    generateFiles(paths, definitions);
   });
   res.on('close', () => {
     console.log('closed');
