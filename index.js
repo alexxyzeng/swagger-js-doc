@@ -2,6 +2,7 @@
 //  TODO: 抓取swagger接口数据
 const http = require('http');
 const process = require('process');
+const fetch = require('node-fetch');
 
 const { Methods } = require('./const/methods');
 const { swaggerDocPath } = require('./const');
@@ -14,22 +15,11 @@ if (!baseUrl) {
   );
 }
 console.log(`${baseUrl}${swaggerDocPath}`);
+const swaggerDocUrl = `${baseUrl}${swaggerDocPath}`;
 
-http.get(`${baseUrl}${swaggerDocPath}`, res => {
-  res.setEncoding('utf-8');
-  let result = '';
-  res.on('error', err => {
-    throw new Error(err);
-  });
-  res.on('data', data => {
-    result += data;
-  });
-  res.on('end', () => {
-    console.log('ended');
-    const { paths, definitions } = JSON.parse(result);
+fetch(swaggerDocUrl)
+  .then(res => res.json())
+  .then(json => {
+    const { paths, definitions } = json;
     generateFiles(paths, definitions);
   });
-  res.on('close', () => {
-    console.log('closed');
-  });
-});

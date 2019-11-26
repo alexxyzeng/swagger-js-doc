@@ -24,5 +24,11 @@
   "bugs": {
     "url": "https://github.com/alexxyzeng/swagger-js-doc/issues"
   },
-  "homepage": "https://github.com/alexxyzeng/swagger-js-doc#readme"
+  "homepage": "https://github.com/alexxyzeng/swagger-js-doc#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node-fetch": "^2.5.4"
+  }
 }
