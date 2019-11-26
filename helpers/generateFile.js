@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { Methods } = require('../const/methods');
+const { parseParams } = require('./parseParamters');
 
 function generateFiles(paths, definitions, methods = Methods) {
   if (!fs.existsSync('dist')) {
@@ -12,26 +13,17 @@ function generateFiles(paths, definitions, methods = Methods) {
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
     const targetPath = `dist/${relativePath}.js`;
     const apiInfos = Object.entries(value);
-    apiInfos.forEach(apiInfo => {
+    apiInfos.forEach((apiInfo, index) => {
       const [method, methodInfo] = apiInfo;
-      //  TODO: 解析请求参数
-      //  TODO: 解析响应
+      //  TODO: 增加对响应的解析
       //  TODO: 增加对definitions的解析
       if (availableMethodsSet.has(method)) {
-        console.log('============');
-        console.log(method);
-        console.log(methodInfo);
-        console.log('============');
+        parseParams(methodInfo, definitions);
       }
     });
 
     fs.writeFileSync(targetPath, JSON.stringify(value));
   });
-}
-
-function parseParameters(api) {
-  const { parameters } = api;
-  console.log(parameters);
 }
 
 module.exports = {

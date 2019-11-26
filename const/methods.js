@@ -1,5 +1,5 @@
 const Methods = {
-  Get: 'get',
+  GET: 'get',
   POST: 'post',
   PUT: 'put',
   PATCH: 'patch',
