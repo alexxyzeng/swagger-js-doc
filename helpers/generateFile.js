@@ -13,6 +13,7 @@ function generateFiles(paths, definitions, methods = Methods) {
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
     const targetPath = `dist/${relativePath}.js`;
     const apiInfos = Object.entries(value);
+    let count = 1;
     apiInfos.forEach((apiInfo, index) => {
       const [method, methodInfo] = apiInfo;
       //  TODO: 增加对响应的解析
@@ -22,7 +23,7 @@ function generateFiles(paths, definitions, methods = Methods) {
       }
     });
 
-    fs.writeFileSync(targetPath, JSON.stringify(value));
+    // fs.writeFileSync(targetPath, JSON.stringify(value));
   });
 }
 

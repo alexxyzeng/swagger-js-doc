@@ -8,7 +8,7 @@ const fs = require('fs');
 const { Methods } = require('./const/methods');
 const { swaggerDocPath } = require('./const');
 const { generateFiles } = require('./helpers/generateFile');
-const { parseDefinitions } = require('./helpers/parseDefinitions');
+const { parseDefinition } = require('./helpers/parseDefinitions');
 
 const [baseUrl] = process.argv.slice(2);
 if (!baseUrl) {
@@ -23,10 +23,12 @@ fetch(swaggerDocUrl)
   .then(res => res.json())
   .then(json => {
     const { paths, definitions } = json;
-    const parsedDefinitions = parseDefinitions(definitions);
+    // const parsedDefinitions = parseDefinitions(definitions);
     if (!fs.existsSync('dist')) {
       fs.mkdirSync('dist');
     }
-    generateFiles(paths, parseDefinitions);
+    generateFiles(paths, definitions);
+    // fs.writeFileSync('test.js', JSON.stringify(definitions['设施分类']));
+    // parseDefinition('设施分类', definitions);
   })
   .catch(console.log);

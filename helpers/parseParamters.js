@@ -1,6 +1,7 @@
+const fs = require('fs');
 const {
   parseDefinitionType,
-  getDefinition,
+  parseDefinition,
   isValidDefinitionType
 } = require('./parseDefinitions');
 
@@ -23,12 +24,16 @@ function parseParams(api, definitions) {
       // console.log(type);
       // console.log(schema);
       // console.log('============');
-      //  TODO: 增加对复杂类型的解析
       if (isValidDefinitionType(schema)) {
         const definitionType = parseDefinitionType(schema);
-        const definition = definitions[definitionType];
-        // console.log(definition);
-        // console.log('============');
+        //  FIXME: 循环有相同类型，导致有递归越界
+        const notOkList = ['设施分类', '权限表'];
+        if (notOkList.includes(definitionType)) {
+          fs.writeFileSync('./test.js', JSON.stringify(api));
+          return;
+        }
+        // TODO: 增加对参数类型的整理
+        // const definition = parseDefinition(definitionType, definitions);
       }
       parsedParameters[paramIn].push({
         name,
