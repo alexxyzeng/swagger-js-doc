@@ -3,10 +3,12 @@
 const http = require('http');
 const process = require('process');
 const fetch = require('node-fetch');
+const fs = require('fs');
 
 const { Methods } = require('./const/methods');
 const { swaggerDocPath } = require('./const');
 const { generateFiles } = require('./helpers/generateFile');
+const { parseDefinitions } = require('./helpers/parseDefinitions');
 
 const [baseUrl] = process.argv.slice(2);
 if (!baseUrl) {
@@ -21,5 +23,10 @@ fetch(swaggerDocUrl)
   .then(res => res.json())
   .then(json => {
     const { paths, definitions } = json;
-    generateFiles(paths, definitions);
-  });
+    const parsedDefinitions = parseDefinitions(definitions);
+    if (!fs.existsSync('dist')) {
+      fs.mkdirSync('dist');
+    }
+    generateFiles(paths, parseDefinitions);
+  })
+  .catch(console.log);

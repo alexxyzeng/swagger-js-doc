@@ -19,10 +19,10 @@ function parseParams(api, definitions) {
     } = parameter;
 
     if (parsedParameters[paramIn]) {
-      const parsedType = parseParamType(type, items);
-      console.log(type);
-      console.log(schema);
-      console.log('============');
+      const { parsedType } = parseParamType(type, items);
+      // console.log(type);
+      // console.log(schema);
+      // console.log('============');
       //  TODO: 增加对复杂类型的解析
       if (isValidDefinitionType(schema)) {
         const definitionType = parseDefinitionType(schema);
@@ -43,16 +43,19 @@ function parseParams(api, definitions) {
   // console.log('============');
 }
 
+// integer/strring/array/object/enum/boolean
 function parseParamType(type, items) {
   if (type === 'integer' || type === 'float' || type === 'double') {
-    return 'number';
+    return { type: 'number' };
   }
   if (type === 'array') {
     const { type: itemType } = items;
     const parsedItemType = parseParamType(itemType);
-    return `${parsedItemType}[]`;
+    return { type, format: parsedItemType };
   }
-  return type;
+  // TODO: 解析enum
+  // TODO: 解析object
+  return { type };
 }
 
 module.exports = {

@@ -7,7 +7,7 @@ function generateFiles(paths, definitions, methods = Methods) {
     fs.mkdirSync('dist');
   }
   const pathList = Object.entries(paths);
-  const availableMethodsSet = new Set(Object.values(Methods));
+  const availableMethodsSet = new Set(Object.values(methods));
   pathList.forEach(path => {
     const [key, value] = path;
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
