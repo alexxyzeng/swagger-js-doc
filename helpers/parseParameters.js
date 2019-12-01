@@ -8,7 +8,6 @@ const {
 function parseParams(api, definitions) {
   const { parameters } = api;
   const parsedParameters = { body: [], path: [], query: [] };
-  let result = {};
   parameters.forEach(parameter => {
     const { in: paramIn, schema } = parameter;
     if (!parsedParameters[paramIn]) {
@@ -28,11 +27,12 @@ function parseParams(api, definitions) {
     } else {
       param = parseParamType(parameter);
     }
-    // console.log(param);
     // console.log('====================================');
     // console.log(param);
     // console.log('====================================');
+    parsedParameters[paramIn].push(param);
   });
+  return parsedParameters;
 }
 
 // integer/strring/array/object/enum/boolean
@@ -40,19 +40,27 @@ function parseParamType(param) {
   if (!param) {
     return null;
   }
-  const { type, required, items, description } = param;
+  const {
+    type,
+    required = false,
+    items,
+    description = '',
+    enum: valueEnum
+  } = param;
 
   if (type === 'integer' || type === 'float' || type === 'double') {
-    return { type: 'number', description, required };
+    return { type: 'number', description, required, valueEnum };
   }
   if (type === 'array') {
     // const { type: itemType } = items;
     // TODO: 增加对复杂数组类型的解析
-    console.log('====================================');
-    console.log(items);
-    console.log('====================================');
-    // const parsedItemType = parseParamType(itemType);
-    // return { type, format: parsedItemType, reuired };
+    let parsedItems = null;
+    if (items.hasOwnProperty('properties')) {
+      parsedItems = parseParamType({ ...items, type: 'object' });
+    } else {
+      parsedItems = parseParamType(items);
+    }
+    return { type, valueType: parsedItems, required };
   }
   // TODO: 解析enum
   // TODO: 解析object
@@ -70,18 +78,10 @@ function parseParamType(param) {
       };
       result[i] = parseParamType(propertyFinal);
     }
-    // console.log('====================================');
-    // console.log(properties);
-    // console.log('----------------------------');
-    // console.log(result);
-    // console.log('====================================');
-    // fs.appendFileSync('test.js', JSON.stringify(result));
     return result;
   }
-  return { type, description };
+  return { type, description, valueEnum };
 }
-
-function parseParam(param) {}
 
 module.exports = {
   parseParams

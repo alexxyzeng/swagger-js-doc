@@ -10,9 +10,6 @@ function parseDefinitions(definitions) {
   let count = 0;
   const keys = Object.keys(definitions);
   keys.forEach(key => {
-    if (key === '设施分类') {
-      return;
-    }
     console.log('====================================');
     console.log(key);
     console.log('====================================');
