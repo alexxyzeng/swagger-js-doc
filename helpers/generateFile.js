@@ -14,16 +14,16 @@ function generateFiles(paths, definitions, methods = Methods) {
     const targetPath = `dist/${relativePath}.js`;
     const apiInfos = Object.entries(value);
     let result = {};
+    let methods = {};
     apiInfos.forEach(apiInfo => {
       const [method, methodInfo] = apiInfo;
-      //  TODO: 增加对响应的解析
-      //  TODO: 增加对definitions的解析
       if (availableMethodsSet.has(method)) {
         const parsedMethod = parseParams(methodInfo, definitions);
-        result[method] = parsedMethod;
+        //  TODO: 增加对响应的解析
+        methods[method] = parsedMethod;
       }
     });
-
+    result = { path: key, methods };
     fs.writeFileSync(targetPath, JSON.stringify(result));
   });
 }

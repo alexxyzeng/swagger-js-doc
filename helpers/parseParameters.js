@@ -6,7 +6,7 @@ const {
 } = require('./parseDefinitions');
 
 function parseParams(api, definitions) {
-  const { parameters } = api;
+  const { parameters, summary, consumes, operationId, tags } = api;
   const parsedParameters = { body: [], path: [], query: [] };
   parameters.forEach(parameter => {
     const { in: paramIn, schema } = parameter;
@@ -32,7 +32,13 @@ function parseParams(api, definitions) {
     // console.log('====================================');
     parsedParameters[paramIn].push(param);
   });
-  return parsedParameters;
+  return {
+    parameters: parsedParameters,
+    summary,
+    consumes,
+    operationId,
+    tags
+  };
 }
 
 // integer/strring/array/object/enum/boolean
@@ -44,12 +50,13 @@ function parseParamType(param) {
     type,
     required = false,
     items,
-    description = '',
-    enum: valueEnum
-  } = param;
 
+    description = '',
+    enum: valueEnum = {}
+  } = param;
+  const parsedEnum = Object.values(valueEnum);
   if (type === 'integer' || type === 'float' || type === 'double') {
-    return { type: 'number', description, required, valueEnum };
+    return { type: 'number', description, required, enum: parsedEnum };
   }
   if (type === 'array') {
     // const { type: itemType } = items;
@@ -80,7 +87,7 @@ function parseParamType(param) {
     }
     return result;
   }
-  return { type, description, valueEnum };
+  return { type, description, enum: parsedEnum };
 }
 
 module.exports = {
