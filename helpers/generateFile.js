@@ -15,10 +15,18 @@ function generateFiles(paths, definitions, methods = Methods) {
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
+    if (key !== '/appointment/loop/{apptId}') {
+      return;
+    }
     apiInfos.forEach(apiInfo => {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {
         const parsedMethod = parseParams(methodInfo, definitions);
+        console.log('====================================');
+        console.log(method);
+        // console.log('--------------------------------');
+        // console.log(parsedMethod.parameters.body);
+        console.log('====================================');
         //  TODO: 增加对响应的解析
         methods[method] = parsedMethod;
       }

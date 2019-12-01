@@ -22,6 +22,9 @@ function parseParams(api, definitions) {
         return;
       }
       const definition = parseDefinition(definitionType, definitions);
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+      console.log(JSON.stringify(definition));
+      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       param = parseParamType(definition);
       // console.log(definition);
     } else {
@@ -42,6 +45,7 @@ function parseParams(api, definitions) {
 }
 
 // integer/strring/array/object/enum/boolean
+// FIXME: 对深层次数据的解析有问题
 function parseParamType(param) {
   if (!param) {
     return null;
