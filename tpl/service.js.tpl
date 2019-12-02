@@ -3,7 +3,7 @@
  * @link <%= InterfaceDocUrl %>
  * @summary <%= InterfaceSummary %>
  * @description <%= InterfaceDescription %>
- * @param params <%= InterfaceParams %>
+ * @param {object} params
  <%= InterfaceParamsProps %>
  */
 export function <%= InterfaceName %>(<%= InterfaceParams %>) {

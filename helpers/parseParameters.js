@@ -45,8 +45,7 @@ function parseParams(api, definitions) {
 }
 
 // integer/strring/array/object/enum/boolean
-// FIXME: 对深层次数据的解析有问题
-function parseParamType(param) {
+function parseParamType(param = {}) {
   if (!param) {
     return null;
   }
@@ -63,10 +62,8 @@ function parseParamType(param) {
     return { type: 'number', description, required, enum: parsedEnum };
   }
   if (type === 'array') {
-    // const { type: itemType } = items;
-    // TODO: 增加对复杂数组类型的解析
     let parsedItems = null;
-    if (items.hasOwnProperty('properties')) {
+    if (Object.prototype.call(items, 'properties')) {
       parsedItems = parseParamType({ ...items, type: 'object' });
     } else {
       parsedItems = parseParamType(items);
@@ -75,7 +72,7 @@ function parseParamType(param) {
   }
   // TODO: 解析enum
   // TODO: 解析object
-  if (type === 'object') {
+  if (type === 'object' || Object.prototype.call(param, 'properties')) {
     const { properties, required = {} } = param;
     const requireStatus = Object.values(required).reduce((a, b) => {
       return (a[b] = 1);

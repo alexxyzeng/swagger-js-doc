@@ -351,6 +351,12 @@ for (let methodName in methods) {
   const tagStr = tags.join(',');
   const [tag] = tags;
   const link = `${base}${tag}/${operationId}`;
+  // TODO: 增加对具体参数的生成
+  // TODO: 增加自定义方法名
+  const {
+    url,
+    params: { paths, bodies }
+  } = parsePathAndParametersToString(path, parameters);
   const serviceInfo = tpl
     .replace(API_SERVICE_DEFINITION, path)
     .replace(API_SERVICE_DOC_URL_TPL, link)
@@ -358,12 +364,56 @@ for (let methodName in methods) {
     .replace(API_SERVICE_SUMMARY_TPL, summary)
     .replace(API_SERVICE_DESCRIPTION_TPL, description)
     .replace(API_SERVICE_NAME_TPL, operationId)
-    .replace(API_SERVICE_METHOD_TPL, methodName);
-  // TODO: 增加对URL的生成
-  // TODO: 增加对具体参数的生成
-  // TODO: 增加自定义方法名
+    .replace(API_SERVICE_METHOD_TPL, methodName)
+    .replace(API_SERVICE_URL_TPL, url)
+    .replace(API_SERVICE_PARAM_PROPS_TPL, paths + '\n' + bodies);
+
+  console.log('====================================');
+  console.log(url);
+  console.log(paths);
+  console.log('====================================');
   infos += serviceInfo;
   infos += '\n';
+}
+
+/**
+ *
+ * @param {string} path
+ * @param {object} parameters
+ */
+function parsePathAndParametersToString(initialUrl, parameters) {
+  let result = { url: '', params: {} };
+  const { path, body, query } = parameters;
+  let url = initialUrl;
+  if (path.length > 0) {
+    let paths = [];
+    path.forEach(pathItem => {
+      const { type, description } = pathItem;
+      url = url.replace(`{${description}}`, '${' + description + '}');
+      paths.push(`* @param {${type}} params.${description} - path`);
+    });
+    result.url = `"${url}"`;
+    result.params.paths = paths.join('\n');
+  }
+  //  TODO: 增加对复杂类型的解析
+  if (body.length > 0) {
+    let bodyParams = [];
+    bodyParams.push(` * @param {object} params.body - 请求体`);
+    body.forEach(bodyItem => {
+      if (typeof bodyItem !== 'object') {
+        return;
+      }
+      for (let i in bodyItem) {
+        const { type, description } = bodyItem[i];
+        bodyParams.push(
+          ` * @param {${type}} params.body.${i} - ${description}`
+        );
+      }
+    });
+    result.params.bodies = bodyParams.join('\n');
+  }
+  //  TODO: 解析query
+  return result;
 }
 
 fs.writeFileSync('test.js', infos);
