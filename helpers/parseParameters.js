@@ -21,9 +21,9 @@ function parseParams(api, definitions) {
       if (notOkList.includes(definitionType)) {
         return;
       }
-      const definition = parseDefinition(definitionType, definitions);
+      const definition = definitions[definitionType];
       console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-      console.log(JSON.stringify(definition));
+      console.log(JSON.stringify(definition, null, 2));
       console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       param = parseParamType(definition);
       // console.log(definition);
@@ -53,9 +53,9 @@ function parseParamType(param = {}) {
     type,
     required = false,
     items,
-
     description = '',
-    enum: valueEnum = {}
+    enum: valueEnum = {},
+    definitionType
   } = param;
   const parsedEnum = Object.values(valueEnum);
   if (type === 'integer' || type === 'float' || type === 'double') {
@@ -63,16 +63,19 @@ function parseParamType(param = {}) {
   }
   if (type === 'array') {
     let parsedItems = null;
-    if (Object.prototype.call(items, 'properties')) {
+    if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
       parsedItems = parseParamType({ ...items, type: 'object' });
     } else {
       parsedItems = parseParamType(items);
     }
-    return { type, valueType: parsedItems, required };
+    return { type, valueType: parsedItems, required, definitionType };
   }
   // TODO: 解析enum
   // TODO: 解析object
-  if (type === 'object' || Object.prototype.call(param, 'properties')) {
+  if (
+    type === 'object' ||
+    Object.prototype.hasOwnProperty.call(param, 'properties')
+  ) {
     const { properties, required = {} } = param;
     const requireStatus = Object.values(required).reduce((a, b) => {
       return (a[b] = 1);
@@ -88,7 +91,7 @@ function parseParamType(param = {}) {
     }
     return result;
   }
-  return { type, description, enum: parsedEnum };
+  return { type, description, enum: parsedEnum, definitionType };
 }
 
 module.exports = {

@@ -24,12 +24,12 @@ fetch(swaggerDocUrl)
     const { paths, definitions } = json;
     const parsedDefinitions = parseDefinitions(definitions);
     fs.writeFileSync(
-      'definition.js',
+      'definitions.js',
       JSON.stringify(parsedDefinitions, null, 2)
     );
     if (!fs.existsSync('dist')) {
       fs.mkdirSync('dist');
     }
-    // generateFiles(paths, definitions);
+    generateFiles(paths, parsedDefinitions);
   })
   .catch(console.log);

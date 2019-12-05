@@ -11,10 +11,11 @@ function parseDefinitions(definitions) {
   const keys = Object.keys(definitions);
   global.callCount = {};
   keys.forEach(key => {
-    console.log('====================================');
-    console.log(key);
-    console.log('====================================');
+    // console.log('====================================');
+    // console.log(key);
+    // console.log('====================================');
     // result.push(parseDefinition(key, definitions));
+    // 优化重复调用
     result[key] = parseDefinition(key, definitions);
   });
   console.log(global.callCount);
@@ -68,7 +69,8 @@ function parseRef(refType, definitions) {
   if (global.callCount[refType] >= 100) {
     return {
       type: 'UNABLE_TO_PARSE',
-      description: 'Seems to be stack overflow. You need to checkout why?'
+      description: 'Seems to be stack overflow. You need to checkout why?',
+      definitionType: refType
     };
   }
   //  1.先找到对于的definition
