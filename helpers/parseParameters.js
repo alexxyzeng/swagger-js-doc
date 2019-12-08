@@ -21,8 +21,9 @@ function parseParams(api, definitions) {
       if (notOkList.includes(definitionType)) {
         return;
       }
-      const definition = definitions[definitionType];
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+      const definition = parseDefinition(definitionType, definitions);
+      conso;
+      le.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       console.log(JSON.stringify(definition, null, 2));
       console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       param = parseParamType(definition);

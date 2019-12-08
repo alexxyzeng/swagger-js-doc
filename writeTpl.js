@@ -19,6 +19,11 @@ const {
 const [baseUrl] = process.argv.slice(2);
 const tpl = fs.readFileSync('./tpl/service.js.tpl') + '';
 
+const parserMap = {
+  object: parseObjectParameter,
+  array: parseArrayParameter
+};
+
 const result = {
   path: '/inspect-task/handle/{id}',
   methods: {
@@ -368,10 +373,6 @@ for (let methodName in methods) {
     .replace(API_SERVICE_URL_TPL, url)
     .replace(API_SERVICE_PARAM_PROPS_TPL, paths + '\n' + bodies);
 
-  console.log('====================================');
-  console.log(url);
-  console.log(paths);
-  console.log('====================================');
   infos += serviceInfo;
   infos += '\n';
 }
@@ -399,21 +400,59 @@ function parsePathAndParametersToString(initialUrl, parameters) {
   if (body.length > 0) {
     let bodyParams = [];
     bodyParams.push(` * @param {object} params.body - 请求体`);
+    // let typedefs = {};
+    global.typedefs = {};
+    let params = [];
     body.forEach(bodyItem => {
       if (typeof bodyItem !== 'object') {
         return;
       }
       for (let i in bodyItem) {
         const { type, description } = bodyItem[i];
+        const param = parseParameter(bodyItem[i], i);
+        params.push(param);
         bodyParams.push(
           ` * @param {${type}} params.body.${i} - ${description}`
         );
       }
     });
+    console.log('====================================');
+    console.log(global.typedefs);
+    console.log('====================================');
     result.params.bodies = bodyParams.join('\n');
   }
+
   //  TODO: 解析query
   return result;
 }
-
+fs.writeFileSync('defs.js', JSON.stringify(global.typedefs, null, 2));
 fs.writeFileSync('test.js', infos);
+
+function parseParameter(param, paramName, typedefs) {
+  const { type } = param;
+  const parser = parserMap[type] || parseBasicParameter;
+  return { [paramName]: parser(param, paramName, typedefs) };
+}
+
+function parseArrayParameter(param, paramName, typedefs) {
+  const { type, valueType, description } = param;
+  let result = {};
+  const name = paramName + 'Item';
+  const keys = Object.keys(valueType);
+  keys.forEach(key => {
+    const value = valueType[key];
+    result[key] = parseParameter(value, key);
+  });
+
+  global.typedefs[name] = result;
+  return { paramName, type, subType: name, description };
+}
+
+function parseObjectParameter(param, paramName, typedefs) {
+  console.log(param, '---');
+}
+
+function parseBasicParameter(param, paramName) {
+  const { type, description } = param;
+  return { paramName, type, description };
+}

@@ -30,6 +30,6 @@ fetch(swaggerDocUrl)
     if (!fs.existsSync('dist')) {
       fs.mkdirSync('dist');
     }
-    generateFiles(paths, parsedDefinitions);
+    generateFiles(paths, definitions);
   })
   .catch(console.log);
