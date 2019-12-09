@@ -22,10 +22,9 @@ function parseParams(api, definitions) {
         return;
       }
       const definition = parseDefinition(definitionType, definitions);
-      conso;
-      le.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-      console.log(JSON.stringify(definition, null, 2));
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+      // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+      // console.log(JSON.stringify(definition, null, 2));
+      // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       param = parseParamType(definition);
       // console.log(definition);
     } else {
@@ -69,7 +68,12 @@ function parseParamType(param = {}) {
     } else {
       parsedItems = parseParamType(items);
     }
-    return { type, valueType: parsedItems, required, definitionType };
+    return {
+      type,
+      valueType: { ...parsedItems, type: 'object' },
+      required,
+      definitionType
+    };
   }
   // TODO: 解析enum
   // TODO: 解析object

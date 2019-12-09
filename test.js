@@ -13,15 +13,15 @@ export function findByIdUsingGET_26(<%= InterfaceParams %>) {
 
 /**
  * @tags inspect-task
- * @link undefined/swagger-ui.html#!/inspect-task/updateUsingPUT_33
+ * @link undefined/swagger-ui.html#!/inspect-task/updateUsingPUT_34
  * @summary 修改巡检任务-工单-部分
  * @description 
  * @param {object} params
  * @param {number} params.id - path
  * @param {object} params.body - 请求体
  * @param {string} params.body.description - 故障描述
- * @param {number} params.body.handleResult - {已处理=1, 未处理=2}
- * @param {number} params.body.handleWay - {现状处理=1, 报修工单=2}
+ * @param {string} params.body.handleResult - 异常处理结果：1-已处理、2-未处理 {已处理=Dispose, 未处理=Undispose}
+ * @param {string} params.body.handleWay - 异常处理方式：1-现状处理、2-保障工单 {现状处理=Situation, 报修工单=Workorder}
  * @param {number} params.body.id - 唯一id
  * @param {number} params.body.projectId - 项目id
  * @param {string} params.body.serviceman - 维修人员
@@ -31,7 +31,7 @@ export function findByIdUsingGET_26(<%= InterfaceParams %>) {
  * @param {number} params.body.workorderId - 工单ID
  * @param {array} params.body.workorders - undefined
  */
-export function updateUsingPUT_33(<%= InterfaceParams %>) {
+export function updateUsingPUT_34(<%= InterfaceParams %>) {
   return API.put("/inspect-task/handle/${id}", <%= InterfaceParamsMethod %>)
 }
 
