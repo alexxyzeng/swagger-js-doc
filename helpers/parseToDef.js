@@ -1,7 +1,7 @@
 const fs = require('fs');
 
-// const tpl = fs.readFileSync('../tpl/definition.js.tpl') + '';
-const { defs } = require('../defs');
+const tpl = fs.readFileSync('./tpl/definition.js.tpl') + '';
+const { data } = require('../defs');
 
 const parserMap = {
   string: parseBasicTypeToProp,
@@ -12,9 +12,14 @@ const parserMap = {
 
 // TODO: 优化冗余数据
 let parsedResult = [];
-defs.forEach(def => {
-  const { name, result } = def;
+const defList = Object.entries(data);
+defList.forEach(def => {
+  const [key, value] = def;
+  const { name, result } = value;
   const keys = Object.keys(result);
+  let typeName = tpl
+    .replace('<%= DefinitionType %>', 'object')
+    .replace('<%= DefinitionName %>', name);
   let parsedDef = [];
   keys.forEach(key => {
     const value = result[key];
@@ -22,20 +27,29 @@ defs.forEach(def => {
     const parser = parserMap[type] || parseObjecTypeToProp;
     parsedDef.push(parser(value));
   });
-  parsedResult.push(parsedDef);
+  console.log('====================================');
+  console.log(parsedDef);
+  console.log(name);
+  console.log('====================================');
+  typeName = typeName.replace(
+    '<%= DefinitionPropropety %',
+    parsedDef.join('\n ')
+  );
+  parsedResult.push(typeName);
 });
 
-console.log(parsedResult);
+fs.writeFileSync('test.js', parsedResult.join('\n\n'));
+// console.log(parsedResult);
 
 // TODO: 完善对应的解析
 function parseBasicTypeToProp(typeDef) {
   const { paramName, type, description = '' } = typeDef;
-  return `@property ${type} ${paramName} ${description}`;
+  return `* @property {${type}} ${paramName} ${description}`;
 }
 
 function parseArrayTypeToProp(typeDef) {
   const { paramName, type, itemType } = typeDef;
-  return `@property [${itemType}] ${paramName}`;
+  return `* @property {[${itemType}]} ${paramName}`;
 }
 
 function parseObjecTypeToProp(typeDef) {

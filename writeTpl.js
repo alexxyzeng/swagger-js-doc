@@ -43,6 +43,7 @@ for (let methodName in methods) {
     url,
     params: { paths, bodies }
   } = parsePathAndParametersToString(path, parameters);
+  let paramStr = [paths, bodies].filter(item => item !== undefined).join('\n');
   const serviceInfo = tpl
     .replace(API_SERVICE_DEFINITION, path)
     .replace(API_SERVICE_DOC_URL_TPL, link)
@@ -52,7 +53,7 @@ for (let methodName in methods) {
     .replace(API_SERVICE_NAME_TPL, operationId)
     .replace(API_SERVICE_METHOD_TPL, methodName)
     .replace(API_SERVICE_URL_TPL, url)
-    .replace(API_SERVICE_PARAM_PROPS_TPL, paths + '\n' + bodies);
+    .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr);
 
   infos += serviceInfo;
   infos += '\n';
@@ -74,7 +75,7 @@ function parsePathAndParametersToString(initialUrl, parameters) {
       url = url.replace(`{${description}}`, '${' + description + '}');
       paths.push(`* @param {${type}} params.${description} - path`);
     });
-    result.url = `"${url}"`;
+    result.url = '`' + `${url}` + '`';
     result.params.paths = paths.join('\n');
   }
   //  TODO: 增加对复杂类型的解析
@@ -82,32 +83,35 @@ function parsePathAndParametersToString(initialUrl, parameters) {
     let bodyParams = [];
     bodyParams.push(` * @param {object} params.body - 请求体`);
     // let typedefs = {};
-    global.typedefs = [];
+    global.typedefs = {};
     let params = [];
     body.forEach(bodyItem => {
       if (typeof bodyItem !== 'object') {
         return;
       }
       for (let i in bodyItem) {
-        const { type, description } = bodyItem[i];
+        // const { type, description } = bodyItem[i];
         const param = parseParameter(bodyItem[i], i);
         params.push(param);
+        // bodyParams.push(
+        //   ` * @param {${type}} params.body.${i} - ${description}`
+        // );
+        const { type, itemType, description } = param;
+        const paramType = type === 'array' ? `[${itemType}]` : type;
         bodyParams.push(
-          ` * @param {${type}} params.body.${i} - ${description}`
+          `* @param {${paramType}} params.body.${i} - ${description}`
         );
       }
     });
-    console.log('====================================');
-    console.log(global.typedefs);
-    console.log('====================================');
-    result.params.bodies = bodyParams.join('\n');
+    // fs.writeFileSync('params.js', JSON.stringify(params, null, 2));
+    result.params.bodies = bodyParams.join('\n ');
   }
 
   //  TODO: 解析query
   return result;
 }
-fs.writeFileSync('defs.js', JSON.stringify(global.typedefs, null, 2));
-fs.writeFileSync('test.js', infos);
+// fs.writeFileSync('defs.js', JSON.stringify(global.typedefs, null, 2));
+fs.appendFileSync('test.js', '\n' + infos);
 
 function parseParameter(param, paramName, typedefs) {
   const { type } = param;
@@ -123,7 +127,7 @@ function parseArrayParameter(param, paramName, typedefs) {
   const parser = parserMap[itemType] || parseObjectParameter;
   const result = parser(valueType, name, typedefs);
 
-  global.typedefs.push({ name, result });
+  global.typedefs[name] = { name, result };
   return { paramName, type, itemType: name, description };
 }
 
@@ -141,7 +145,7 @@ function parseObjectParameter(param, paramName, typedefs) {
     result[key] = parser(value, key);
   });
   // global.typedefs[paramName] = result;
-  global.typedefs.push({ name: paramName, result });
+  global.typedefs[paramName] = { name: paramName, result };
   return result;
 }
 
