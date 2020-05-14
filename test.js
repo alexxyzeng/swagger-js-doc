@@ -87,8 +87,6 @@
  * @property {string} woType 工单类型 1-内部报修 2-外部报修 3-计划性维护 {内部报修=Internal, 外部报修=External, 计划性维护=PlannedMaintenance, 内部或外部报修=Mix}
  *
  */
-
-
 /**
  * @tags inspect-task
  * @link undefined/swagger-ui.html#!/inspect-task/findByIdUsingGET_26
@@ -99,7 +97,7 @@
  * @return {Promise}
 */
 export function findByIdUsingGET_26(params) {
-  return API.get(`/inspect-task/handle/${id}`, <%= InterfaceParamsMethod %>)
+  return API.get(`/inspect-task/handle/${id}`, {})
 }
 
 /**
@@ -124,7 +122,7 @@ export function findByIdUsingGET_26(params) {
  * @return {Promise}
 */
 export function updateUsingPUT_34(params) {
-  return API.put(`/inspect-task/handle/${id}`, <%= InterfaceParamsMethod %>)
+  return API.put(`/inspect-task/handle/${id}`, { ...params.body })
 }
 
 /**
@@ -137,6 +135,6 @@ export function updateUsingPUT_34(params) {
  * @return {Promise}
 */
 export function deleteUsingDELETE_31(params) {
-  return API.delete(`/inspect-task/handle/${id}`, <%= InterfaceParamsMethod %>)
+  return API.delete(`/inspect-task/handle/${id}`, {})
 }
 

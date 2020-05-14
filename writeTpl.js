@@ -41,9 +41,12 @@ for (let methodName in methods) {
   // TODO: 增加自定义方法名
   const {
     url,
+    params,
     params: { paths, bodies }
   } = parsePathAndParametersToString(path, parameters);
+
   let paramStr = [paths, bodies].filter(item => item !== undefined).join('\n');
+  const methodParams = parseMethodParameters(parameters)
   const serviceInfo = tpl
     .replace(API_SERVICE_DEFINITION, path)
     .replace(API_SERVICE_DOC_URL_TPL, link)
@@ -54,6 +57,8 @@ for (let methodName in methods) {
     .replace(API_SERVICE_METHOD_TPL, methodName)
     .replace(API_SERVICE_PARAM_TPL, 'params')
     .replace(API_SERVICE_URL_TPL, url)
+    // TODO: 增加参数填充
+    .replace(API_SERVICE_METHOD_PARAM_TPL, methodParams)
     .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr);
 
   infos += serviceInfo;
@@ -153,4 +158,27 @@ function parseObjectParameter(param, paramName, typedefs) {
 function parseBasicParameter(param, paramName) {
   const { type, description } = param;
   return { paramName, type, description };
+}
+
+
+function parseMethodParameters(parameters) {
+  const { body, query } = parameters
+  let result = '{}'
+  if (query.length > 0) {
+    result = '{ params: { '
+    query.forEach(item => {
+      const { description } = item
+      result += 'params.id'
+    })
+    result += ' }}'
+  }
+  if (body.length > 0) {
+    if (result !== '{}') {
+      result += ', ';
+    } else {
+      result = '';
+    }
+    result += '{ ...params.body }';
+  }
+  return result
 }
