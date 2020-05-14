@@ -88,22 +88,23 @@
  *
  */
 
+
 /**
  * @tags inspect-task
- * @link http://test.fm.dfocus.tech/df-fm/swagger-ui.html#!/inspect-task/findByIdUsingGET_26
+ * @link undefined/swagger-ui.html#!/inspect-task/findByIdUsingGET_26
  * @summary 巡检任务-工单-详情
  * @description 
  * @param {object} params
  * @param {number} params.id - path
  * @return {Promise}
 */
-export function findByIdUsingGET_26(<%= InterfaceParams %>) {
+export function findByIdUsingGET_26(params) {
   return API.get(`/inspect-task/handle/${id}`, <%= InterfaceParamsMethod %>)
 }
 
 /**
  * @tags inspect-task
- * @link http://test.fm.dfocus.tech/df-fm/swagger-ui.html#!/inspect-task/updateUsingPUT_34
+ * @link undefined/swagger-ui.html#!/inspect-task/updateUsingPUT_34
  * @summary 修改巡检任务-工单-部分
  * @description 
  * @param {object} params
@@ -122,20 +123,20 @@ export function findByIdUsingGET_26(<%= InterfaceParams %>) {
  * @param {[workordersItem]} params.body.workorders - undefined
  * @return {Promise}
 */
-export function updateUsingPUT_34(<%= InterfaceParams %>) {
+export function updateUsingPUT_34(params) {
   return API.put(`/inspect-task/handle/${id}`, <%= InterfaceParamsMethod %>)
 }
 
 /**
  * @tags inspect-task
- * @link http://test.fm.dfocus.tech/df-fm/swagger-ui.html#!/inspect-task/deleteUsingDELETE_31
+ * @link undefined/swagger-ui.html#!/inspect-task/deleteUsingDELETE_31
  * @summary 删除巡检任务-工单
  * @description 
  * @param {object} params
  * @param {number} params.id - path
  * @return {Promise}
 */
-export function deleteUsingDELETE_31(<%= InterfaceParams %>) {
+export function deleteUsingDELETE_31(params) {
   return API.delete(`/inspect-task/handle/${id}`, <%= InterfaceParamsMethod %>)
 }
 

@@ -4,7 +4,8 @@
   "description": "parse swagger-doc into js-doc, generate api service and mock data files",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rejoice": "node ./writeTpl.js"
   },
   "bin": {
     "hello": "./hello.js"

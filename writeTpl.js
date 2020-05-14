@@ -52,6 +52,7 @@ for (let methodName in methods) {
     .replace(API_SERVICE_DESCRIPTION_TPL, description)
     .replace(API_SERVICE_NAME_TPL, operationId)
     .replace(API_SERVICE_METHOD_TPL, methodName)
+    .replace(API_SERVICE_PARAM_TPL, 'params')
     .replace(API_SERVICE_URL_TPL, url)
     .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr);
 
