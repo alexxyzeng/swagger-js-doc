@@ -13,7 +13,8 @@ const {
   API_SERVICE_NAME_TPL,
   API_SERVICE_URL_TPL,
   API_SERVICE_METHOD_TPL,
-  API_SERVICE_DEFINITION
+  API_SERVICE_DEFINITION,
+  API_SERVICE_RETURN_VALUE
 } = require('./const/tpl');
 
 const [baseUrl] = process.argv.slice(2);
@@ -57,8 +58,9 @@ for (let methodName in methods) {
     .replace(API_SERVICE_METHOD_TPL, methodName)
     .replace(API_SERVICE_PARAM_TPL, 'params')
     .replace(API_SERVICE_URL_TPL, url)
-    // TODO: 增加参数填充
     .replace(API_SERVICE_METHOD_PARAM_TPL, methodParams)
+    // TODO: 增加返回值类型解析
+    .replace(API_SERVICE_RETURN_VALUE, 'TO BE IMPLEMENTED')
     .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr);
 
   infos += serviceInfo;

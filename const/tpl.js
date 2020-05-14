@@ -9,6 +9,7 @@ const API_SERVICE_METHOD_TPL = '<%= InterfaceMethod %>';
 const API_SERVICE_URL_TPL = '<%= InterfaceUrl %>';
 const API_SERVICE_METHOD_PARAM_TPL = '<%= InterfaceParamsMethod %>';
 const API_SERVICE_DEFINITION = '<%= InterfaceDefinition %>';
+const API_SERVICE_RETURN_VALUE = '<%= ReturnValueType %>';
 
 module.exports = {
   API_SERVICE_TAGS_TPL,
@@ -21,5 +22,6 @@ module.exports = {
   API_SERVICE_NAME_TPL,
   API_SERVICE_URL_TPL,
   API_SERVICE_METHOD_TPL,
-  API_SERVICE_DEFINITION
+  API_SERVICE_DEFINITION,
+  API_SERVICE_RETURN_VALUE
 };
