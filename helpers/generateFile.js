@@ -23,6 +23,9 @@ function generateFiles(paths, definitions, methods = Methods) {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {
         const parsedMethod = parseParams(methodInfo, definitions);
+        if (method === Methods.DELETE && key === '/demand/track') {
+          console.log(methodInfo, '--- method ---', key);
+        }
         // TODO: 增加对响应的解析
         methods[method] = parsedMethod;
       }

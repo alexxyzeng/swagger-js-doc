@@ -38,6 +38,18 @@ function parseParams(api, definitions) {
   };
 }
 
+function parseSchemaParamType(param) {
+  const { description, required, schema } = param;
+  const { type, items } = schema;
+  return parseParamType({
+    type,
+    required,
+    description,
+    items,
+    definitonType: '',
+  });
+}
+
 // integer/strring/array/object/enum/boolean
 function parseParamType(param = {}) {
   if (!param) {
@@ -45,29 +57,23 @@ function parseParamType(param = {}) {
   }
   const {
     type,
+    schema,
     required = false,
     items,
     description = '',
     enum: valueEnum = {},
     definitionType,
   } = param;
+  if (!type && schema) {
+    return parseSchemaParamType(param);
+  }
+  // TODO: 增加对内置schema类型的解析
   const parsedEnum = Object.values(valueEnum);
   if (type === 'integer' || type === 'float' || type === 'double') {
     return { type: 'number', description, required, enum: parsedEnum };
   }
   if (type === 'array') {
-    let parsedItems = null;
-    if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
-      parsedItems = parseParamType({ ...items, type: 'object' });
-    } else {
-      parsedItems = parseParamType(items);
-    }
-    return {
-      type,
-      valueType: { ...parsedItems, type: 'object' },
-      required,
-      definitionType,
-    };
+    return parseArrayParamType(items, type, required, definitionType);
   }
   // TODO: 解析enum
   // TODO: 解析object
@@ -95,4 +101,19 @@ function parseParamType(param = {}) {
 
 module.exports = {
   parseParams,
+  parseParamType,
 };
+function parseArrayParamType(items, type, required, definitionType) {
+  let parsedItems = null;
+  if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
+    parsedItems = parseParamType({ ...items, type: 'object' });
+  } else {
+    parsedItems = parseParamType(items);
+  }
+  return {
+    type,
+    valueType: { ...parsedItems, type: 'object' },
+    required,
+    definitionType,
+  };
+}
