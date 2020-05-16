@@ -28,12 +28,20 @@ function generateFiles(paths, definitions, methods = Methods) {
       }
     });
     result = { path: key, methods };
+    if (!fs.existsSync(targetPath)) {
+      fs.mkdirSync(targetPath)
+    }
     fs.writeFileSync(
-      `${targetPath}_original.js`,
+      `${targetPath}/api.js`,
+      JSON.stringify(path, null, 2)
+    );
+    fs.writeFileSync(
+      `${targetPath}/original.js`,
       JSON.stringify(result, null, 2)
     );
-    fs.writeFileSync(`${targetPath}.js`, parseApiInfo(result));
+    fs.writeFileSync(`${targetPath}/parsed.js`, parseApiInfo(result));
   });
+  fs.writeFileSync('typedefs.js', JSON.stringify(global.typedefs, null, 2));
 }
 
 module.exports = {

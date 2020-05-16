@@ -3,18 +3,19 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
-    jest: true
+    jest: true,
   },
   extends: 'eslint:recommended',
   globals: {
     Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018
+    ecmaVersion: 2018,
+    // sourceType: 'module',
   },
   rules: {
     'no-console': 'off',
-    indent: [2, 2]
-  }
+    indent: [2, 2],
+  },
 };

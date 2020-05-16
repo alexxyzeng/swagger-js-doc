@@ -44,10 +44,10 @@ function parseApiInfo(apiInfo) {
     const {
       url,
       // params,
-      params: { paths, bodies },
+      params: { paths, queries, bodies },
     } = parsePathAndParametersToString(path, parameters);
 
-    let paramStr = [paths, bodies]
+    let paramStr = [paths, queries, bodies]
       .filter((item) => item !== undefined)
       .join('\n');
     const methodParams = parseMethodParameters(parameters);
@@ -59,6 +59,7 @@ function parseApiInfo(apiInfo) {
       .replace(API_SERVICE_DESCRIPTION_TPL, description)
       .replace(API_SERVICE_NAME_TPL, operationId)
       .replace(API_SERVICE_METHOD_TPL, methodName)
+      // TODO: 如果没有参数的情况,则不填充参数
       .replace(API_SERVICE_PARAM_TPL, 'params')
       .replace(API_SERVICE_URL_TPL, url)
       .replace(API_SERVICE_METHOD_PARAM_TPL, methodParams)
@@ -86,29 +87,16 @@ function parsePathAndParametersToString(initialUrl, parameters) {
   url = parsePath(path, url, result);
   result.url = '`' + `${url}` + '`';
   result = parseQueries(query, result);
-  result = parseBodies(body, result);
+  result = parseBodies(body, result, initialUrl);
   return result;
 }
-
-parsePathAndParametersToString('/demand/type/{id}', {
-  body: [],
-  path: [
-    {
-      type: 'number',
-      description: 'id',
-      required: true,
-      enum: [],
-    },
-  ],
-  query: [],
-});
 
 function parsePath(path, url, result) {
   if (path.length > 0) {
     let paths = [];
     path.forEach((pathItem) => {
       const { type, description } = pathItem;
-      url = url.replace(`{${description}}`, '${' + description + '}');
+      url = url.replace(`{${description}}`, '${params.' + description + '}');
       paths.push(`* @param {${type}} params.${description} - path`);
     });
     result.params.paths = paths.join('\n');
@@ -129,12 +117,19 @@ function parseBodies(body, result) {
       }
       for (let i in bodyItem) {
         const param = parseParameter(bodyItem[i], i);
-        // FIXME: 此处解析会栈溢出，需修复
-        // if (bodyItem && bodyItem[i] === undefined) {
-        //   console.log('====================================');
-        //   console.log(bodyItem[i], '---', bodyItem);
-        //   console.log('====================================');
-        // }
+        // FIXME: 这里有bug需修改
+        if (bodyItem && bodyItem[i] === undefined) {
+          // console.log('====================================');
+          // console.log(
+          //   bodyItem[i],
+          //   '---',
+          //   bodyItem,
+          //   '--- initial url ---',
+          //   initialUrl
+          // );
+          // console.log(result);
+          // console.log('====================================');
+        }
         params.push(param);
         const { type, itemType, description } = param;
         const paramType = type === 'array' ? `[${itemType}]` : type;
@@ -143,7 +138,7 @@ function parseBodies(body, result) {
         );
       }
     });
-    fs.writeFileSync('params.js', JSON.stringify(params, null, 2));
+    // fs.writeFileSync('params.js', JSON.stringify(params, null, 2));
     result.params.bodies = bodyParams.join('\n ');
   }
   return result;
@@ -152,7 +147,7 @@ function parseBodies(body, result) {
 function parseQuery(query) {
   const { type, name, description, valueType } = query;
   const parsedType = type !== 'array' ? type : `[${valueType.type}]`;
-  return `* @param {${parsedType}} param.query.${name} - ${description}`;
+  return `* @param {${parsedType}} params.query.${name} - ${description}`;
 }
 
 function parseQueries(query, result) {
@@ -171,10 +166,10 @@ function parseQueries(query, result) {
 // fs.writeFileSync('defs.js', JSON.stringify(global.typedefs, null, 2));
 
 function parseParameter(param, paramName, typedefs) {
-  const { type } = param;
   if (param === undefined) {
     return {};
   }
+  const { type } = param;
   const parser = parserMap[type] || parseObjectParameter;
 
   return parser(param, paramName, typedefs);
@@ -200,7 +195,10 @@ function parseObjectParameter(param, paramName, typedefs) {
   try {
     keys.forEach((key) => {
       const value = param[key];
-      const { type } = value;
+      const { type } = value || {};
+      if (!type) {
+        return {};
+      }
       // const parser = parserMap(value, key);
       const parser = parserMap[type] || parseObjectParameter;
       result[key] = parser(value, key);

@@ -18,9 +18,9 @@ function parseParams(api, definitions) {
     if (isValidDefinitionType(schema)) {
       const definitionType = parseDefinitionType(schema);
       const notOkList = ['设施分类', '权限表'];
-      if (notOkList.includes(definitionType)) {
-        return;
-      }
+      // if (notOkList.includes(definitionType)) {
+      //   return;
+      // }
       const definition = parseDefinition(definitionType, definitions);
       param = parseParamType(definition);
       // console.log(definition);
@@ -39,10 +39,11 @@ function parseParams(api, definitions) {
 }
 
 function parseSchemaParamType(param) {
-  const { description, required, schema } = param;
+  const { description, required, schema, name } = param;
   const { type, items } = schema;
   return parseParamType({
     type,
+    name,
     required,
     description,
     items,
@@ -57,13 +58,13 @@ function parseParamType(param = {}) {
   }
   const {
     type,
+    name,
     schema,
     required = false,
     items,
     description = '',
     enum: valueEnum = {},
     definitionType,
-    name,
   } = param;
   if (!type && schema) {
     return parseSchemaParamType(param);

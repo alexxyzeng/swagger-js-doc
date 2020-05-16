@@ -19,7 +19,7 @@ describe('parse parameters and path', () => {
       ],
       query: [],
     });
-    expect(parsedData.url).toBe('`/demand/type/${id}`');
+    expect(parsedData.url).toBe('`/demand/type/${param.id}`');
   });
   it('parse path without path parameter', () => {
     const { url } = parsePathAndParametersToString('/app/index', {
@@ -57,7 +57,7 @@ describe('parse parameters and path', () => {
         enum: [],
       })
     ).toBe(
-      '* @param {number} param.query.deviceLastUpdateTime - 设备信息最后一次更新时间'
+      '* @param {number} params.query.deviceLastUpdateTime - 设备信息最后一次更新时间'
     );
     expect(
       parseQuery({
@@ -67,7 +67,7 @@ describe('parse parameters and path', () => {
         required: false,
         enum: [],
       })
-    ).toBe('* @param {string} param.query.userId - 用户ID');
+    ).toBe('* @param {string} params.query.userId - 用户ID');
 
     expect(
       parseQuery({
@@ -82,6 +82,6 @@ describe('parse parameters and path', () => {
         required: false,
         description: '需求ID(批量查询)',
       })
-    ).toBe('* @param {[number]} param.query.ids - 需求ID(批量查询)');
+    ).toBe('* @param {[number]} params.query.ids - 需求ID(批量查询)');
   });
 });

@@ -1,9 +1,5 @@
 const fs = require('fs');
-
-function parseDefinitionType(data) {
-  const { $ref = '' } = data;
-  return $ref.replace('#/definitions/', '');
-}
+const { parseDefinitionType } = require('./parseDefinitionType');
 
 function parseDefinitions(definitions) {
   let result = {};

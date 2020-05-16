@@ -177,12 +177,14 @@ describe('parse parameters', () => {
             type: 'array',
             required: true,
             description: 'idx',
+            name: 'idx',
             definitionType: undefined,
             valueType: {
               description: '',
               enum: [],
               required: true,
               type: 'number',
+              name: undefined,
             },
           },
         ],
@@ -203,15 +205,20 @@ describe('parse parameters', () => {
         name: 'idx',
         description: 'idx',
         required: true,
-        schema: { type: 'array', items: { type: 'integer', format: 'int64' } },
+        schema: {
+          type: 'array',
+          items: { type: 'integer', format: 'int64' },
+        },
       })
     ).toEqual({
       type: 'array',
+      name: 'idx',
       valueType: {
         description: '',
         enum: [],
         required: true,
         type: 'number',
+        name: undefined,
       },
       required: true,
       description: 'idx',
