@@ -73,7 +73,7 @@ function parseParamType(param = {}) {
     return { type: 'number', description, required, enum: parsedEnum };
   }
   if (type === 'array') {
-    return parseArrayParamType(items, type, required, definitionType);
+    return parseArrayParamType(items, type, required, definitionType, description);
   }
   // TODO: 解析enum
   // TODO: 解析object
@@ -103,17 +103,18 @@ module.exports = {
   parseParams,
   parseParamType,
 };
-function parseArrayParamType(items, type, required, definitionType) {
+function parseArrayParamType(items, type, required, definitionType, description) {
   let parsedItems = null;
   if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
     parsedItems = parseParamType({ ...items, type: 'object' });
   } else {
-    parsedItems = parseParamType(items);
+    parsedItems = parseParamType({ ...items, required, definitionType });
   }
   return {
     type,
-    valueType: { ...parsedItems, type: 'object' },
+    valueType: { type: 'object', ...parsedItems, },
     required,
     definitionType,
+    description
   };
 }

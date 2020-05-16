@@ -92,24 +92,24 @@ const { isValidDefinitionType } = require('../helpers/parseDefinitions');
 //     parameters: [
 //       {
 //         name: 'Authorization',
-//         ' in ': 'header',
+//         'in': 'header',
 //         required: false,
 //         type: 'string',
 //       },
 //       {
 //         name: 'df - tenant - id',
-//         ' in ': 'header',
+//         'in': 'header',
 //         required: false,
 //         type: 'string',
 //       },
 //       {
 //         name: 'df - project - id',
-//         ' in ': 'header',
+//         'in': 'header',
 //         required: false,
 //         type: 'string',
 //       },
 //       {
-//         ' in ': 'body',
+//         'in': 'body',
 //         name: 'idx',
 //         description: 'idx',
 //         required: true,
@@ -132,28 +132,28 @@ const data = {
   summary: '批量删除需求跟进记录',
   operationId: 'deleteUsingDELETE_4',
   consumes: ['application/json'],
-  produces: ['*/* '],
+  produces: ['*/*'],
   parameters: [
     {
       name: 'Authorization',
-      ' in ': 'header',
+      'in': 'header',
       required: false,
       type: 'string',
     },
     {
       name: 'df - tenant - id',
-      ' in ': 'header',
+      'in': 'header',
       required: false,
       type: 'string',
     },
     {
       name: 'df - project - id',
-      ' in ': 'header',
+      'in': 'header',
       required: false,
       type: 'string',
     },
     {
-      ' in ': 'body',
+      'in': 'body',
       name: 'idx',
       description: 'idx',
       required: true,
@@ -164,15 +164,43 @@ const data = {
 
 // FIXME: 修复解析基本类型数组参数类型
 describe('parse parameters', () => {
+  it('parse body paramters', () => {
+    expect(parseParams(data, {})).toEqual({
+      tags: ['service-center-demand-track'],
+      summary: '批量删除需求跟进记录',
+      operationId: 'deleteUsingDELETE_4',
+      consumes: ['application/json'],
+      parameters: {
+        path: [],
+        query: [],
+        body: [
+          {
+            type: 'array',
+            required: true,
+            description: 'idx',
+            definitionType: undefined,
+            valueType: {
+              description: '',
+              enum: [],
+              required: true,
+              type: 'number'
+            }
+          }
+        ]
+      }
+    })
+  })
   it('check is valid type', () => {
     expect(
       isValidDefinitionType({
         schema: { type: 'array', items: { type: 'integer', format: 'int64' } },
       })
     ).toBeFalsy();
+  });
+  it('parse primitive type array', () => {
     expect(
       parseParamType({
-        ' in ': 'body',
+        'in': 'body',
         name: 'idx',
         description: 'idx',
         required: true,
@@ -180,10 +208,15 @@ describe('parse parameters', () => {
       })
     ).toEqual({
       type: 'array',
-      valueType: 'number',
+      valueType: {
+        description: '',
+        enum: [],
+        required: true,
+        type: 'number'
+      },
       required: true,
       description: 'idx',
-      definitionType: '',
+      definitionType: undefined,
     });
-  });
+  })
 });
