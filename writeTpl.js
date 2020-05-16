@@ -18,7 +18,7 @@ const {
 } = require('./const/tpl');
 
 const [baseUrl] = process.argv.slice(2);
-const apiInfo = require('./data');
+// const apiInfo = require('./data');
 const tpl = fs.readFileSync('./tpl/service.js.tpl') + '';
 
 const parserMap = {
@@ -40,7 +40,6 @@ function parseApiInfo(apiInfo) {
     const tagStr = tags.join(',');
     const [tag] = tags;
     const link = `${base}${tag}/${operationId}`;
-    // TODO: 增加对具体参数的生成
     // TODO: 增加自定义方法名
     const {
       url,
@@ -84,6 +83,27 @@ function parsePathAndParametersToString(initialUrl, parameters) {
   let result = { url: '', params: {} };
   const { path, body, query } = parameters;
   let url = initialUrl;
+  url = parsePath(path, url, result);
+  result.url = '`' + `${url}` + '`';
+  result = parseQueries(query, result);
+  result = parseBodies(body, result);
+  return result;
+}
+
+parsePathAndParametersToString('/demand/type/{id}', {
+  body: [],
+  path: [
+    {
+      type: 'number',
+      description: 'id',
+      required: true,
+      enum: [],
+    },
+  ],
+  query: [],
+});
+
+function parsePath(path, url, result) {
   if (path.length > 0) {
     let paths = [];
     path.forEach((pathItem) => {
@@ -91,10 +111,12 @@ function parsePathAndParametersToString(initialUrl, parameters) {
       url = url.replace(`{${description}}`, '${' + description + '}');
       paths.push(`* @param {${type}} params.${description} - path`);
     });
-    result.url = '`' + `${url}` + '`';
     result.params.paths = paths.join('\n');
   }
-  //  TODO: 增加对复杂类型的解析
+  return url;
+}
+
+function parseBodies(body, result) {
   if (body.length > 0) {
     let bodyParams = [];
     bodyParams.push(` * @param {object} params.body - 请求体`);
@@ -106,27 +128,46 @@ function parsePathAndParametersToString(initialUrl, parameters) {
         return;
       }
       for (let i in bodyItem) {
-        // const param = parseParameter(bodyItem[i], i);
+        const param = parseParameter(bodyItem[i], i);
+        // FIXME: 此处解析会栈溢出，需修复
         // if (bodyItem && bodyItem[i] === undefined) {
         //   console.log('====================================');
         //   console.log(bodyItem[i], '---', bodyItem);
         //   console.log('====================================');
         // }
-        // params.push(param);
-        // const { type, itemType, description } = param;
-        // const paramType = type === 'array' ? `[${itemType}]` : type;
-        // bodyParams.push(
-        //   `* @param {${paramType}} params.body.${i} - ${description}`
-        // );
+        params.push(param);
+        const { type, itemType, description } = param;
+        const paramType = type === 'array' ? `[${itemType}]` : type;
+        bodyParams.push(
+          `* @param {${paramType}} params.body.${i} - ${description}`
+        );
       }
     });
     fs.writeFileSync('params.js', JSON.stringify(params, null, 2));
     result.params.bodies = bodyParams.join('\n ');
   }
-
-  //  TODO: 解析query
   return result;
 }
+
+function parseQuery(query) {
+  const { type, name, description, valueType } = query;
+  const parsedType = type !== 'array' ? type : `[${valueType.type}]`;
+  return `* @param {${parsedType}} param.query.${name} - ${description}`;
+}
+
+function parseQueries(query, result) {
+  if (query.length > 0) {
+    let queryParams = [];
+    queryParams.push(`* @param {object} params.query - 请求查询参数`);
+    query.forEach((queryItem) => {
+      const parsedQuery = parseQuery(queryItem);
+      queryParams.push(parsedQuery);
+    });
+    result.params.queries = queryParams.join('\n');
+  }
+  return result;
+}
+
 // fs.writeFileSync('defs.js', JSON.stringify(global.typedefs, null, 2));
 
 function parseParameter(param, paramName, typedefs) {
@@ -182,12 +223,7 @@ function parseMethodParameters(parameters) {
   const { body, query } = parameters;
   let result = '{}';
   if (query.length > 0) {
-    result = '{ params: { ';
-    query.forEach((item) => {
-      const { description } = item;
-      result += 'params.id';
-    });
-    result += ' }}';
+    result = '{ params: { ...params.query }';
   }
   if (body.length > 0) {
     if (result !== '{}') {
@@ -202,4 +238,9 @@ function parseMethodParameters(parameters) {
 
 module.exports = {
   parseApiInfo,
+  parseParameter,
+  parsePathAndParametersToString,
+  parseQuery,
+  parseQueries,
+  parseBodies,
 };

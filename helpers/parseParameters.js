@@ -63,17 +63,24 @@ function parseParamType(param = {}) {
     description = '',
     enum: valueEnum = {},
     definitionType,
+    name,
   } = param;
   if (!type && schema) {
     return parseSchemaParamType(param);
   }
-  // TODO: 增加对内置schema类型的解析
   const parsedEnum = Object.values(valueEnum);
   if (type === 'integer' || type === 'float' || type === 'double') {
-    return { type: 'number', description, required, enum: parsedEnum };
+    return { type: 'number', name, description, required, enum: parsedEnum };
   }
   if (type === 'array') {
-    return parseArrayParamType(items, type, required, definitionType, description);
+    return parseArrayParamType(
+      items,
+      type,
+      required,
+      definitionType,
+      description,
+      name
+    );
   }
   // TODO: 解析enum
   // TODO: 解析object
@@ -96,14 +103,21 @@ function parseParamType(param = {}) {
     }
     return result;
   }
-  return { type, description, enum: parsedEnum, definitionType };
+  return { type, name, description, enum: parsedEnum, definitionType };
 }
 
 module.exports = {
   parseParams,
   parseParamType,
 };
-function parseArrayParamType(items, type, required, definitionType, description) {
+function parseArrayParamType(
+  items,
+  type,
+  required,
+  definitionType,
+  description,
+  name
+) {
   let parsedItems = null;
   if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
     parsedItems = parseParamType({ ...items, type: 'object' });
@@ -112,9 +126,10 @@ function parseArrayParamType(items, type, required, definitionType, description)
   }
   return {
     type,
-    valueType: { type: 'object', ...parsedItems, },
+    valueType: { type: 'object', ...parsedItems },
     required,
     definitionType,
-    description
+    description,
+    name,
   };
 }

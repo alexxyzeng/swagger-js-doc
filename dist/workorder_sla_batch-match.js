@@ -1,0 +1,13 @@
+/**
+ * @tags workorder-sla
+ * @link http://df-fm.v131.svc.cluster.local/swagger-ui.html#!/workorder-sla/batchMatchUsingPOST
+ * @summary 批量匹配sla
+ * @description 
+ * @param {object} params
+  * @param {object} params.body - 请求体
+ * @return {Promise}<TO BE IMPLEMENTED>
+*/
+export function batchMatchUsingPOST(params) {
+  return API.post(, { ...params.body })
+}
+

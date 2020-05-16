@@ -136,24 +136,24 @@ const data = {
   parameters: [
     {
       name: 'Authorization',
-      'in': 'header',
+      in: 'header',
       required: false,
       type: 'string',
     },
     {
       name: 'df - tenant - id',
-      'in': 'header',
+      in: 'header',
       required: false,
       type: 'string',
     },
     {
       name: 'df - project - id',
-      'in': 'header',
+      in: 'header',
       required: false,
       type: 'string',
     },
     {
-      'in': 'body',
+      in: 'body',
       name: 'idx',
       description: 'idx',
       required: true,
@@ -162,7 +162,6 @@ const data = {
   ],
 };
 
-// FIXME: 修复解析基本类型数组参数类型
 describe('parse parameters', () => {
   it('parse body paramters', () => {
     expect(parseParams(data, {})).toEqual({
@@ -183,13 +182,13 @@ describe('parse parameters', () => {
               description: '',
               enum: [],
               required: true,
-              type: 'number'
-            }
-          }
-        ]
-      }
-    })
-  })
+              type: 'number',
+            },
+          },
+        ],
+      },
+    });
+  });
   it('check is valid type', () => {
     expect(
       isValidDefinitionType({
@@ -200,7 +199,7 @@ describe('parse parameters', () => {
   it('parse primitive type array', () => {
     expect(
       parseParamType({
-        'in': 'body',
+        in: 'body',
         name: 'idx',
         description: 'idx',
         required: true,
@@ -212,11 +211,11 @@ describe('parse parameters', () => {
         description: '',
         enum: [],
         required: true,
-        type: 'number'
+        type: 'number',
       },
       required: true,
       description: 'idx',
       definitionType: undefined,
     });
-  })
+  });
 });

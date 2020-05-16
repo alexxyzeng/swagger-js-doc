@@ -12,7 +12,7 @@ function generateFiles(paths, definitions, methods = Methods) {
   pathList.forEach((path) => {
     const [key, value] = path;
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
-    const targetPath = `dist/${relativePath}.js`;
+    const targetPath = `dist/${relativePath}`;
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
@@ -23,16 +23,16 @@ function generateFiles(paths, definitions, methods = Methods) {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {
         const parsedMethod = parseParams(methodInfo, definitions);
-        if (method === Methods.DELETE && key === '/demand/track') {
-          console.log(methodInfo, '--- method ---', key);
-        }
         // TODO: 增加对响应的解析
         methods[method] = parsedMethod;
       }
     });
     result = { path: key, methods };
-    parseApiInfo(result);
-    fs.writeFileSync(targetPath, JSON.stringify(result, null, 2));
+    fs.writeFileSync(
+      `${targetPath}_original.js`,
+      JSON.stringify(result, null, 2)
+    );
+    fs.writeFileSync(`${targetPath}.js`, parseApiInfo(result));
   });
 }
 

@@ -1,5 +1,3 @@
-//  TODO: 获取命令行参数
-//  TODO: 抓取swagger接口数据
 const process = require('process');
 const fetch = require('node-fetch');
 const fs = require('fs');
