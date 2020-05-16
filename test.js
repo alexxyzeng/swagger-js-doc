@@ -87,6 +87,7 @@
  * @property {string} woType 工单类型 1-内部报修 2-外部报修 3-计划性维护 {内部报修=Internal, 外部报修=External, 计划性维护=PlannedMaintenance, 内部或外部报修=Mix}
  *
  */
+
 /**
  * @tags inspect-task
  * @link undefined/swagger-ui.html#!/inspect-task/findByIdUsingGET_26
@@ -94,7 +95,7 @@
  * @description 
  * @param {object} params
  * @param {number} params.id - path
- * @return {Promise}
+ * @return {Promise}<TO BE IMPLEMENTED>
 */
 export function findByIdUsingGET_26(params) {
   return API.get(`/inspect-task/handle/${id}`, {})
@@ -119,7 +120,7 @@ export function findByIdUsingGET_26(params) {
  * @param {string} params.body.workorderCode - 工单编号
  * @param {number} params.body.workorderId - 工单ID
  * @param {[workordersItem]} params.body.workorders - undefined
- * @return {Promise}
+ * @return {Promise}<TO BE IMPLEMENTED>
 */
 export function updateUsingPUT_34(params) {
   return API.put(`/inspect-task/handle/${id}`, { ...params.body })
@@ -132,7 +133,59 @@ export function updateUsingPUT_34(params) {
  * @description 
  * @param {object} params
  * @param {number} params.id - path
- * @return {Promise}
+ * @return {Promise}<TO BE IMPLEMENTED>
+*/
+export function deleteUsingDELETE_31(params) {
+  return API.delete(`/inspect-task/handle/${id}`, {})
+}
+
+
+/**
+ * @tags inspect-task
+ * @link apiInfo/swagger-ui.html#!/inspect-task/findByIdUsingGET_26
+ * @summary 巡检任务-工单-详情
+ * @description 
+ * @param {object} params
+ * @param {number} params.id - path
+ * @return {Promise}<TO BE IMPLEMENTED>
+*/
+export function findByIdUsingGET_26(params) {
+  return API.get(`/inspect-task/handle/${id}`, {})
+}
+
+/**
+ * @tags inspect-task
+ * @link apiInfo/swagger-ui.html#!/inspect-task/updateUsingPUT_34
+ * @summary 修改巡检任务-工单-部分
+ * @description 
+ * @param {object} params
+ * @param {number} params.id - path
+ * @param {object} params.body - 请求体
+ * @param {string} params.body.description - 故障描述
+ * @param {string} params.body.handleResult - 异常处理结果：1-已处理、2-未处理 {已处理=Dispose, 未处理=Undispose}
+ * @param {string} params.body.handleWay - 异常处理方式：1-现状处理、2-保障工单 {现状处理=Situation, 报修工单=Workorder}
+ * @param {number} params.body.id - 唯一id
+ * @param {number} params.body.projectId - 项目id
+ * @param {string} params.body.serviceman - 维修人员
+ * @param {number} params.body.taskContentId - 任务内容ID
+ * @param {number} params.body.taskId - 任务ID
+ * @param {string} params.body.workorderCode - 工单编号
+ * @param {number} params.body.workorderId - 工单ID
+ * @param {[workordersItem]} params.body.workorders - undefined
+ * @return {Promise}<TO BE IMPLEMENTED>
+*/
+export function updateUsingPUT_34(params) {
+  return API.put(`/inspect-task/handle/${id}`, { ...params.body })
+}
+
+/**
+ * @tags inspect-task
+ * @link apiInfo/swagger-ui.html#!/inspect-task/deleteUsingDELETE_31
+ * @summary 删除巡检任务-工单
+ * @description 
+ * @param {object} params
+ * @param {number} params.id - path
+ * @return {Promise}<TO BE IMPLEMENTED>
 */
 export function deleteUsingDELETE_31(params) {
   return API.delete(`/inspect-task/handle/${id}`, {})

@@ -2,13 +2,13 @@ const fs = require('fs');
 const {
   parseDefinitionType,
   parseDefinition,
-  isValidDefinitionType
+  isValidDefinitionType,
 } = require('./parseDefinitions');
 
 function parseParams(api, definitions) {
   const { parameters, summary, consumes, operationId, tags } = api;
   const parsedParameters = { body: [], path: [], query: [] };
-  parameters.forEach(parameter => {
+  parameters.forEach((parameter) => {
     const { in: paramIn, schema } = parameter;
     if (!parsedParameters[paramIn]) {
       return;
@@ -22,17 +22,11 @@ function parseParams(api, definitions) {
         return;
       }
       const definition = parseDefinition(definitionType, definitions);
-      // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-      // console.log(JSON.stringify(definition, null, 2));
-      // console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       param = parseParamType(definition);
       // console.log(definition);
     } else {
       param = parseParamType(parameter);
     }
-    // console.log('====================================');
-    // console.log(param);
-    // console.log('====================================');
     parsedParameters[paramIn].push(param);
   });
   return {
@@ -40,7 +34,7 @@ function parseParams(api, definitions) {
     summary,
     consumes,
     operationId,
-    tags
+    tags,
   };
 }
 
@@ -55,7 +49,7 @@ function parseParamType(param = {}) {
     items,
     description = '',
     enum: valueEnum = {},
-    definitionType
+    definitionType,
   } = param;
   const parsedEnum = Object.values(valueEnum);
   if (type === 'integer' || type === 'float' || type === 'double') {
@@ -72,7 +66,7 @@ function parseParamType(param = {}) {
       type,
       valueType: { ...parsedItems, type: 'object' },
       required,
-      definitionType
+      definitionType,
     };
   }
   // TODO: 解析enum
@@ -90,7 +84,7 @@ function parseParamType(param = {}) {
       const property = properties[i];
       const propertyFinal = {
         ...property,
-        required: requireStatus[i] || false
+        required: requireStatus[i] || false,
       };
       result[i] = parseParamType(propertyFinal);
     }
@@ -100,5 +94,5 @@ function parseParamType(param = {}) {
 }
 
 module.exports = {
-  parseParams
+  parseParams,
 };

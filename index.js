@@ -15,21 +15,17 @@ if (!baseUrl) {
     'The baseUrl is required. Please configure the base url in the command'
   );
 }
-console.log(`${baseUrl}${swaggerDocPath}`);
 const swaggerDocUrl = `${baseUrl}${swaggerDocPath}`;
 
 fetch(swaggerDocUrl)
-  .then(res => res.json())
-  .then(json => {
+  .then((res) => res.json())
+  .then((json) => {
     const { paths, definitions } = json;
     const parsedDefinitions = parseDefinitions(definitions);
     fs.writeFileSync(
       'definitions.js',
       JSON.stringify(parsedDefinitions, null, 2)
     );
-    if (!fs.existsSync('dist')) {
-      fs.mkdirSync('dist');
-    }
     generateFiles(paths, definitions);
   })
   .catch(console.log);

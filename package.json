@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "rejoice": "node./writeTpl.js"
+    "rejoice": "node ./writeTpl.js"
   },
   "bin": {
     "hello": "./hello.js"

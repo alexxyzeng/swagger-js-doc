@@ -7,13 +7,13 @@ const parserMap = {
   string: parseBasicTypeToProp,
   number: parseBasicTypeToProp,
   boolean: parseBasicTypeToProp,
-  array: parseArrayTypeToProp
+  array: parseArrayTypeToProp,
 };
 
 // TODO: 优化冗余数据
 let parsedResult = [];
 const defList = Object.entries(data);
-defList.forEach(def => {
+defList.forEach((def) => {
   const [key, value] = def;
   const { name, result } = value;
   const keys = Object.keys(result);
@@ -21,16 +21,12 @@ defList.forEach(def => {
     .replace('<%= DefinitionType %>', 'object')
     .replace('<%= DefinitionName %>', name);
   let parsedDef = [];
-  keys.forEach(key => {
+  keys.forEach((key) => {
     const value = result[key];
     const { type } = value;
     const parser = parserMap[type] || parseObjecTypeToProp;
     parsedDef.push(parser(value));
   });
-  console.log('====================================');
-  console.log(parsedDef);
-  console.log(name);
-  console.log('====================================');
   typeName = typeName.replace(
     '<%= DefinitionPropropety %',
     parsedDef.join('\n ')
@@ -39,7 +35,6 @@ defList.forEach(def => {
 });
 
 fs.writeFileSync('test.js', parsedResult.join('\n\n'));
-// console.log(parsedResult);
 
 // TODO: 完善对应的解析
 function parseBasicTypeToProp(typeDef) {
@@ -54,8 +49,5 @@ function parseArrayTypeToProp(typeDef) {
 
 function parseObjecTypeToProp(typeDef) {
   // console.log(typeDef);
-  console.log('====================================');
-  console.log(typeDef);
-  console.log('====================================');
   return parseBasicTypeToProp(typeDef);
 }

@@ -7,14 +7,9 @@ function parseDefinitionType(data) {
 
 function parseDefinitions(definitions) {
   let result = {};
-  let count = 0;
   const keys = Object.keys(definitions);
   global.callCount = {};
-  keys.forEach(key => {
-    // console.log('====================================');
-    // console.log(key);
-    // console.log('====================================');
-    // result.push(parseDefinition(key, definitions));
+  keys.forEach((key) => {
     // 优化重复调用
     result[key] = parseDefinition(key, definitions);
   });
@@ -70,7 +65,7 @@ function parseRef(refType, definitions) {
     return {
       type: 'UNABLE_TO_PARSE',
       description: 'Seems to be stack overflow. You need to checkout why?',
-      definitionType: refType
+      definitionType: refType,
     };
   }
   //  1.先找到对于的definition
@@ -99,5 +94,5 @@ module.exports = {
   parseDefinitionType,
   isValidDefinitionType,
   parseDefinitions,
-  parseDefinition
+  parseDefinition,
 };
