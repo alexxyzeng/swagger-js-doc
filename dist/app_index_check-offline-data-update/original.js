@@ -71,7 +71,24 @@
       "operationId": "offlineDataHasUpdateUsingGET",
       "tags": [
         "app-index"
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/统一响应体Of基础数据是否有更新，为空代表没有检测更新"
+          }
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "404": {
+          "description": "Not Found"
+        }
+      }
     }
   }
 }

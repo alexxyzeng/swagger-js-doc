@@ -6,7 +6,7 @@ const {
 } = require('./parseDefinitions');
 
 function parseParams(api, definitions) {
-  const { parameters, summary, consumes, operationId, tags } = api;
+  const { parameters, summary, consumes, operationId, tags, responses } = api;
   const parsedParameters = { body: [], path: [], query: [] };
   parameters.forEach((parameter) => {
     const { in: paramIn, schema } = parameter;
@@ -34,6 +34,7 @@ function parseParams(api, definitions) {
     consumes,
     operationId,
     tags,
+    responses,
   };
 }
 

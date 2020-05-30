@@ -21,27 +21,33 @@ const [baseUrl] = process.argv.slice(2);
 // const apiInfo = require('./data');
 const tpl = fs.readFileSync('./tpl/service.js.tpl') + '';
 const { parseToDefs } = require('./helpers/parseToDef');
+const { parseResponse } = require('./helpers/parseResponse');
+const {
+  parseMethodParameters,
+  parseParameter,
+} = require('./helpers/parseParamToString');
 
-const parserMap = {
-  object: parseObjectParameter,
-  array: parseArrayParameter,
-  string: parseBasicParameter,
-  number: parseBasicParameter,
-  boolean: parseBasicParameter,
-};
-
-function parseApiInfo(apiInfo) {
+function parseApiInfo(apiInfo, definitions) {
   let infos = '';
   const base = baseUrl + swaggerUIPath + swaggerBasePath;
   const { path, methods } = apiInfo;
   global.typedefs = {};
   for (let methodName in methods) {
     const method = methods[methodName];
-    const { parameters, summary, operationId, tags, description = '' } = method;
+    const {
+      parameters,
+      summary,
+      operationId,
+      tags,
+      description = '',
+      responses,
+    } = method;
     const tagStr = tags.join(',');
     const [tag] = tags;
     const link = `${base}${tag}/${operationId}`;
+    const responseName = `${operationId}Response`;
     // TODO: 增加自定义方法名
+    const response = parseResponse(responses, definitions, responseName);
     const {
       url,
       // params,
@@ -59,27 +65,21 @@ function parseApiInfo(apiInfo) {
       .replace(API_SERVICE_DESCRIPTION_TPL, description)
       .replace(API_SERVICE_NAME_TPL, operationId)
       .replace(API_SERVICE_METHOD_TPL, methodName)
-      .replace(API_SERVICE_PARAM_TPL, paramStr.length > 0 ? 'params' : '')
+      .replace(API_SERVICE_PARAM_TPL, paramStr.length === 0 ? '' : 'params')
       .replace(API_SERVICE_URL_TPL, url)
       .replace(API_SERVICE_METHOD_PARAM_TPL, methodParams)
-      // TODO: 增加返回值类型解析
-      .replace(API_SERVICE_RETURN_VALUE, 'TO BE IMPLEMENTED')
+      .replace(API_SERVICE_RETURN_VALUE, responseName)
       .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr);
 
     infos += serviceInfo;
     infos += '\n';
   }
   const defStr = parseToDefs(global.typedefs);
-  console.log('====================================');
-  console.log(global.typedefs, '----aaa');
-  console.log('====================================');
   if (defStr.length > 0) {
     infos = defStr + '\n' + infos;
   }
   return infos;
 }
-
-// fs.appendFileSync('test.js', '\n' + parseApiInfo(apiInfo));
 
 /**
  *
@@ -119,13 +119,15 @@ function parseBodies(body, result, operationId) {
     }
     const { type } = param;
     const paramName = `${operationId}Body`;
-    const parsedParam = parseParameter(param, paramName);
+    const parsedParam = parseParameter(param, paramName, {});
     const { type: parsedParamType, itemType, description } = parsedParam;
 
     const paramType = parsedParamType === 'array' ? `[${itemType}]` : paramName;
-    bodyParams.push(` * @param {${paramType}} params.body - 请求体`);
+    bodyParams.push(
+      ` * @param {${paramType}} params.body - 请求体 ${description}`
+    );
 
-    result.params.bodies = bodyParams.join('\n ');
+    result.params.bodies = bodyParams.join('\n');
   }
   return result;
 }
@@ -149,91 +151,10 @@ function parseQueries(query, result) {
   return result;
 }
 
-function parseParameter(param, paramName, typedefs) {
-  if (param === undefined) {
-    return {};
-  }
-  const { type } = param;
-  const parser = parserMap[type] || parseObjectParameter;
-  return parser(param, paramName, typedefs);
-}
-
-function parseArrayParameter(param, paramName, typedefs) {
-  const { type, valueType, description } = param;
-
-  const { type: valueItemType, itemType } = valueType;
-
-  const parsedType = itemType || valueItemType;
-  if (['string', 'number', 'boolean'].includes(parsedType)) {
-    return { paramName, type, itemType: parsedType, description };
-  }
-
-  const parser = parserMap[itemType || valueItemType] || parseObjectParameter;
-  const name = paramName + 'Item';
-  const result = parser(valueType, name, typedefs);
-
-  if (global.typedefs) {
-    global.typedefs[name] = { name, result };
-  }
-  return { paramName, type, itemType: name, description };
-}
-
-function parseObjectParameter(param, paramName) {
-  if (!param) {
-    return null;
-  }
-  let result = {};
-  const keys = Object.keys(param);
-  try {
-    keys.forEach((key) => {
-      const value = param[key];
-      const { type = 'object' } = value || {};
-      if (!type) {
-        return {};
-      }
-      const parser = parserMap[type] || parseObjectParameter;
-
-      result[key] = parser(value, key);
-    });
-    // global.typedefs[paramName] = result;
-    if (global.typedefs) {
-      global.typedefs[paramName] = { name: paramName, result };
-    }
-    return result;
-  } catch (err) {
-    console.log(err);
-    return {};
-  }
-}
-
-function parseBasicParameter(param, paramName) {
-  const { type, description } = param;
-  return { paramName, type, description };
-}
-
-function parseMethodParameters(parameters) {
-  const { body, query } = parameters;
-  let result = '{}';
-  if (query.length > 0) {
-    result = '{ params: { ...params.query }';
-  }
-  if (body.length > 0) {
-    if (result !== '{}') {
-      result += ', ';
-    } else {
-      result = '';
-    }
-    result += '{ ...params.body }';
-  }
-  return result;
-}
-
 module.exports = {
   parseApiInfo,
-  parseParameter,
   parsePathAndParametersToString,
   parseQuery,
   parseQueries,
   parseBodies,
-  parseArrayParameter,
 };

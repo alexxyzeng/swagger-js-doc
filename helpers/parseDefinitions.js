@@ -9,7 +9,7 @@ function parseDefinitions(definitions) {
     // 优化重复调用
     result[key] = parseDefinition(key, definitions);
   });
-  console.log(global.callCount);
+  // console.log(global.callCount);
   global.callCount = {};
   return result;
 }

@@ -194,7 +194,27 @@
       "operationId": "createUsingPOST",
       "tags": [
         "base-building-building"
-      ]
+      ],
+      "responses": {
+        "200": {
+          "description": "OK",
+          "schema": {
+            "$ref": "#/definitions/统一响应体Of大厦信息"
+          }
+        },
+        "201": {
+          "description": "Created"
+        },
+        "401": {
+          "description": "Unauthorized"
+        },
+        "403": {
+          "description": "Forbidden"
+        },
+        "404": {
+          "description": "Not Found"
+        }
+      }
     }
   }
 }

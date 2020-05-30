@@ -9,7 +9,6 @@ function generateFiles(paths, definitions, methods = Methods) {
   }
   const pathList = Object.entries(paths);
   const availableMethodsSet = new Set(Object.values(methods));
-  console.log(pathList.length);
 
   pathList.forEach((path) => {
     const [key, value] = path;
@@ -18,7 +17,7 @@ function generateFiles(paths, definitions, methods = Methods) {
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
-    // if (key !== '/appointment/loop/{apptId}') {
+    // if (key !== '/demand/common/{demandId}') {
     //   return;
     // }
     apiInfos.forEach((apiInfo) => {
@@ -38,7 +37,10 @@ function generateFiles(paths, definitions, methods = Methods) {
       `${targetPath}/original.js`,
       JSON.stringify(result, null, 2)
     );
-    fs.writeFileSync(`${targetPath}/parsed.js`, parseApiInfo(result));
+    fs.writeFileSync(
+      `${targetPath}/parsed.js`,
+      parseApiInfo(result, definitions)
+    );
   });
 }
 
