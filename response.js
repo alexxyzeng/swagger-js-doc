@@ -55,4 +55,4 @@
     "enum": []
   }
 }
-"* @property {object} undefined "
+"/**\r\n * @typedef {object} code\r\n <%= DefinitionPropropety %\r\n *\r\n*/\n\n/**\r\n * @typedef {object} data\r\n <%= DefinitionPropropety %\r\n *\r\n*/\n\n/**\r\n * @typedef {object} message\r\n <%= DefinitionPropropety %\r\n *\r\n*/\n\n/**\r\n * @typedef {object} traceId\r\n <%= DefinitionPropropety %\r\n *\r\n*/"

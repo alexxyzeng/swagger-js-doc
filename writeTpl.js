@@ -122,46 +122,6 @@ function parseBodies(body, result, operationId) {
 
     const paramType = parsedParamType === 'array' ? `[${itemType}]` : paramName;
     bodyParams.push(` * @param {${paramType}} params.body - 请求体`);
-    // let typedefs = {};
-
-    // let params = [];
-    // body.forEach((bodyItem) => {
-    //   if (typeof bodyItem !== 'object') {
-    //     return;
-    //   }
-    //   // FIXME: 这里解析基础类型有bug
-    //   // for (let i in bodyItem) {
-    //   //   const param = parseParameter(bodyItem[i], i);
-    //   //   // FIXME: 这里有bug需修改
-    //   //   if (bodyItem && bodyItem[i] === undefined) {
-    //   //     // console.log('====================================');
-    //   //     // console.log(
-    //   //     //   bodyItem[i],
-    //   //     //   '---',
-    //   //     //   bodyItem,
-    //   //     //   '--- initial url ---',
-    //   //     //   initialUrl
-    //   //     // );
-    //   //     // console.log(result);
-    //   //     // console.log('====================================');
-    //   //   }
-    //   //   params.push(param);
-    //   //   const { type, itemType, description } = param;
-    //   //   const paramType = type === 'array' ? `[${itemType}]` : type;
-    //   //   bodyParams.push(
-    //   //     `* @param {${paramType}} params.body.${i} - ${description}`
-    //   //   );
-    //   // }
-    //   const { name, type } = bodyItem;
-    //   const param = parseParameter(bodyItem, name);
-    //   const { type: finalType, itemType, description } = param;
-    //   const paramType = finalType === 'array' ? `[${itemType}]` : type;
-    //   bodyParams.push(
-    //     `* @param {${paramType}} params.body.${name} - ${description}`
-    //   );
-    //   params.push(param);
-    // });
-    // fs.writeFileSync('params.js', JSON.stringify(params, null, 2));
 
     result.params.bodies = bodyParams.join('\n ');
   }
@@ -187,15 +147,12 @@ function parseQueries(query, result) {
   return result;
 }
 
-// fs.writeFileSync('defs.js', JSON.stringify(global.typedefs, null, 2));
-
 function parseParameter(param, paramName, typedefs) {
   if (param === undefined) {
     return {};
   }
   const { type } = param;
   const parser = parserMap[type] || parseObjectParameter;
-
   return parser(param, paramName, typedefs);
 }
 
@@ -213,7 +170,9 @@ function parseArrayParameter(param, paramName, typedefs) {
   const name = paramName + 'Item';
   const result = parser(valueType, name, typedefs);
 
-  global.typedefs[name] = { name, result };
+  if (global.typedefs) {
+    global.typedefs[name] = { name, result };
+  }
   return { paramName, type, itemType: name, description };
 }
 
@@ -226,16 +185,18 @@ function parseObjectParameter(param, paramName) {
   try {
     keys.forEach((key) => {
       const value = param[key];
-      const { type } = value || {};
+      const { type = 'object' } = value || {};
       if (!type) {
         return {};
       }
-      // const parser = parserMap(value, key);
       const parser = parserMap[type] || parseObjectParameter;
+
       result[key] = parser(value, key);
     });
     // global.typedefs[paramName] = result;
-    global.typedefs[paramName] = { name: paramName, result };
+    if (global.typedefs) {
+      global.typedefs[paramName] = { name: paramName, result };
+    }
     return result;
   } catch (err) {
     console.log(err);

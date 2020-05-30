@@ -17,7 +17,6 @@ function parseParams(api, definitions) {
     let param = null;
     if (isValidDefinitionType(schema)) {
       const definitionType = parseDefinitionType(schema);
-      const notOkList = ['设施分类', '权限表'];
       // if (notOkList.includes(definitionType)) {
       //   return;
       // }
@@ -66,17 +65,25 @@ function parseParamType(param = {}) {
     enum: valueEnum = {},
     definitionType,
   } = param;
+  let paramType = type;
   if (!type && schema) {
     return parseSchemaParamType(param);
   }
+  if (!type && typeof param === 'object') {
+    paramType = 'object';
+  }
   const parsedEnum = Object.values(valueEnum);
-  if (type === 'integer' || type === 'float' || type === 'double') {
+  if (
+    paramType === 'integer' ||
+    paramType === 'float' ||
+    paramType === 'double'
+  ) {
     return { type: 'number', name, description, required, enum: parsedEnum };
   }
   if (type === 'array') {
     return parseArrayParamType(
       items,
-      type,
+      paramType,
       required,
       definitionType,
       description,

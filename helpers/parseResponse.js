@@ -1,7 +1,8 @@
 const fs = require('fs');
 const { parseDefinitionType } = require('./parseDefinitionType');
-const { parseToDef } = require('./parseToDef');
+const { parseToResponseDef } = require('./parseToDef');
 const { parseParamType } = require('./parseParameters');
+const { parseParameter } = require('../writeTpl');
 // const definitions
 const definitions = {
   统一响应体Ofapp首页响应数据: {
@@ -75,14 +76,25 @@ function parseResponse({ responses }) {
   if (!definition) {
     return;
   }
+  global.typedefs = {};
   fs.writeFileSync(
     'response.js',
-    JSON.stringify(parseParamType(definition), null, 2)
+    JSON.stringify(
+      // parseParameter(parseParamType(definition.properties), 'responseTest', {}),
+      parseParamType(definition),
+      null,
+      2
+    )
   );
   fs.appendFileSync('response.js', '\n');
   fs.appendFileSync(
     'response.js',
-    JSON.stringify(parseToDef(parseParamType(definition)), null, 2)
+    JSON.stringify(
+      // parseParameter(parseParamType(definition.properties), 'responseTest', {}),
+      parseToResponseDef(parseParamType(definition)),
+      null,
+      2
+    )
   );
 }
 

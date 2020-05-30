@@ -1,5 +1,5 @@
 **
  * @typedef {<%= DefinitionType %>} <%= DefinitionName %>
-  <%= DefinitionPropropety %
+  <%= DefinitionPropropety %>
  *
 */
