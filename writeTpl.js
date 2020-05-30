@@ -70,6 +70,9 @@ function parseApiInfo(apiInfo) {
     infos += '\n';
   }
   const defStr = parseToDefs(global.typedefs);
+  console.log('====================================');
+  console.log(global.typedefs, '----aaa');
+  console.log('====================================');
   if (defStr.length > 0) {
     infos = defStr + '\n' + infos;
   }

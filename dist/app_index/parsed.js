@@ -7,7 +7,7 @@
  
  * @return {Promise}<TO BE IMPLEMENTED>
 */
-export function appIndexUsingGET(params) {
+export function appIndexUsingGET() {
   return API.get(`/app/index`, {})
 }
 

@@ -77,24 +77,19 @@ function parseResponse({ responses }) {
     return;
   }
   global.typedefs = {};
+  // fs.writeFileSync(
+  //   'response.js',
+  //   JSON.stringify(
+  //     // parseParameter(parseParamType(definition.properties), 'responseTest', {}),
+  //     parseParamType(definition),
+  //     null,
+  //     2
+  //   )
+  // );
+  // fs.appendFileSync('response.js', '\n');
   fs.writeFileSync(
     'response.js',
-    JSON.stringify(
-      // parseParameter(parseParamType(definition.properties), 'responseTest', {}),
-      parseParamType(definition),
-      null,
-      2
-    )
-  );
-  fs.appendFileSync('response.js', '\n');
-  fs.appendFileSync(
-    'response.js',
-    JSON.stringify(
-      // parseParameter(parseParamType(definition.properties), 'responseTest', {}),
-      parseToResponseDef(parseParamType(definition)),
-      null,
-      2
-    )
+    parseToResponseDef(parseParamType(definition))
   );
 }
 

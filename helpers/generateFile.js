@@ -9,6 +9,8 @@ function generateFiles(paths, definitions, methods = Methods) {
   }
   const pathList = Object.entries(paths);
   const availableMethodsSet = new Set(Object.values(methods));
+  console.log(pathList.length);
+
   pathList.forEach((path) => {
     const [key, value] = path;
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
@@ -38,7 +40,6 @@ function generateFiles(paths, definitions, methods = Methods) {
     );
     fs.writeFileSync(`${targetPath}/parsed.js`, parseApiInfo(result));
   });
-  fs.writeFileSync('typedefs.js', JSON.stringify(global.typedefs, null, 2));
 }
 
 module.exports = {

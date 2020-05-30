@@ -37,6 +37,9 @@ function parseToDefs(defs) {
 
 function parseToDef(value) {
   const { type } = value;
+  console.log('====================================');
+  console.log(value);
+  console.log('====================================');
   const parser = parserMap[type] || parseObjecTypeToProp;
   return parser(value);
 }
@@ -57,78 +60,27 @@ function parseObjecTypeToProp(typeDef) {
   return parseBasicTypeToProp({ ...typeDef, type: 'object' });
 }
 
-/**
- * 
- * [
-  'code',
-  {
-    type: 'number',
-    name: undefined,
-    description: '业务响应状态',
-    required: false,
-    enum: []
-  }
-] --- def ---- * @property {number} code 业务响应状态
-====================================
-====================================
-[
-  'data',
-  {
-    workorderStatistics: {
-      type: 'array',
-      valueType: [Object],
-      required: false,
-      definitionType: undefined,
-      description: '工单权限及数量统计',
-      name: undefined
-    }
-  }
-] --- def ---- * @property {object} data
-====================================
-====================================
-[
-  'message',
-  {
-    type: 'string',
-    name: undefined,
-    description: '消息',
-    enum: [],
-    definitionType: undefined
-  }
-] --- def ---- * @property {string} message 消息
-====================================
-====================================
-[
-  'traceId',
-  {
-    type: 'string',
-    name: undefined,
-    description: '用于链路追踪的ID',
-    enum: [],
-    definitionType: undefined
-  }
-] --- def ---- * @property {string} traceId 用于链路追踪的ID
- */
-
 function parseToResponseDef(response) {
   let parsedResult = [];
   const defList = Object.entries(response);
-  defList.forEach((def) => {
-    const [key, value] = def;
-    let typeName = tpl
-      .replace('<%= DefinitionType %>', 'object')
-      .replace('<%= DefinitionName %>', key);
-    let parsedDefs = [];
-    parsedDefs.push(parseToDef(value));
-    console.log('====================================');
-    console.log(def, '--- def ----', parseToDef({ ...value, paramName: key }));
-    console.log('====================================');
-    typeName = typeName.replace(
-      '<%= DefinitionPropropety %>',
-      parsedDefs.join('\n')
-    );
-    parsedResult.push(typeName);
-  });
+  // TODO: 1. 解析出顶层definition
+  // TODO: 2. 解析出单个definition
+  //   defList.forEach((def) => {
+  //     const [key, value] = def;
+  //     const { type } = value;
+  //     let typeName = tpl
+  //       .replace('<%= DefinitionType %>', 'object')
+  //       .replace('<%= DefinitionName %>', key.trim());
+  //     let parsedDefs = [];
+  //     if (!type) {
+  //       parsedDefs.push(parseToDef(value));
+  //     }
+  //     typeName = typeName.replace(
+  //       '<%= DefinitionPropropety %>',
+  //       parsedDefs.join('\n')
+  //     );
+  //     parsedResult.push(typeName);
+  //   });
   return parsedResult.join('\n\n');
 }
 
