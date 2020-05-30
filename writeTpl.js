@@ -59,8 +59,7 @@ function parseApiInfo(apiInfo) {
       .replace(API_SERVICE_DESCRIPTION_TPL, description)
       .replace(API_SERVICE_NAME_TPL, operationId)
       .replace(API_SERVICE_METHOD_TPL, methodName)
-      // TODO: 如果没有参数的情况,则不填充参数
-      .replace(API_SERVICE_PARAM_TPL, 'params')
+      .replace(API_SERVICE_PARAM_TPL, paramStr.length > 0 ? 'params' : '')
       .replace(API_SERVICE_URL_TPL, url)
       .replace(API_SERVICE_METHOD_PARAM_TPL, methodParams)
       // TODO: 增加返回值类型解析
