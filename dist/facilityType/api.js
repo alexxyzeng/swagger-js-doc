@@ -6,7 +6,7 @@
         "facility-type"
       ],
       "summary": "新增设施分类",
-      "operationId": "createUsingPOST_10",
+      "operationId": "createUsingPOST_12",
       "consumes": [
         "application/json"
       ],

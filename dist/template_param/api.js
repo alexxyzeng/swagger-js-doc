@@ -6,7 +6,7 @@
         "template"
       ],
       "summary": "消息模版参数-列表",
-      "operationId": "findUsingGET_57",
+      "operationId": "findUsingGET_61",
       "consumes": [
         "application/json"
       ],
@@ -87,7 +87,7 @@
         "template"
       ],
       "summary": "新增消息模版参数",
-      "operationId": "createUsingPOST_43",
+      "operationId": "createUsingPOST_47",
       "consumes": [
         "application/json"
       ],
@@ -149,7 +149,7 @@
         "template"
       ],
       "summary": "批量删除消息模版参数",
-      "operationId": "deleteUsingDELETE_51",
+      "operationId": "deleteUsingDELETE_55",
       "consumes": [
         "application/json"
       ],

@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_18",
+      "operationId": "findByIdUsingGET_20",
       "tags": [
         "inspect-site"
       ]
@@ -175,7 +175,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_26",
+      "operationId": "updateUsingPUT_28",
       "tags": [
         "inspect-site"
       ]
@@ -198,7 +198,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_22",
+      "operationId": "deleteUsingDELETE_26",
       "tags": [
         "inspect-site"
       ]

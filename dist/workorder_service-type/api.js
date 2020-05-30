@@ -6,7 +6,7 @@
         "workorder-service-type"
       ],
       "summary": "新增服务类型",
-      "operationId": "createUsingPOST_38",
+      "operationId": "createUsingPOST_41",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "base-statistics"
       ],
       "summary": "巡检任务数",
-      "operationId": "findUsingGET_53",
+      "operationId": "findUsingGET_56",
       "consumes": [
         "application/json"
       ],

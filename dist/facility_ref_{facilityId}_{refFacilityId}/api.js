@@ -6,7 +6,7 @@
         "facility-ref"
       ],
       "summary": "设备关系-取消关联",
-      "operationId": "deleteUsingDELETE_12",
+      "operationId": "deleteUsingDELETE_16",
       "consumes": [
         "application/json"
       ],

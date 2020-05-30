@@ -6,7 +6,7 @@
         "workorder-tool"
       ],
       "summary": "修改工单关联的工具",
-      "operationId": "updateUsingPUT_62",
+      "operationId": "updateUsingPUT_64",
       "consumes": [
         "application/json"
       ],

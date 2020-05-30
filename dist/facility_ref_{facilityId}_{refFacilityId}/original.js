@@ -26,7 +26,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_12",
+      "operationId": "deleteUsingDELETE_16",
       "tags": [
         "facility-ref"
       ]

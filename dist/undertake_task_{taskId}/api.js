@@ -64,7 +64,7 @@
         "undertake-task"
       ],
       "summary": "修改承接查验-任务-部分",
-      "operationId": "updateUsingPUT_54",
+      "operationId": "updateUsingPUT_56",
       "consumes": [
         "application/json"
       ],

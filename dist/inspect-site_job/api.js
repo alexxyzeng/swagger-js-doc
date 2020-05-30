@@ -6,7 +6,7 @@
         "inspect-site"
       ],
       "summary": "巡检点位-工作任务-列表",
-      "operationId": "findUsingGET_28",
+      "operationId": "findUsingGET_31",
       "consumes": [
         "application/json"
       ],
@@ -117,7 +117,7 @@
         "inspect-site"
       ],
       "summary": "新增巡检点位-工作任务",
-      "operationId": "createUsingPOST_20",
+      "operationId": "createUsingPOST_22",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "facility-type"
       ],
       "summary": "查询设施分类",
-      "operationId": "findUsingGET_18",
+      "operationId": "findUsingGET_21",
       "consumes": [
         "application/json"
       ],

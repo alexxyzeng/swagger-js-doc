@@ -64,7 +64,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_40",
+      "operationId": "findUsingGET_43",
       "tags": [
         "inspect-template"
       ]
@@ -104,7 +104,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_26",
+      "operationId": "createUsingPOST_28",
       "tags": [
         "inspect-template"
       ]

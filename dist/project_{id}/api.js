@@ -134,7 +134,7 @@
         "base-project"
       ],
       "summary": "删除项目",
-      "operationId": "deleteUsingDELETE_37",
+      "operationId": "deleteUsingDELETE_41",
       "consumes": [
         "application/json"
       ],

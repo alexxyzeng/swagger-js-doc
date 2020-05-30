@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_31",
+      "operationId": "findByIdUsingGET_33",
       "tags": [
         "pm"
       ]
@@ -632,7 +632,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_39",
+      "operationId": "updateUsingPUT_41",
       "tags": [
         "pm"
       ]
@@ -655,7 +655,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_29",
+      "operationId": "deleteUsingDELETE_33",
       "tags": [
         "pm"
       ]

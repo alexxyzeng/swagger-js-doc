@@ -6,7 +6,7 @@
         "base-menu"
       ],
       "summary": "根据企业查询菜单",
-      "operationId": "findUsingGET_16",
+      "operationId": "findUsingGET_19",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-menu"
       ],
       "summary": "修改企业菜单",
-      "operationId": "updateUsingPUT_13",
+      "operationId": "updateUsingPUT_15",
       "consumes": [
         "application/json"
       ],

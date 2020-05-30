@@ -39,7 +39,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_46",
+      "operationId": "findUsingGET_49",
       "tags": [
         "inventory"
       ]
@@ -139,7 +139,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_32",
+      "operationId": "createUsingPOST_35",
       "tags": [
         "inventory"
       ]

@@ -6,7 +6,7 @@
         "inspect-plan"
       ],
       "summary": "巡检计划-提醒-详情",
-      "operationId": "findByIdUsingGET_15",
+      "operationId": "findByIdUsingGET_17",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect-plan"
       ],
       "summary": "修改巡检计划-提醒-部分",
-      "operationId": "updateUsingPUT_23",
+      "operationId": "updateUsingPUT_25",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "inspect-plan"
       ],
       "summary": "删除巡检计划-提醒",
-      "operationId": "deleteUsingDELETE_19",
+      "operationId": "deleteUsingDELETE_23",
       "consumes": [
         "application/json"
       ],

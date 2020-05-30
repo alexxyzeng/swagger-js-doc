@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_34",
+      "operationId": "findByIdUsingGET_36",
       "tags": [
         "base-message"
       ]
@@ -102,7 +102,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_42",
+      "operationId": "updateUsingPUT_44",
       "tags": [
         "base-message"
       ]
@@ -125,7 +125,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_34",
+      "operationId": "deleteUsingDELETE_38",
       "tags": [
         "base-message"
       ]

@@ -6,7 +6,7 @@
         "inventory"
       ],
       "summary": "库存-列表",
-      "operationId": "findUsingGET_41",
+      "operationId": "findUsingGET_44",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "base-org-position"
       ],
       "summary": "创建岗位",
-      "operationId": "createUsingPOST_33",
+      "operationId": "createUsingPOST_36",
       "consumes": [
         "application/json"
       ],
@@ -68,7 +68,7 @@
         "base-org-position"
       ],
       "summary": "更新岗位",
-      "operationId": "updateUsingPUT_43",
+      "operationId": "updateUsingPUT_45",
       "consumes": [
         "application/json"
       ],

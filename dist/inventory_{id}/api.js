@@ -6,7 +6,7 @@
         "inventory"
       ],
       "summary": "库存-详情",
-      "operationId": "findByIdUsingGET_30",
+      "operationId": "findByIdUsingGET_32",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inventory"
       ],
       "summary": "删除库存",
-      "operationId": "deleteUsingDELETE_28",
+      "operationId": "deleteUsingDELETE_32",
       "consumes": [
         "application/json"
       ],

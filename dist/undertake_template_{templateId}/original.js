@@ -118,7 +118,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_55",
+      "operationId": "updateUsingPUT_57",
       "tags": [
         "undertake-template"
       ]
@@ -141,7 +141,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_55",
+      "operationId": "deleteUsingDELETE_59",
       "tags": [
         "undertake-template"
       ]

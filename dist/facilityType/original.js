@@ -4669,7 +4669,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_10",
+      "operationId": "createUsingPOST_12",
       "tags": [
         "facility-type"
       ]

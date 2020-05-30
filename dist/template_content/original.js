@@ -39,7 +39,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_55",
+      "operationId": "findUsingGET_59",
       "tags": [
         "template"
       ]
@@ -116,7 +116,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_41",
+      "operationId": "createUsingPOST_45",
       "tags": [
         "template"
       ]
@@ -144,7 +144,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_47",
+      "operationId": "deleteUsingDELETE_51",
       "tags": [
         "template"
       ]

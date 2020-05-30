@@ -27,7 +27,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_38",
+      "operationId": "updateUsingPUT_40",
       "tags": [
         "inventory"
       ]

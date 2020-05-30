@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_41",
+      "operationId": "findByIdUsingGET_44",
       "tags": [
         "template"
       ]
@@ -185,7 +185,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_51",
+      "operationId": "updateUsingPUT_53",
       "tags": [
         "template"
       ]
@@ -208,7 +208,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_49",
+      "operationId": "deleteUsingDELETE_53",
       "tags": [
         "template"
       ]

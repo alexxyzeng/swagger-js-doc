@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_24",
+      "operationId": "deleteUsingDELETE_28",
       "tags": [
         "inspect-site"
       ]

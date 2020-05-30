@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_65",
+      "operationId": "findUsingGET_69",
       "tags": [
         "work-team"
       ]
@@ -167,7 +167,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_58",
+      "operationId": "updateUsingPUT_60",
       "tags": [
         "work-team"
       ]
@@ -190,7 +190,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_58",
+      "operationId": "deleteUsingDELETE_62",
       "tags": [
         "work-team"
       ]

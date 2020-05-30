@@ -6,7 +6,7 @@
         "qrcodedynamicbind"
       ],
       "summary": "活码绑定表-详情",
-      "operationId": "findByIdUsingGET_37",
+      "operationId": "findByIdUsingGET_39",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "qrcodedynamicbind"
       ],
       "summary": "修改活码绑定表-部分",
-      "operationId": "updateUsingPUT_45",
+      "operationId": "updateUsingPUT_47",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "qrcodedynamicbind"
       ],
       "summary": "删除活码绑定表",
-      "operationId": "deleteUsingDELETE_40",
+      "operationId": "deleteUsingDELETE_44",
       "consumes": [
         "application/json"
       ],

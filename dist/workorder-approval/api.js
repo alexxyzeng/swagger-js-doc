@@ -6,7 +6,7 @@
         "workorder-approval"
       ],
       "summary": "工单审批申请",
-      "operationId": "createUsingPOST_51",
+      "operationId": "createUsingPOST_55",
       "consumes": [
         "application/json"
       ],

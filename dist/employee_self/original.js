@@ -97,14 +97,44 @@
               "description": "邮箱",
               "enum": []
             },
+            "gender": {
+              "type": "string",
+              "description": "性别: 0、女 1、男 {女=GenderEnum-0, 男=GenderEnum-1}",
+              "enum": [
+                "0",
+                "1"
+              ]
+            },
+            "idNumber": {
+              "type": "string",
+              "description": "身份证号",
+              "enum": []
+            },
             "name": {
               "type": "string",
               "description": "姓名",
               "enum": []
             },
+            "orgPositionId": {
+              "type": "number",
+              "description": "岗位",
+              "required": false,
+              "enum": []
+            },
+            "orgPostId": {
+              "type": "number",
+              "description": "职位ID",
+              "required": false,
+              "enum": []
+            },
             "phone": {
               "type": "string",
               "description": "手机号",
+              "enum": []
+            },
+            "tel": {
+              "type": "string",
+              "description": "电话号",
               "enum": []
             },
             "telephone": {

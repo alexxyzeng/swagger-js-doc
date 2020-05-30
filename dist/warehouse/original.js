@@ -63,7 +63,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_62",
+      "operationId": "findUsingGET_66",
       "tags": [
         "warehouse"
       ]
@@ -152,7 +152,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_47",
+      "operationId": "createUsingPOST_51",
       "tags": [
         "warehouse"
       ]

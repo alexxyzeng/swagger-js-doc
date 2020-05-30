@@ -6,7 +6,7 @@
         "base-message"
       ],
       "summary": "消息发送记录-详情",
-      "operationId": "findByIdUsingGET_34",
+      "operationId": "findByIdUsingGET_36",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-message"
       ],
       "summary": "修改消息发送记录-部分",
-      "operationId": "updateUsingPUT_42",
+      "operationId": "updateUsingPUT_44",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "base-message"
       ],
       "summary": "删除消息发送记录",
-      "operationId": "deleteUsingDELETE_34",
+      "operationId": "deleteUsingDELETE_38",
       "consumes": [
         "application/json"
       ],

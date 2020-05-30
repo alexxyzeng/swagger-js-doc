@@ -6,7 +6,7 @@
         "workorder-space"
       ],
       "summary": "更新工单空间位置",
-      "operationId": "updateUsingPUT_61",
+      "operationId": "updateUsingPUT_63",
       "consumes": [
         "application/json"
       ],

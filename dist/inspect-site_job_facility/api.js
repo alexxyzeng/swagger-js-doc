@@ -6,7 +6,7 @@
         "inspect-site"
       ],
       "summary": "新增巡检点位-工作任务-设备",
-      "operationId": "createUsingPOST_21",
+      "operationId": "createUsingPOST_23",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "pm"
       ],
       "summary": "维保规则-详情",
-      "operationId": "findByIdUsingGET_31",
+      "operationId": "findByIdUsingGET_33",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "pm"
       ],
       "summary": "修改设置",
-      "operationId": "updateUsingPUT_39",
+      "operationId": "updateUsingPUT_41",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "pm"
       ],
       "summary": "删除设置",
-      "operationId": "deleteUsingDELETE_29",
+      "operationId": "deleteUsingDELETE_33",
       "consumes": [
         "application/json"
       ],

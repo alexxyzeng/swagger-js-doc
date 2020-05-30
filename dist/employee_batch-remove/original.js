@@ -21,7 +21,7 @@
         "path": [],
         "query": []
       },
-      "summary": "批量移出用户",
+      "summary": "批量移出/删除用户",
       "consumes": [
         "application/json"
       ],

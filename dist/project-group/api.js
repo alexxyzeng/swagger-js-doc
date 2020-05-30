@@ -88,7 +88,7 @@
         "base-project-group"
       ],
       "summary": "新增项目组",
-      "operationId": "createUsingPOST_35",
+      "operationId": "createUsingPOST_38",
       "consumes": [
         "application/json"
       ],
@@ -120,7 +120,7 @@
           "description": "projectGroupDto",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/创建项目参数"
+            "$ref": "#/definitions/创建项目组参数"
           }
         }
       ],

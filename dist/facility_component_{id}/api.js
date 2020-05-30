@@ -6,7 +6,7 @@
         "facility-component"
       ],
       "summary": "修改设备组件",
-      "operationId": "updateUsingPUT_14",
+      "operationId": "updateUsingPUT_16",
       "consumes": [
         "application/json"
       ],

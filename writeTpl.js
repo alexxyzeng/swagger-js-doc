@@ -20,6 +20,7 @@ const {
 const [baseUrl] = process.argv.slice(2);
 // const apiInfo = require('./data');
 const tpl = fs.readFileSync('./tpl/service.js.tpl') + '';
+const { parseToDefs } = require('./helpers/parseToDef');
 
 const parserMap = {
   object: parseObjectParameter,
@@ -33,7 +34,7 @@ function parseApiInfo(apiInfo) {
   let infos = '';
   const base = baseUrl + swaggerUIPath + swaggerBasePath;
   const { path, methods } = apiInfo;
-
+  global.typedefs = {};
   for (let methodName in methods) {
     const method = methods[methodName];
     const { parameters, summary, operationId, tags, description = '' } = method;
@@ -45,8 +46,7 @@ function parseApiInfo(apiInfo) {
       url,
       // params,
       params: { paths, queries, bodies },
-    } = parsePathAndParametersToString(path, parameters);
-
+    } = parsePathAndParametersToString(path, parameters, operationId);
     let paramStr = [paths, queries, bodies]
       .filter((item) => item !== undefined)
       .join('\n');
@@ -70,6 +70,10 @@ function parseApiInfo(apiInfo) {
     infos += serviceInfo;
     infos += '\n';
   }
+  const defStr = parseToDefs(global.typedefs);
+  if (defStr.length > 0) {
+    infos = defStr + '\n' + infos;
+  }
   return infos;
 }
 
@@ -80,14 +84,14 @@ function parseApiInfo(apiInfo) {
  * @param {string} path
  * @param {object} parameters
  */
-function parsePathAndParametersToString(initialUrl, parameters) {
+function parsePathAndParametersToString(initialUrl, parameters, operationId) {
   let result = { url: '', params: {} };
   const { path, body, query } = parameters;
   let url = initialUrl;
   url = parsePath(path, url, result);
   result.url = '`' + `${url}` + '`';
   result = parseQueries(query, result);
-  result = parseBodies(body, result, initialUrl);
+  result = parseBodies(body, result, operationId);
   return result;
 }
 
@@ -104,41 +108,61 @@ function parsePath(path, url, result) {
   return url;
 }
 
-function parseBodies(body, result) {
+function parseBodies(body, result, operationId) {
   if (body.length > 0) {
     let bodyParams = [];
-    bodyParams.push(` * @param {object} params.body - 请求体`);
+    const [param] = body;
+    if (!param) {
+      return result;
+    }
+    const { type } = param;
+    const paramName = `${operationId}Body`;
+    const parsedParam = parseParameter(param, paramName);
+    const { type: parsedParamType, itemType, description } = parsedParam;
+
+    const paramType = parsedParamType === 'array' ? `[${itemType}]` : paramName;
+    bodyParams.push(` * @param {${paramType}} params.body - 请求体`);
     // let typedefs = {};
-    global.typedefs = {};
-    let params = [];
-    body.forEach((bodyItem) => {
-      if (typeof bodyItem !== 'object') {
-        return;
-      }
-      for (let i in bodyItem) {
-        const param = parseParameter(bodyItem[i], i);
-        // FIXME: 这里有bug需修改
-        if (bodyItem && bodyItem[i] === undefined) {
-          // console.log('====================================');
-          // console.log(
-          //   bodyItem[i],
-          //   '---',
-          //   bodyItem,
-          //   '--- initial url ---',
-          //   initialUrl
-          // );
-          // console.log(result);
-          // console.log('====================================');
-        }
-        params.push(param);
-        const { type, itemType, description } = param;
-        const paramType = type === 'array' ? `[${itemType}]` : type;
-        bodyParams.push(
-          `* @param {${paramType}} params.body.${i} - ${description}`
-        );
-      }
-    });
+
+    // let params = [];
+    // body.forEach((bodyItem) => {
+    //   if (typeof bodyItem !== 'object') {
+    //     return;
+    //   }
+    //   // FIXME: 这里解析基础类型有bug
+    //   // for (let i in bodyItem) {
+    //   //   const param = parseParameter(bodyItem[i], i);
+    //   //   // FIXME: 这里有bug需修改
+    //   //   if (bodyItem && bodyItem[i] === undefined) {
+    //   //     // console.log('====================================');
+    //   //     // console.log(
+    //   //     //   bodyItem[i],
+    //   //     //   '---',
+    //   //     //   bodyItem,
+    //   //     //   '--- initial url ---',
+    //   //     //   initialUrl
+    //   //     // );
+    //   //     // console.log(result);
+    //   //     // console.log('====================================');
+    //   //   }
+    //   //   params.push(param);
+    //   //   const { type, itemType, description } = param;
+    //   //   const paramType = type === 'array' ? `[${itemType}]` : type;
+    //   //   bodyParams.push(
+    //   //     `* @param {${paramType}} params.body.${i} - ${description}`
+    //   //   );
+    //   // }
+    //   const { name, type } = bodyItem;
+    //   const param = parseParameter(bodyItem, name);
+    //   const { type: finalType, itemType, description } = param;
+    //   const paramType = finalType === 'array' ? `[${itemType}]` : type;
+    //   bodyParams.push(
+    //     `* @param {${paramType}} params.body.${name} - ${description}`
+    //   );
+    //   params.push(param);
+    // });
     // fs.writeFileSync('params.js', JSON.stringify(params, null, 2));
+
     result.params.bodies = bodyParams.join('\n ');
   }
   return result;
@@ -177,16 +201,23 @@ function parseParameter(param, paramName, typedefs) {
 
 function parseArrayParameter(param, paramName, typedefs) {
   const { type, valueType, description } = param;
+
+  const { type: valueItemType, itemType } = valueType;
+
+  const parsedType = itemType || valueItemType;
+  if (['string', 'number', 'boolean'].includes(parsedType)) {
+    return { paramName, type, itemType: parsedType, description };
+  }
+
+  const parser = parserMap[itemType || valueItemType] || parseObjectParameter;
   const name = paramName + 'Item';
-  const { itemType } = valueType;
-  const parser = parserMap[itemType] || parseObjectParameter;
   const result = parser(valueType, name, typedefs);
 
   global.typedefs[name] = { name, result };
   return { paramName, type, itemType: name, description };
 }
 
-function parseObjectParameter(param, paramName, typedefs) {
+function parseObjectParameter(param, paramName) {
   if (!param) {
     return null;
   }
@@ -241,4 +272,5 @@ module.exports = {
   parseQuery,
   parseQueries,
   parseBodies,
+  parseArrayParameter,
 };

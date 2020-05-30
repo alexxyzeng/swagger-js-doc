@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "巡检任务-对象-详情",
-      "operationId": "findByIdUsingGET_24",
+      "operationId": "findByIdUsingGET_26",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect-task"
       ],
       "summary": "修改巡检任务-对象-部分",
-      "operationId": "updateUsingPUT_32",
+      "operationId": "updateUsingPUT_34",
       "consumes": [
         "application/json"
       ],

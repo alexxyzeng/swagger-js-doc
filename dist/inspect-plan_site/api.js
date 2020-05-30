@@ -6,7 +6,7 @@
         "inspect-plan"
       ],
       "summary": "巡检计划-点位-列表",
-      "operationId": "findUsingGET_24",
+      "operationId": "findUsingGET_27",
       "consumes": [
         "application/json"
       ],
@@ -95,7 +95,7 @@
         "inspect-plan"
       ],
       "summary": "新增巡检计划-点位",
-      "operationId": "createUsingPOST_17",
+      "operationId": "createUsingPOST_19",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "base-building-space"
       ],
       "summary": "查找空间",
-      "operationId": "findUsingGET_52",
+      "operationId": "findUsingGET_55",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-building-space"
       ],
       "summary": "更新空间",
-      "operationId": "updateUsingPUT_49",
+      "operationId": "updateUsingPUT_51",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "base-building-space"
       ],
       "summary": "删除空间",
-      "operationId": "deleteUsingDELETE_46",
+      "operationId": "deleteUsingDELETE_50",
       "consumes": [
         "application/json"
       ],

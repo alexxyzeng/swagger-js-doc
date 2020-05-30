@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "巡检任务-处理记录-列表",
-      "operationId": "findUsingGET_38",
+      "operationId": "findUsingGET_41",
       "consumes": [
         "application/json"
       ],

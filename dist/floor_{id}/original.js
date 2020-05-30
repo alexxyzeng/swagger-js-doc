@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_12",
+      "operationId": "findByIdUsingGET_14",
       "tags": [
         "base-building-floor"
       ]
@@ -183,7 +183,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_20",
+      "operationId": "updateUsingPUT_22",
       "tags": [
         "base-building-floor"
       ]
@@ -221,7 +221,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_16",
+      "operationId": "deleteUsingDELETE_20",
       "tags": [
         "base-building-floor"
       ]

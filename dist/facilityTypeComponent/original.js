@@ -113,7 +113,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_9",
+      "operationId": "createUsingPOST_11",
       "tags": [
         "facility-type-component"
       ]

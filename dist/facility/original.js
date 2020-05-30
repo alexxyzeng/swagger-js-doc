@@ -181,7 +181,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_17",
+      "operationId": "findUsingGET_20",
       "tags": [
         "facility"
       ]
@@ -646,7 +646,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_8",
+      "operationId": "createUsingPOST_10",
       "tags": [
         "facility"
       ]

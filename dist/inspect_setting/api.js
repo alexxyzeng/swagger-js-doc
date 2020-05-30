@@ -6,7 +6,7 @@
         "inspect"
       ],
       "summary": "巡检设置-默认",
-      "operationId": "findUsingGET_25",
+      "operationId": "findUsingGET_28",
       "consumes": [
         "application/json"
       ],
@@ -56,7 +56,7 @@
         "inspect"
       ],
       "summary": "新增巡检设置",
-      "operationId": "createUsingPOST_18",
+      "operationId": "createUsingPOST_20",
       "consumes": [
         "application/json"
       ],

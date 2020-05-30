@@ -6,7 +6,7 @@
         "base-employee"
       ],
       "summary": "用户列表&搜索",
-      "operationId": "findUsingGET_15",
+      "operationId": "findUsingGET_17",
       "consumes": [
         "application/json"
       ],
@@ -73,6 +73,27 @@
           "name": "likeBindAccount",
           "in": "query",
           "description": "模糊匹配账号",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "likeRoleName",
+          "in": "query",
+          "description": "模糊匹配角色",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "likePartitionName",
+          "in": "query",
+          "description": "模糊匹配分区",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "likeProjectName",
+          "in": "query",
+          "description": "模糊匹配项目",
           "required": false,
           "type": "string"
         },
@@ -147,23 +168,27 @@
           "type": "string"
         },
         {
-          "name": "frontSource",
+          "name": "source",
           "in": "query",
-          "description": "用户来源 {系统创建=SystemCreate-0, 第三方同步=ThirdPartSync-1}",
+          "description": "用户来源 {手动增加=ManualIncrease-0, 一事通=SystemSync-2, HR系统推送=HRPush-3, 汇管家=HGJSync-4}",
           "required": false,
-          "type": "string"
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "collectionFormat": "multi"
         },
         {
-          "name": "ext1",
+          "name": "likeYstId",
           "in": "query",
-          "description": "一事通号",
+          "description": "模糊匹配一事通号",
           "required": false,
           "type": "string"
         },
         {
           "name": "workTeamId",
           "in": "query",
-          "description": "工作组id",
+          "description": "工作组ID",
           "required": false,
           "type": "integer",
           "format": "int64"
@@ -192,7 +217,7 @@
         "base-employee"
       ],
       "summary": "新增用户",
-      "operationId": "createUsingPOST_7",
+      "operationId": "createUsingPOST_9",
       "consumes": [
         "application/json"
       ],

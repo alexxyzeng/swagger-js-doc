@@ -6,7 +6,7 @@
         "inspect-plan"
       ],
       "summary": "巡检计划-点位-详情",
-      "operationId": "findByIdUsingGET_16",
+      "operationId": "findByIdUsingGET_18",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect-plan"
       ],
       "summary": "修改巡检计划-点位-部分",
-      "operationId": "updateUsingPUT_24",
+      "operationId": "updateUsingPUT_26",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "inspect-plan"
       ],
       "summary": "删除巡检计划-点位",
-      "operationId": "deleteUsingDELETE_20",
+      "operationId": "deleteUsingDELETE_24",
       "consumes": [
         "application/json"
       ],

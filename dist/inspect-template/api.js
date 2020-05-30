@@ -6,7 +6,7 @@
         "inspect-template"
       ],
       "summary": "巡检模板-列表",
-      "operationId": "findUsingGET_40",
+      "operationId": "findUsingGET_43",
       "consumes": [
         "application/json"
       ],
@@ -116,7 +116,7 @@
         "inspect-template"
       ],
       "summary": "新增巡检模板",
-      "operationId": "createUsingPOST_26",
+      "operationId": "createUsingPOST_28",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "inspect-template"
       ],
       "summary": "巡检模板-内容-详情",
-      "operationId": "findByIdUsingGET_28",
+      "operationId": "findByIdUsingGET_30",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect-template"
       ],
       "summary": "修改巡检模板-内容-部分",
-      "operationId": "updateUsingPUT_36",
+      "operationId": "updateUsingPUT_38",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "inspect-template"
       ],
       "summary": "删除巡检模板-内容",
-      "operationId": "deleteUsingDELETE_26",
+      "operationId": "deleteUsingDELETE_30",
       "consumes": [
         "application/json"
       ],

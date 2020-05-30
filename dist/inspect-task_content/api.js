@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "巡检任务-内容-列表",
-      "operationId": "findUsingGET_30",
+      "operationId": "findUsingGET_33",
       "consumes": [
         "application/json"
       ],
@@ -182,7 +182,7 @@
         "inspect-task"
       ],
       "summary": "新增巡检任务-内容",
-      "operationId": "createUsingPOST_23",
+      "operationId": "createUsingPOST_25",
       "consumes": [
         "application/json"
       ],

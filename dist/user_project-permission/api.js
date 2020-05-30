@@ -50,7 +50,8 @@
         "404": {
           "description": "Not Found"
         }
-      }
+      },
+      "deprecated": true
     }
   }
 ]

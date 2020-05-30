@@ -6,7 +6,7 @@
         "undertake-template-content"
       ],
       "summary": "承接查验模板-内容-列表",
-      "operationId": "findUsingGET_60",
+      "operationId": "findUsingGET_64",
       "consumes": [
         "application/json"
       ],

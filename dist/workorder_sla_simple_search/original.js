@@ -67,7 +67,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findSimpleUsingGET",
+      "operationId": "findSimpleUsingGET_1",
       "tags": [
         "workorder-sla"
       ]

@@ -6,7 +6,7 @@
         "facility-type-param"
       ],
       "summary": "修改设施分类对应的参数",
-      "operationId": "updateUsingPUT_19",
+      "operationId": "updateUsingPUT_21",
       "consumes": [
         "application/json"
       ],
@@ -76,7 +76,7 @@
         "facility-type-param"
       ],
       "summary": "根据参数id删除参数",
-      "operationId": "deleteUsingDELETE_15",
+      "operationId": "deleteUsingDELETE_19",
       "consumes": [
         "application/json"
       ],

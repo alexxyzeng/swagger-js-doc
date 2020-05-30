@@ -6,7 +6,7 @@
         "workorder-service-type-ref"
       ],
       "summary": "删除关联服务类型",
-      "operationId": "deleteUsingDELETE_44",
+      "operationId": "deleteUsingDELETE_48",
       "consumes": [
         "application/json"
       ],

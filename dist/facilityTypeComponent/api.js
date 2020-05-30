@@ -79,7 +79,7 @@
         "facility-type-component"
       ],
       "summary": "新增核心组件",
-      "operationId": "createUsingPOST_9",
+      "operationId": "createUsingPOST_11",
       "consumes": [
         "application/json"
       ],

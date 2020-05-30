@@ -6,7 +6,7 @@
         "facility-type-component"
       ],
       "summary": "修改核心组件",
-      "operationId": "updateUsingPUT_17",
+      "operationId": "updateUsingPUT_19",
       "consumes": [
         "application/json"
       ],
@@ -76,7 +76,7 @@
         "facility-type-component"
       ],
       "summary": "根据核心组件id删除参数",
-      "operationId": "deleteUsingDELETE_13",
+      "operationId": "deleteUsingDELETE_17",
       "consumes": [
         "application/json"
       ],

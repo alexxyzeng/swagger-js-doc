@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_43",
+      "operationId": "findByIdUsingGET_46",
       "tags": [
         "thirdparty-system-config-feign"
       ]
@@ -84,7 +84,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_53",
+      "operationId": "updateUsingPUT_55",
       "tags": [
         "thirdparty-system-config-feign"
       ]
@@ -107,7 +107,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_53",
+      "operationId": "deleteUsingDELETE_57",
       "tags": [
         "thirdparty-system-config-feign"
       ]

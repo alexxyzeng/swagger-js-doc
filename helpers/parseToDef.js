@@ -44,19 +44,19 @@ function parseToDefs(defs) {
     let typeName = tpl
       .replace('<%= DefinitionType %>', 'object')
       .replace('<%= DefinitionName %>', key);
-    let parsedDef = [];
+    let parsedDefs = [];
     keys.forEach((key) => {
       const value = result[key];
       const parsedDef = parseToDef(value);
-      parsedDef.push(parsedDef);
+      parsedDefs.push(parsedDef);
     });
     typeName = typeName.replace(
       '<%= DefinitionPropropety %',
-      parsedDef.join('\n ')
+      parsedDefs.join('\n ')
     );
     parsedResult.push(typeName);
   });
-  return parsedResult.join('\n\n');
+  return parsedResult.join('\n');
 }
 
 function parseToDef(value) {

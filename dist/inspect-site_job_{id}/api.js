@@ -6,7 +6,7 @@
         "inspect-site"
       ],
       "summary": "巡检点位-工作任务-详情",
-      "operationId": "findByIdUsingGET_19",
+      "operationId": "findByIdUsingGET_21",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect-site"
       ],
       "summary": "修改巡检点位-工作任务-部分",
-      "operationId": "updateUsingPUT_27",
+      "operationId": "updateUsingPUT_29",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "inspect-site"
       ],
       "summary": "删除巡检点位-工作任务",
-      "operationId": "deleteUsingDELETE_23",
+      "operationId": "deleteUsingDELETE_27",
       "consumes": [
         "application/json"
       ],

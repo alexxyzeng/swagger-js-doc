@@ -6,7 +6,7 @@
         "base-employee"
       ],
       "summary": "用户详情",
-      "operationId": "findUsingGET_14",
+      "operationId": "findUsingGET_18",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-employee"
       ],
       "summary": "修改用户",
-      "operationId": "updateUsingPUT_12",
+      "operationId": "updateUsingPUT_14",
       "consumes": [
         "application/json"
       ],

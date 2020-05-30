@@ -6,7 +6,7 @@
         "workorder-sla"
       ],
       "summary": "查询sla列表",
-      "operationId": "findUsingGET_51",
+      "operationId": "findUsingGET_54",
       "consumes": [
         "application/json"
       ],

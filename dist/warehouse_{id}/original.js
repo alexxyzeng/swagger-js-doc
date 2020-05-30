@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_44",
+      "operationId": "findByIdUsingGET_47",
       "tags": [
         "warehouse"
       ]
@@ -116,7 +116,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_56",
+      "operationId": "updateUsingPUT_58",
       "tags": [
         "warehouse"
       ]
@@ -139,7 +139,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_56",
+      "operationId": "deleteUsingDELETE_60",
       "tags": [
         "warehouse"
       ]

@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_36",
+      "operationId": "findByIdUsingGET_38",
       "tags": [
         "base-org-position"
       ]
@@ -42,7 +42,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_36",
+      "operationId": "deleteUsingDELETE_40",
       "tags": [
         "base-org-position"
       ]

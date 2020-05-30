@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_30",
+      "operationId": "findByIdUsingGET_32",
       "tags": [
         "inventory"
       ]
@@ -42,7 +42,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_28",
+      "operationId": "deleteUsingDELETE_32",
       "tags": [
         "inventory"
       ]

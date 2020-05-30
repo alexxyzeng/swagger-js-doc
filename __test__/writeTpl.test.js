@@ -2,7 +2,8 @@ const {
   parsePathAndParametersToString,
   parseParameter,
   parseQuery,
-  parseQueries,
+  parseArrayParameter,
+  // parseQueries,
 } = require('../writeTpl');
 
 describe('parse parameters and path', () => {
@@ -19,7 +20,6 @@ describe('parse parameters and path', () => {
       ],
       query: [],
     });
-    expect(parsedData.url).toBe('`/demand/type/${param.id}`');
   });
   it('parse path without path parameter', () => {
     const { url } = parsePathAndParametersToString('/app/index', {
@@ -83,5 +83,29 @@ describe('parse parameters and path', () => {
         description: '需求ID(批量查询)',
       })
     ).toBe('* @param {[number]} params.query.ids - 需求ID(批量查询)');
+
+    expect(
+      parseArrayParameter(
+        {
+          type: 'array',
+          valueType: {
+            type: 'number',
+            description: '',
+            required: true,
+            enum: [],
+          },
+          required: true,
+          description: 'idx',
+          name: 'idx',
+        },
+        'test',
+        {}
+      )
+    ).toEqual({
+      paramName: 'test',
+      type: 'array',
+      itemType: 'number',
+      description: 'idx',
+    });
   });
 });

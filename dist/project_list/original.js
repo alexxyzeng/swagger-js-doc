@@ -118,6 +118,30 @@
             "description": "地理位置ID，可以是省、市、区",
             "required": false,
             "enum": []
+          },
+          {
+            "type": "string",
+            "name": "area",
+            "description": "项目(建筑)面积",
+            "enum": []
+          },
+          {
+            "type": "string",
+            "name": "usedArea",
+            "description": "项目(使用)面积",
+            "enum": []
+          },
+          {
+            "type": "array",
+            "valueType": {
+              "type": "number",
+              "description": "",
+              "required": false,
+              "enum": []
+            },
+            "required": false,
+            "description": "需排除项目ID",
+            "name": "exIdx"
           }
         ]
       },

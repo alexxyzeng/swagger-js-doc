@@ -6,7 +6,7 @@
         "pm-plan"
       ],
       "summary": "新增计划",
-      "operationId": "createUsingPOST_28",
+      "operationId": "createUsingPOST_30",
       "consumes": [
         "application/json"
       ],
@@ -68,7 +68,7 @@
         "pm-plan"
       ],
       "summary": "删除计划",
-      "operationId": "deleteUsingDELETE_30",
+      "operationId": "deleteUsingDELETE_34",
       "consumes": [
         "application/json"
       ],

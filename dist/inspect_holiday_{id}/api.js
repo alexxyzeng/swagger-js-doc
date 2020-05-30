@@ -6,7 +6,7 @@
         "inspect"
       ],
       "summary": "巡检节假日-详情",
-      "operationId": "findByIdUsingGET_13",
+      "operationId": "findByIdUsingGET_15",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect"
       ],
       "summary": "修改巡检节假日-部分",
-      "operationId": "updateUsingPUT_21",
+      "operationId": "updateUsingPUT_23",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "inspect"
       ],
       "summary": "删除巡检节假日",
-      "operationId": "deleteUsingDELETE_17",
+      "operationId": "deleteUsingDELETE_21",
       "consumes": [
         "application/json"
       ],

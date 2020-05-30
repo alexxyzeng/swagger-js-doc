@@ -25,7 +25,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_28",
+      "operationId": "createUsingPOST_30",
       "tags": [
         "pm-plan"
       ]
@@ -61,7 +61,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_30",
+      "operationId": "deleteUsingDELETE_34",
       "tags": [
         "pm-plan"
       ]

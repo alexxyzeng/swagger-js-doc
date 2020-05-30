@@ -6,7 +6,7 @@
         "inspect-template"
       ],
       "summary": "新增巡检模板-内容",
-      "operationId": "createUsingPOST_25",
+      "operationId": "createUsingPOST_27",
       "consumes": [
         "application/json"
       ],

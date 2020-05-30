@@ -6,7 +6,7 @@
         "undertake-task"
       ],
       "summary": "承接查验-任务-列表",
-      "operationId": "findUsingGET_59",
+      "operationId": "findUsingGET_63",
       "consumes": [
         "application/json"
       ],
@@ -175,7 +175,7 @@
         "undertake-task"
       ],
       "summary": "新增承接查验-任务",
-      "operationId": "createUsingPOST_45",
+      "operationId": "createUsingPOST_49",
       "consumes": [
         "application/json"
       ],

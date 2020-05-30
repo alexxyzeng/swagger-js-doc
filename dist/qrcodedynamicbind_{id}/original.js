@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_37",
+      "operationId": "findByIdUsingGET_39",
       "tags": [
         "qrcodedynamicbind"
       ]
@@ -72,7 +72,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_45",
+      "operationId": "updateUsingPUT_47",
       "tags": [
         "qrcodedynamicbind"
       ]
@@ -95,7 +95,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_40",
+      "operationId": "deleteUsingDELETE_44",
       "tags": [
         "qrcodedynamicbind"
       ]

@@ -6,7 +6,7 @@
         "pm"
       ],
       "summary": "维保规则列表",
-      "operationId": "findUsingGET_42",
+      "operationId": "findUsingGET_45",
       "consumes": [
         "application/json"
       ],
@@ -195,7 +195,7 @@
         "pm"
       ],
       "summary": "新增设置",
-      "operationId": "createUsingPOST_27",
+      "operationId": "createUsingPOST_29",
       "consumes": [
         "application/json"
       ],

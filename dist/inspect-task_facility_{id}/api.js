@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "修改巡检任务-设备-部分",
-      "operationId": "updateUsingPUT_30",
+      "operationId": "updateUsingPUT_32",
       "consumes": [
         "application/json"
       ],

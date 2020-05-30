@@ -6,7 +6,7 @@
         "inspect"
       ],
       "summary": "巡检节假日-列表",
-      "operationId": "findUsingGET_21",
+      "operationId": "findUsingGET_24",
       "consumes": [
         "application/json"
       ],
@@ -109,7 +109,7 @@
         "inspect"
       ],
       "summary": "新增巡检节假日",
-      "operationId": "createUsingPOST_14",
+      "operationId": "createUsingPOST_16",
       "consumes": [
         "application/json"
       ],

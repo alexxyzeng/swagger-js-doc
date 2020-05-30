@@ -113,7 +113,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_25",
+      "operationId": "createUsingPOST_27",
       "tags": [
         "inspect-template"
       ]

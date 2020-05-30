@@ -64,7 +64,7 @@
         "undertake-template"
       ],
       "summary": "修改承接查验模板-部分",
-      "operationId": "updateUsingPUT_55",
+      "operationId": "updateUsingPUT_57",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "undertake-template"
       ],
       "summary": "删除承接查验模板",
-      "operationId": "deleteUsingDELETE_55",
+      "operationId": "deleteUsingDELETE_59",
       "consumes": [
         "application/json"
       ],

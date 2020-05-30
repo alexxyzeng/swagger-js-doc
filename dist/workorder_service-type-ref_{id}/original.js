@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_44",
+      "operationId": "deleteUsingDELETE_48",
       "tags": [
         "workorder-service-type-ref"
       ]

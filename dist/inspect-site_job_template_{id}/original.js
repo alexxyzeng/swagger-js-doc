@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_20",
+      "operationId": "findByIdUsingGET_22",
       "tags": [
         "inspect-site"
       ]

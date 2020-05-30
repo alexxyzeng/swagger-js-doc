@@ -32,7 +32,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_44",
+      "operationId": "updateUsingPUT_46",
       "tags": [
         "base-project-group"
       ]
@@ -55,7 +55,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_38",
+      "operationId": "deleteUsingDELETE_42",
       "tags": [
         "base-project-group"
       ]

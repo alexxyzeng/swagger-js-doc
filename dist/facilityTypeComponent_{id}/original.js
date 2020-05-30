@@ -85,7 +85,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_17",
+      "operationId": "updateUsingPUT_19",
       "tags": [
         "facility-type-component"
       ]
@@ -108,7 +108,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_13",
+      "operationId": "deleteUsingDELETE_17",
       "tags": [
         "facility-type-component"
       ]

@@ -6,7 +6,7 @@
         "facility-param"
       ],
       "summary": "修改设备参数",
-      "operationId": "updateUsingPUT_16",
+      "operationId": "updateUsingPUT_18",
       "consumes": [
         "application/json"
       ],

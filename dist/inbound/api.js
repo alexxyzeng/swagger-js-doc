@@ -6,7 +6,7 @@
         "inventory"
       ],
       "summary": "入库单-列表",
-      "operationId": "findUsingGET_19",
+      "operationId": "findUsingGET_22",
       "consumes": [
         "application/json"
       ],
@@ -95,7 +95,7 @@
         "inventory"
       ],
       "summary": "新增入库单",
-      "operationId": "createUsingPOST_13",
+      "operationId": "createUsingPOST_15",
       "consumes": [
         "application/json"
       ],

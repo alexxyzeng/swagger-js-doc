@@ -6,7 +6,7 @@
         "warehouse"
       ],
       "summary": "库存物资-详情",
-      "operationId": "findByIdUsingGET_32",
+      "operationId": "findByIdUsingGET_34",
       "consumes": [
         "application/json"
       ],
@@ -72,7 +72,7 @@
         "warehouse"
       ],
       "summary": "修改库存物资-部分",
-      "operationId": "updateUsingPUT_40",
+      "operationId": "updateUsingPUT_42",
       "consumes": [
         "application/json"
       ],
@@ -142,7 +142,7 @@
         "warehouse"
       ],
       "summary": "删除库存物资",
-      "operationId": "deleteUsingDELETE_31",
+      "operationId": "deleteUsingDELETE_35",
       "consumes": [
         "application/json"
       ],

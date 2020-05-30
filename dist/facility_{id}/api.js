@@ -6,7 +6,7 @@
         "facility"
       ],
       "summary": "设备台帐-详情",
-      "operationId": "findByIdUsingGET_11",
+      "operationId": "findByIdUsingGET_13",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "facility"
       ],
       "summary": "修改设备",
-      "operationId": "updateUsingPUT_15",
+      "operationId": "updateUsingPUT_17",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "facility"
       ],
       "summary": "删除设备",
-      "operationId": "deleteUsingDELETE_11",
+      "operationId": "deleteUsingDELETE_15",
       "consumes": [
         "application/json"
       ],

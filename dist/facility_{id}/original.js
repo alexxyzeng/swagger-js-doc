@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_11",
+      "operationId": "findByIdUsingGET_13",
       "tags": [
         "facility"
       ]
@@ -492,7 +492,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_15",
+      "operationId": "updateUsingPUT_17",
       "tags": [
         "facility"
       ]
@@ -515,7 +515,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_11",
+      "operationId": "deleteUsingDELETE_15",
       "tags": [
         "facility"
       ]

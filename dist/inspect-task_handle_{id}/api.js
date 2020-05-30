@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "巡检任务-工单-详情",
-      "operationId": "findByIdUsingGET_27",
+      "operationId": "findByIdUsingGET_29",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "inspect-task"
       ],
       "summary": "修改巡检任务-工单-部分",
-      "operationId": "updateUsingPUT_35",
+      "operationId": "updateUsingPUT_37",
       "consumes": [
         "application/json"
       ],

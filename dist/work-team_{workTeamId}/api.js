@@ -6,7 +6,7 @@
         "work-team"
       ],
       "summary": "工作组详情",
-      "operationId": "findUsingGET_65",
+      "operationId": "findUsingGET_69",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "work-team"
       ],
       "summary": "修改工作组",
-      "operationId": "updateUsingPUT_58",
+      "operationId": "updateUsingPUT_60",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "work-team"
       ],
       "summary": "删除工作组",
-      "operationId": "deleteUsingDELETE_58",
+      "operationId": "deleteUsingDELETE_62",
       "consumes": [
         "application/json"
       ],

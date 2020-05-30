@@ -6,7 +6,7 @@
         "base-project-group"
       ],
       "summary": "修改项目组",
-      "operationId": "updateUsingPUT_44",
+      "operationId": "updateUsingPUT_46",
       "consumes": [
         "application/json"
       ],
@@ -46,7 +46,7 @@
           "description": "projectGroupDto",
           "required": true,
           "schema": {
-            "$ref": "#/definitions/创建项目参数"
+            "$ref": "#/definitions/创建项目组参数"
           }
         }
       ],
@@ -76,7 +76,7 @@
         "base-project-group"
       ],
       "summary": "删除项目组",
-      "operationId": "deleteUsingDELETE_38",
+      "operationId": "deleteUsingDELETE_42",
       "consumes": [
         "application/json"
       ],

@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_39",
+      "operationId": "findByIdUsingGET_41",
       "tags": [
         "workorder-service-type"
       ]
@@ -95,7 +95,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_47",
+      "operationId": "updateUsingPUT_49",
       "tags": [
         "workorder-service-type"
       ]
@@ -118,7 +118,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_43",
+      "operationId": "deleteUsingDELETE_47",
       "tags": [
         "workorder-service-type"
       ]

@@ -112,7 +112,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_19",
+      "operationId": "updateUsingPUT_21",
       "tags": [
         "facility-type-param"
       ]
@@ -135,7 +135,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_15",
+      "operationId": "deleteUsingDELETE_19",
       "tags": [
         "facility-type-param"
       ]

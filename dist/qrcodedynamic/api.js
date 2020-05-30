@@ -6,7 +6,7 @@
         "qrcodedynamic"
       ],
       "summary": "活码表-列表",
-      "operationId": "findUsingGET_50",
+      "operationId": "findUsingGET_53",
       "consumes": [
         "application/json"
       ],
@@ -87,7 +87,7 @@
         "qrcodedynamic"
       ],
       "summary": "新增活码表",
-      "operationId": "createUsingPOST_37",
+      "operationId": "createUsingPOST_40",
       "consumes": [
         "application/json"
       ],
@@ -149,7 +149,7 @@
         "qrcodedynamic"
       ],
       "summary": "批量删除活码表",
-      "operationId": "deleteUsingDELETE_41",
+      "operationId": "deleteUsingDELETE_45",
       "consumes": [
         "application/json"
       ],

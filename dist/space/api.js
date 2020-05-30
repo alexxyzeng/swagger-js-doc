@@ -6,7 +6,7 @@
         "base-building-space"
       ],
       "summary": "新建空间",
-      "operationId": "createUsingPOST_40",
+      "operationId": "createUsingPOST_43",
       "consumes": [
         "application/json"
       ],

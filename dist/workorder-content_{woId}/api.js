@@ -6,7 +6,7 @@
         "workorder-content"
       ],
       "summary": "查询工作内容",
-      "operationId": "findUsingGET_66",
+      "operationId": "findUsingGET_70",
       "consumes": [
         "application/json"
       ],

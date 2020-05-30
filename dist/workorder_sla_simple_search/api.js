@@ -6,7 +6,7 @@
         "workorder-sla"
       ],
       "summary": "查询sla-平铺",
-      "operationId": "findSimpleUsingGET",
+      "operationId": "findSimpleUsingGET_1",
       "consumes": [
         "application/json"
       ],

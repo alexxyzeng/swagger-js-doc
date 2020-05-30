@@ -6,7 +6,7 @@
         "base-message"
       ],
       "summary": "消息表-列表",
-      "operationId": "findUsingGET_44",
+      "operationId": "findUsingGET_47",
       "consumes": [
         "application/json"
       ],
@@ -87,7 +87,7 @@
         "base-message"
       ],
       "summary": "新增消息表",
-      "operationId": "createUsingPOST_30",
+      "operationId": "createUsingPOST_32",
       "consumes": [
         "application/json"
       ],
@@ -149,7 +149,7 @@
         "base-message"
       ],
       "summary": "批量删除消息表",
-      "operationId": "deleteUsingDELETE_32",
+      "operationId": "deleteUsingDELETE_36",
       "consumes": [
         "application/json"
       ],

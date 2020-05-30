@@ -282,7 +282,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_48",
+      "operationId": "updateUsingPUT_50",
       "tags": [
         "workorder-sla"
       ]
@@ -305,7 +305,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_45",
+      "operationId": "deleteUsingDELETE_49",
       "tags": [
         "workorder-sla"
       ]

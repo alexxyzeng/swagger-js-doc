@@ -79,7 +79,7 @@
         "facility-type-param"
       ],
       "summary": "新增设施分类对应的参数",
-      "operationId": "createUsingPOST_11",
+      "operationId": "createUsingPOST_13",
       "consumes": [
         "application/json"
       ],

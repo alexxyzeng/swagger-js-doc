@@ -6,7 +6,7 @@
         "workorder-space"
       ],
       "summary": "创建工单空间位置",
-      "operationId": "createUsingPOST_56",
+      "operationId": "createUsingPOST_60",
       "consumes": [
         "application/json"
       ],

@@ -64,7 +64,7 @@
         "workorder-sla"
       ],
       "summary": "更新sla",
-      "operationId": "updateUsingPUT_48",
+      "operationId": "updateUsingPUT_50",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "workorder-sla"
       ],
       "summary": "删除sla",
-      "operationId": "deleteUsingDELETE_45",
+      "operationId": "deleteUsingDELETE_49",
       "consumes": [
         "application/json"
       ],

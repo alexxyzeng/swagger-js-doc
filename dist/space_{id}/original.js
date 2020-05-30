@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_52",
+      "operationId": "findUsingGET_55",
       "tags": [
         "base-building-space"
       ]
@@ -151,7 +151,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_49",
+      "operationId": "updateUsingPUT_51",
       "tags": [
         "base-building-space"
       ]
@@ -182,7 +182,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_46",
+      "operationId": "deleteUsingDELETE_50",
       "tags": [
         "base-building-space"
       ]

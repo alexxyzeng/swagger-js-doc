@@ -6,7 +6,7 @@
         "warehouse"
       ],
       "summary": "仓库货架-详情",
-      "operationId": "findByIdUsingGET_45",
+      "operationId": "findByIdUsingGET_48",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "warehouse"
       ],
       "summary": "修改仓库货架-部分",
-      "operationId": "updateUsingPUT_57",
+      "operationId": "updateUsingPUT_59",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "warehouse"
       ],
       "summary": "删除仓库货架",
-      "operationId": "deleteUsingDELETE_57",
+      "operationId": "deleteUsingDELETE_61",
       "consumes": [
         "application/json"
       ],

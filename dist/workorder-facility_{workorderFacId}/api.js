@@ -6,7 +6,7 @@
         "workorder-facility"
       ],
       "summary": "修改工单对应的设备",
-      "operationId": "updateUsingPUT_60",
+      "operationId": "updateUsingPUT_62",
       "consumes": [
         "application/json"
       ],

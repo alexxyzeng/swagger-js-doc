@@ -6,7 +6,7 @@
         "base-building-floor"
       ],
       "summary": "查找楼层",
-      "operationId": "findByIdUsingGET_12",
+      "operationId": "findByIdUsingGET_14",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-building-floor"
       ],
       "summary": "更新楼层",
-      "operationId": "updateUsingPUT_20",
+      "operationId": "updateUsingPUT_22",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "base-building-floor"
       ],
       "summary": "删除楼层",
-      "operationId": "deleteUsingDELETE_16",
+      "operationId": "deleteUsingDELETE_20",
       "consumes": [
         "application/json"
       ],

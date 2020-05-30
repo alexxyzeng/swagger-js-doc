@@ -6,7 +6,7 @@
         "workorder-facility"
       ],
       "summary": "创建工单对应的设备",
-      "operationId": "createUsingPOST_55",
+      "operationId": "createUsingPOST_59",
       "consumes": [
         "application/json"
       ],

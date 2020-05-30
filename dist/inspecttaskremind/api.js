@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "巡检任务-提醒-列表",
-      "operationId": "findUsingGET_36",
+      "operationId": "findUsingGET_39",
       "consumes": [
         "application/json"
       ],
@@ -95,7 +95,7 @@
         "inspect-task"
       ],
       "summary": "新增巡检任务-提醒",
-      "operationId": "createUsingPOST_24",
+      "operationId": "createUsingPOST_26",
       "consumes": [
         "application/json"
       ],

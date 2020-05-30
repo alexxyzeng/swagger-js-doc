@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findByIdUsingGET_35",
+      "operationId": "findByIdUsingGET_37",
       "tags": [
         "inventory"
       ]

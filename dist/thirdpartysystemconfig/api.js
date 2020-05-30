@@ -6,7 +6,7 @@
         "thirdparty-system-config-feign"
       ],
       "summary": "第三方账户-列表",
-      "operationId": "findUsingGET_58",
+      "operationId": "findUsingGET_62",
       "consumes": [
         "application/json"
       ],
@@ -91,7 +91,7 @@
         "thirdparty-system-config-feign"
       ],
       "summary": "新增第三方账户",
-      "operationId": "createUsingPOST_44",
+      "operationId": "createUsingPOST_48",
       "consumes": [
         "application/json"
       ],
@@ -153,7 +153,7 @@
         "thirdparty-system-config-feign"
       ],
       "summary": "批量删除第三方账户",
-      "operationId": "deleteUsingDELETE_54",
+      "operationId": "deleteUsingDELETE_58",
       "consumes": [
         "application/json"
       ],

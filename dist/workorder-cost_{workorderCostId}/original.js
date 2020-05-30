@@ -55,7 +55,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_59",
+      "operationId": "updateUsingPUT_61",
       "tags": [
         "workorder-cost"
       ]
@@ -78,7 +78,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_59",
+      "operationId": "deleteUsingDELETE_63",
       "tags": [
         "workorder-cost"
       ]

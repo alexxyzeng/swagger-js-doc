@@ -6,7 +6,7 @@
         "undertake-template"
       ],
       "summary": "承接查验模板-列表",
-      "operationId": "findUsingGET_61",
+      "operationId": "findUsingGET_65",
       "consumes": [
         "application/json"
       ],
@@ -94,7 +94,7 @@
         "undertake-template"
       ],
       "summary": "新增承接查验模板",
-      "operationId": "createUsingPOST_46",
+      "operationId": "createUsingPOST_50",
       "consumes": [
         "application/json"
       ],

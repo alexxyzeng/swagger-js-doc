@@ -39,7 +39,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_44",
+      "operationId": "findUsingGET_47",
       "tags": [
         "base-message"
       ]
@@ -88,14 +88,15 @@
             },
             "source": {
               "type": "string",
-              "description": "消息来源：1-需求 2-工单 3-预防性维护 {需求=Demand-1, 工单=Workorder-2, 预防性维护=PM-3, 巡检=Inspect-4, 库存=Stock-5, cmb员工服务平台=CmbDemand-6}",
+              "description": "消息来源：1-需求 2-工单 3-预防性维护 {需求=Demand-1, 工单=Workorder-2, 预防性维护=PM-3, 巡检=Inspect-4, 库存=Stock-5, cmb员工服务平台=CmbDemand-6, 审批提醒=Approve-7}",
               "enum": [
                 "1",
                 "2",
                 "3",
                 "4",
                 "5",
-                "6"
+                "6",
+                "7"
               ]
             },
             "templateId": {
@@ -129,7 +130,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "createUsingPOST_30",
+      "operationId": "createUsingPOST_32",
       "tags": [
         "base-message"
       ]
@@ -157,7 +158,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "deleteUsingDELETE_32",
+      "operationId": "deleteUsingDELETE_36",
       "tags": [
         "base-message"
       ]

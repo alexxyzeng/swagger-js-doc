@@ -6,7 +6,7 @@
         "base-org-position"
       ],
       "summary": "查找指定ID岗位",
-      "operationId": "findByIdUsingGET_36",
+      "operationId": "findByIdUsingGET_38",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-org-position"
       ],
       "summary": "删除岗位",
-      "operationId": "deleteUsingDELETE_36",
+      "operationId": "deleteUsingDELETE_40",
       "consumes": [
         "application/json"
       ],

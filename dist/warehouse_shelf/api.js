@@ -6,7 +6,7 @@
         "warehouse"
       ],
       "summary": "仓库货架-列表",
-      "operationId": "findUsingGET_63",
+      "operationId": "findUsingGET_67",
       "consumes": [
         "application/json"
       ],
@@ -114,7 +114,7 @@
         "warehouse"
       ],
       "summary": "新增仓库货架",
-      "operationId": "createUsingPOST_48",
+      "operationId": "createUsingPOST_52",
       "consumes": [
         "application/json"
       ],

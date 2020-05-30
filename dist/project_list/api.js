@@ -166,6 +166,32 @@
           "required": false,
           "type": "integer",
           "format": "int64"
+        },
+        {
+          "name": "area",
+          "in": "query",
+          "description": "项目(建筑)面积",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "usedArea",
+          "in": "query",
+          "description": "项目(使用)面积",
+          "required": false,
+          "type": "string"
+        },
+        {
+          "name": "exIdx",
+          "in": "query",
+          "description": "需排除项目ID",
+          "required": false,
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "collectionFormat": "multi"
         }
       ],
       "responses": {

@@ -98,7 +98,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_41",
+      "operationId": "findUsingGET_44",
       "tags": [
         "inventory"
       ]

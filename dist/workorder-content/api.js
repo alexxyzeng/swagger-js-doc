@@ -6,7 +6,7 @@
         "workorder-content"
       ],
       "summary": "创建工作内容",
-      "operationId": "createUsingPOST_52",
+      "operationId": "createUsingPOST_56",
       "consumes": [
         "application/json"
       ],

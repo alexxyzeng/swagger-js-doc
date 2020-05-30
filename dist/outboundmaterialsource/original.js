@@ -39,7 +39,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_48",
+      "operationId": "findUsingGET_51",
       "tags": [
         "inventory"
       ]

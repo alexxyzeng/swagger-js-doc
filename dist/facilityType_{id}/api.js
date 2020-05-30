@@ -64,7 +64,7 @@
         "facility-type"
       ],
       "summary": "修改设施分类",
-      "operationId": "updateUsingPUT_18",
+      "operationId": "updateUsingPUT_20",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "facility-type"
       ],
       "summary": "根据id删除设施分类",
-      "operationId": "deleteUsingDELETE_14",
+      "operationId": "deleteUsingDELETE_18",
       "consumes": [
         "application/json"
       ],

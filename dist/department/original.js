@@ -10,10 +10,34 @@
               "description": "编码",
               "enum": []
             },
+            "departmentType": {
+              "type": "array",
+              "valueType": {
+                "type": "string",
+                "description": "",
+                "enum": []
+              },
+              "required": false,
+              "description": "职能类型"
+            },
             "description": {
               "type": "string",
               "description": "描述",
               "enum": []
+            },
+            "functionType": {
+              "isMU": {
+                "type": "number",
+                "description": "",
+                "required": false,
+                "enum": []
+              },
+              "isPMC": {
+                "type": "number",
+                "description": "",
+                "required": false,
+                "enum": []
+              }
             },
             "id": {
               "type": "number",
@@ -41,6 +65,17 @@
               "type": "string",
               "description": "层级名称",
               "enum": []
+            },
+            "projectIds": {
+              "type": "array",
+              "valueType": {
+                "type": "number",
+                "description": "",
+                "required": false,
+                "enum": []
+              },
+              "required": false,
+              "description": "绑定的项目"
             },
             "sort": {
               "type": "number",
@@ -71,10 +106,34 @@
               "description": "编码",
               "enum": []
             },
+            "departmentType": {
+              "type": "array",
+              "valueType": {
+                "type": "string",
+                "description": "",
+                "enum": []
+              },
+              "required": false,
+              "description": "职能类型"
+            },
             "description": {
               "type": "string",
               "description": "描述",
               "enum": []
+            },
+            "functionType": {
+              "isMU": {
+                "type": "number",
+                "description": "",
+                "required": false,
+                "enum": []
+              },
+              "isPMC": {
+                "type": "number",
+                "description": "",
+                "required": false,
+                "enum": []
+              }
             },
             "id": {
               "type": "number",
@@ -102,6 +161,17 @@
               "type": "string",
               "description": "层级名称",
               "enum": []
+            },
+            "projectIds": {
+              "type": "array",
+              "valueType": {
+                "type": "number",
+                "description": "",
+                "required": false,
+                "enum": []
+              },
+              "required": false,
+              "description": "绑定的项目"
             },
             "sort": {
               "type": "number",

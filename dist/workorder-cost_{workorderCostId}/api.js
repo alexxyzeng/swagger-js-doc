@@ -6,7 +6,7 @@
         "workorder-cost"
       ],
       "summary": "修改费用",
-      "operationId": "updateUsingPUT_59",
+      "operationId": "updateUsingPUT_61",
       "consumes": [
         "application/json"
       ],
@@ -76,7 +76,7 @@
         "workorder-cost"
       ],
       "summary": "删除费用",
-      "operationId": "deleteUsingDELETE_59",
+      "operationId": "deleteUsingDELETE_63",
       "consumes": [
         "application/json"
       ],

@@ -6,7 +6,7 @@
         "workorder-service-type"
       ],
       "summary": "查询服务类型-byId",
-      "operationId": "findByIdUsingGET_39",
+      "operationId": "findByIdUsingGET_41",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "workorder-service-type"
       ],
       "summary": "更新服务类型",
-      "operationId": "updateUsingPUT_47",
+      "operationId": "updateUsingPUT_49",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "workorder-service-type"
       ],
       "summary": "删除服务类型",
-      "operationId": "deleteUsingDELETE_43",
+      "operationId": "deleteUsingDELETE_47",
       "consumes": [
         "application/json"
       ],

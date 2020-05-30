@@ -6,7 +6,7 @@
         "inventory"
       ],
       "summary": "修改安全库存",
-      "operationId": "updateUsingPUT_38",
+      "operationId": "updateUsingPUT_40",
       "consumes": [
         "application/json"
       ],

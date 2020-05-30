@@ -6,7 +6,7 @@
         "inventory"
       ],
       "summary": "入库物资-列表",
-      "operationId": "findUsingGET_20",
+      "operationId": "findUsingGET_23",
       "consumes": [
         "application/json"
       ],

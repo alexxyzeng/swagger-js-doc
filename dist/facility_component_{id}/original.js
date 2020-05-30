@@ -74,7 +74,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_14",
+      "operationId": "updateUsingPUT_16",
       "tags": [
         "facility-component"
       ]

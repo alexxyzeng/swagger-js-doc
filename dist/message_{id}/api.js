@@ -6,7 +6,7 @@
         "base-message"
       ],
       "summary": "消息表-详情",
-      "operationId": "findByIdUsingGET_33",
+      "operationId": "findByIdUsingGET_35",
       "consumes": [
         "application/json"
       ],
@@ -64,7 +64,7 @@
         "base-message"
       ],
       "summary": "修改消息表-部分",
-      "operationId": "updateUsingPUT_41",
+      "operationId": "updateUsingPUT_43",
       "consumes": [
         "application/json"
       ],
@@ -134,7 +134,7 @@
         "base-message"
       ],
       "summary": "删除消息表",
-      "operationId": "deleteUsingDELETE_33",
+      "operationId": "deleteUsingDELETE_37",
       "consumes": [
         "application/json"
       ],

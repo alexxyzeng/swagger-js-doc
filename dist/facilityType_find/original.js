@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_18",
+      "operationId": "findUsingGET_21",
       "tags": [
         "facility-type"
       ]

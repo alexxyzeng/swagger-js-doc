@@ -6,7 +6,7 @@
         "work-team"
       ],
       "summary": "工作组列表&搜索",
-      "operationId": "findUsingGET_64",
+      "operationId": "findUsingGET_68",
       "consumes": [
         "application/json"
       ],
@@ -93,7 +93,7 @@
         "work-team"
       ],
       "summary": "新增工作组",
-      "operationId": "createUsingPOST_49",
+      "operationId": "createUsingPOST_53",
       "consumes": [
         "application/json"
       ],

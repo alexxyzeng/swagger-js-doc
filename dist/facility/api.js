@@ -6,7 +6,7 @@
         "facility"
       ],
       "summary": "设备台帐列表",
-      "operationId": "findUsingGET_17",
+      "operationId": "findUsingGET_20",
       "consumes": [
         "application/json"
       ],
@@ -248,7 +248,7 @@
         "facility"
       ],
       "summary": "新增设备",
-      "operationId": "createUsingPOST_8",
+      "operationId": "createUsingPOST_10",
       "consumes": [
         "application/json"
       ],

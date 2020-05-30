@@ -6,7 +6,7 @@
         "inspect-site"
       ],
       "summary": "删除巡检点位-工作任务-设备",
-      "operationId": "deleteUsingDELETE_24",
+      "operationId": "deleteUsingDELETE_28",
       "consumes": [
         "application/json"
       ],

@@ -19,7 +19,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "findUsingGET_16",
+      "operationId": "findUsingGET_19",
       "tags": [
         "base-menu"
       ]
@@ -54,7 +54,7 @@
       "consumes": [
         "application/json"
       ],
-      "operationId": "updateUsingPUT_13",
+      "operationId": "updateUsingPUT_15",
       "tags": [
         "base-menu"
       ]

@@ -6,7 +6,7 @@
         "inspect-task"
       ],
       "summary": "巡检任务-日历",
-      "operationId": "findUsingGET_32",
+      "operationId": "findUsingGET_35",
       "consumes": [
         "application/json"
       ],
