@@ -11,50 +11,43 @@
       "description": "数据",
       "type": "object",
       "properties": {
-        "cost": {
-          "type": "number",
-          "description": "花费"
-        },
-        "createTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "创建时间"
-        },
-        "description": {
-          "type": "string",
-          "description": "描述"
-        },
-        "id": {
-          "type": "integer",
-          "format": "int64",
-          "description": "由程序分配的唯一ID"
-        },
-        "isToolCost": {
-          "type": "string",
-          "description": "是否工具同步费用 是否枚举{否=No-0, 是=Yes-1}",
-          "enum": [
-            "0",
-            "1"
-          ]
-        },
-        "modifyTime": {
-          "type": "string",
-          "format": "date-time",
-          "description": "最后的修改时间"
-        },
-        "name": {
-          "type": "string",
-          "description": "收费项名称"
-        },
-        "projectId": {
-          "type": "integer",
-          "format": "int64",
-          "description": "项目ID"
-        },
-        "woWorkorderId": {
-          "type": "integer",
-          "format": "int64",
-          "description": "工单id"
+        "workorderStatistics": {
+          "type": "array",
+          "description": "工单权限及数量统计",
+          "items": {
+            "type": "object",
+            "properties": {
+              "count": {
+                "type": "integer",
+                "format": "int32",
+                "description": "数量"
+              },
+              "permission": {
+                "type": "string",
+                "description": "用户是否有此操作权限，app首页使用 是否枚举{否=No-0, 是=Yes-1}",
+                "enum": [
+                  "0",
+                  "1"
+                ]
+              },
+              "type": {
+                "type": "string",
+                "description": "操作类型 {抢单=Scramble-1, 派工=Dispatch-2, 处理=Process-3, 审批=Approval-4, 待验证或存档=CheckArchive-5, 我的报单=MyReport-6, 待转单=Transfer-7, 待完成=Pending-8, 待验证=Check-9, 待存档=Archive-10}",
+                "enum": [
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8",
+                  "9",
+                  "10"
+                ]
+              }
+            }
+          }
         }
       }
     },

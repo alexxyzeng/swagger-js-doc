@@ -62,9 +62,6 @@ function parseArrayTypeToProp(typeDef) {
 
 function parseObjectTypeToProp(typeDef, key) {
   // TODO: 增加对object类型的解析
-  console.log('====================================');
-  console.log(typeDef, '---- typedef');
-  console.log('====================================');
   return parseBasicTypeToProp({ ...typeDef, type: key, paramName: key });
 }
 
