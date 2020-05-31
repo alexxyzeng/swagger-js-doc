@@ -17,9 +17,9 @@ function generateFiles(paths, definitions, methods = Methods) {
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
-    // if (key !== '/demand/common/{demandId}') {
-    //   return;
-    // }
+    if (key !== '/workorder-cost/{workorderId}/sync-tool-cost') {
+      return;
+    }
     apiInfos.forEach((apiInfo) => {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {

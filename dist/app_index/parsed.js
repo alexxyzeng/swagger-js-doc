@@ -5,7 +5,7 @@
 */
 
 /**
- * @typedef {object} data
+ * @typedef {object} workorderStatisticsItem
  
  
  
@@ -15,9 +15,15 @@
 */
 
 /**
+ * @typedef {object} data
+ * @property {[workorderStatisticsItem]} workorderStatistics
+ *
+*/
+
+/**
  * @typedef {object} appIndexUsingGETResponse
  * @property {number} code 业务响应状态
- * @property {data} data null
+ * @property {data} data 
  * @property {string} message 消息
  * @property {string} traceId 用于链路追踪的ID
  *
@@ -31,7 +37,7 @@
  
  * @return {Promise<appIndexUsingGETResponse>}
 */
-export function appIndexUsingGET(params) {
+export function appIndexUsingGET() {
   return API.get(`/app/index`, {})
 }
 

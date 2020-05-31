@@ -18,6 +18,9 @@ function parseResponse(responses, definitions, responseName) {
   }
   fs.writeFileSync('response.js', JSON.stringify(definition, null, 2));
   parseParameter(parseParamType(definition), responseName, {});
+  console.log('====================================');
+  console.log(global.typedefs, '---- global typedefs');
+  console.log('====================================');
   const response = parseToDefs(global.typedefs);
   return response;
 }

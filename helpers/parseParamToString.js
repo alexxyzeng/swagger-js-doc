@@ -33,7 +33,7 @@ function parseArrayParameter(param, paramName, typedefs) {
   const result = parser(valueType, name, typedefs);
 
   if (global.typedefs) {
-    global.typedefs[name] = { name, result };
+    global.typedefs[name] = { name, result, description };
   }
   return { paramName, type, itemType: name, description };
 }

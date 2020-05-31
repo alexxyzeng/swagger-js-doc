@@ -1,23 +1,21 @@
 /**
- * @typedef {object} enum
- 
- *
-*/
-
-/**
  * @typedef {object} data
- 
- 
- 
- * @property {enum} enum 
- 
+ * @property {boolean} demandTypeNeedUpdate 需求类型信息是否有更新
+ * @property {boolean} departmentNeedUpdate 部门信息是否有更新
+ * @property {boolean} facilityNeedUpdate 设备信息是否有更新
+ * @property {boolean} facilityTypeNeedUpdate 设备类型信息是否有更新
+ * @property {boolean} serviceTypeNeedUpdate 服务类型信息是否有更新
+ * @property {boolean} spaceNeedUpdate 位置信息是否有更新
+ * @property {number} timestamp 服务器当前时间戳（毫秒）
+ * @property {boolean} woPriorityNeedUpdate 工单优先级信息是否有更新
+ * @property {boolean} woSlaNeedUpdate 工单工作流程信息是否有更新
  *
 */
 
 /**
  * @typedef {object} offlineDataHasUpdateUsingGETResponse
  * @property {number} code 业务响应状态
- * @property {data} data null
+ * @property {data} data 
  * @property {string} message 消息
  * @property {string} traceId 用于链路追踪的ID
  *

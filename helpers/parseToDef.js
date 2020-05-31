@@ -45,7 +45,7 @@ function parseToDef(value, key) {
     return '';
   }
   const { type } = value;
-  const parser = parserMap[type] || parseObjecTypeToProp;
+  const parser = parserMap[type] || parseObjectTypeToProp;
   return parser(value, key);
 }
 
@@ -60,8 +60,11 @@ function parseArrayTypeToProp(typeDef) {
   return `* @property {[${itemType}]} ${paramName}`;
 }
 
-function parseObjecTypeToProp(typeDef, key) {
+function parseObjectTypeToProp(typeDef, key) {
   // TODO: 增加对object类型的解析
+  console.log('====================================');
+  console.log(typeDef, '---- typedef');
+  console.log('====================================');
   return parseBasicTypeToProp({ ...typeDef, type: key, paramName: key });
 }
 
