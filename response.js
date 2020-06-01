@@ -8,45 +8,71 @@
       "description": "业务响应状态"
     },
     "data": {
+      "type": "array",
       "description": "数据",
-      "type": "object",
-      "properties": {
-        "workorderStatistics": {
-          "type": "array",
-          "description": "工单权限及数量统计",
-          "items": {
-            "type": "object",
-            "properties": {
-              "count": {
-                "type": "integer",
-                "format": "int32",
-                "description": "数量"
-              },
-              "permission": {
-                "type": "string",
-                "description": "用户是否有此操作权限，app首页使用 是否枚举{否=No-0, 是=Yes-1}",
-                "enum": [
-                  "0",
-                  "1"
-                ]
-              },
-              "type": {
-                "type": "string",
-                "description": "操作类型 {抢单=Scramble-1, 派工=Dispatch-2, 处理=Process-3, 审批=Approval-4, 待验证或存档=CheckArchive-5, 我的报单=MyReport-6, 待转单=Transfer-7, 待完成=Pending-8, 待验证=Check-9, 待存档=Archive-10}",
-                "enum": [
-                  "1",
-                  "2",
-                  "3",
-                  "4",
-                  "5",
-                  "6",
-                  "7",
-                  "8",
-                  "9",
-                  "10"
-                ]
-              }
-            }
+      "items": {
+        "type": "object",
+        "properties": {
+          "emNo": {
+            "type": "string",
+            "description": "员工编号"
+          },
+          "employeeId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "成员ID"
+          },
+          "employeeName": {
+            "type": "string",
+            "description": "成员姓名"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int64",
+            "description": "工作组成员ID"
+          },
+          "orgDepartmentName": {
+            "type": "string",
+            "description": "部门名"
+          },
+          "phone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "processWorkorderCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "处理中工单数量"
+          },
+          "skills": {
+            "type": "string",
+            "description": "技能"
+          },
+          "sort": {
+            "type": "integer",
+            "format": "int32",
+            "description": "工作组中的排序号"
+          },
+          "teamRole": {
+            "type": "string",
+            "description": "团队角色：1、主管 2、排程派工 3、追踪 4、验证 5、存档 6、执行人 {主管=Supervisor-1, 排程派工=Dispatcher-2, 追踪=Tracer-3, 验证=Verifier-4, 存档=Archiver-5, 执行人=Worker-6}",
+            "enum": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "5",
+              "6"
+            ]
+          },
+          "workTeamId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "工作组ID"
+          },
+          "workTeamName": {
+            "type": "string",
+            "description": "工作组名称"
           }
         }
       }

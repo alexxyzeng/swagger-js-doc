@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { Methods } = require('../const/methods');
 const { parseParams } = require('./parseParameters');
-const { parseApiInfo } = require('../writeTpl');
+const { parseApiInfo } = require('./writeTpl');
 
 function generateFiles(paths, definitions, methods = Methods) {
   if (!fs.existsSync('dist')) {

@@ -1,6 +1,7 @@
 const fs = require('fs');
-
-const tpl = fs.readFileSync('./tpl/definition.js.tpl') + '';
+const path = require('path');
+const tpl =
+  fs.readFileSync(path.resolve(__dirname + '/tpl/definition.js.tpl')) + '';
 
 const {
   API_DEFINITION_TYPE,

@@ -12,7 +12,7 @@ function parseResponse(responses, definitions, responseName) {
   const { 200: successResponse } = responses;
   const { schema } = successResponse;
   const definition = getResponseDefinition(schema, definitions);
-  
+
   if (!definition) {
     return;
   }
@@ -29,18 +29,30 @@ function getResponseDefinition(schema, definitions) {
   const definitionType = parseDefinitionType(schema);
   const definition = definitions[definitionType];
   // FIXME: 递归查询多重definition
-  const { properties } = definition;
+  const { properties = {} } = definition;
   Object.entries(properties).forEach(([key, value]) => {
     if (isValidDefinitionType(value)) {
+      const subDefinitionType = parseDefinitionType(value);
+      if (subDefinitionType === definitionType) {
+        return;
+      }
       const subDefinition = getResponseDefinition(value, definitions);
       const { description } = value;
       definition.properties[key] = { description, ...subDefinition };
     }
-    const { type, items } = value
+    const { type, items } = value;
     if (type === 'array' && isValidDefinitionType(items)) {
+      const subDefinitionType = parseDefinitionType(items);
+      if (subDefinitionType === definitionType) {
+        return;
+      }
       const subDefinition = getResponseDefinition(items, definitions);
-      const { description } = value
-      definition.properties[key] = { ...value, description, items: subDefinition}
+      const { description } = value;
+      definition.properties[key] = {
+        ...value,
+        description,
+        items: subDefinition,
+      };
     }
   });
   return definition;

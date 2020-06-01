@@ -1,7 +1,8 @@
 const fs = require('fs');
 const process = require('process');
+const path = require('path');
 
-const { swaggerUIPath, swaggerBasePath } = require('./const/index');
+const { swaggerUIPath, swaggerBasePath } = require('../const/index');
 const {
   API_SERVICE_TAGS_TPL,
   API_SERVICE_DOC_URL_TPL,
@@ -15,17 +16,18 @@ const {
   API_SERVICE_METHOD_TPL,
   API_SERVICE_DEFINITION,
   API_SERVICE_RETURN_VALUE,
-} = require('./const/tpl');
+} = require('../const/tpl');
 
 const [baseUrl] = process.argv.slice(2);
 // const apiInfo = require('./data');
-const tpl = fs.readFileSync('./tpl/service.js.tpl') + '';
-const { parseToDefs } = require('./helpers/parseToDef');
-const { parseResponse } = require('./helpers/parseResponse');
+const tpl =
+  fs.readFileSync(path.resolve(__dirname + '/tpl/service.js.tpl')) + '';
+const { parseToDefs } = require('./parseToDef');
+const { parseResponse } = require('./parseResponse');
 const {
   parseMethodParameters,
   parseParameter,
-} = require('./helpers/parseParamToString');
+} = require('./parseParamToString');
 
 function parseApiInfo(apiInfo, definitions) {
   let infos = '';

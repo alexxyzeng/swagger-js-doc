@@ -8,7 +8,7 @@
     "rejoice": "node ./writeTpl.js"
   },
   "bin": {
-    "hello": "./hello.js"
+    "generate": "./bin/generate.js"
   },
   "repository": {
     "type": "git",
