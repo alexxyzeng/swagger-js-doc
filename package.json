@@ -1,5 +1,5 @@
 {
-  "name": "swagger-js-doc",
+  "name": "@xyz/swagger-js-doc",
   "version": "0.0.1",
   "description": "parse swagger-doc into js-doc, generate api service and mock data files",
   "main": "index.js",
