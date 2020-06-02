@@ -2,13 +2,13 @@ const fs = require('fs');
 const {
   parseDefinitionType,
   parseDefinition,
-  isValidDefinitionType
+  isValidDefinitionType,
 } = require('./parseDefinitions');
 
 function parseParams(api, definitions) {
-  const { parameters, summary, consumes, operationId, tags } = api;
+  const { parameters, summary, consumes, operationId, tags, responses } = api;
   const parsedParameters = { body: [], path: [], query: [] };
-  parameters.forEach(parameter => {
+  parameters.forEach((parameter) => {
     const { in: paramIn, schema } = parameter;
     if (!parsedParameters[paramIn]) {
       return;
@@ -17,22 +17,15 @@ function parseParams(api, definitions) {
     let param = null;
     if (isValidDefinitionType(schema)) {
       const definitionType = parseDefinitionType(schema);
-      const notOkList = ['设施分类', '权限表'];
-      if (notOkList.includes(definitionType)) {
-        return;
-      }
+      // if (notOkList.includes(definitionType)) {
+      //   return;
+      // }
       const definition = parseDefinition(definitionType, definitions);
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
-      console.log(JSON.stringify(definition));
-      console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
       param = parseParamType(definition);
       // console.log(definition);
     } else {
       param = parseParamType(parameter);
     }
-    // console.log('====================================');
-    // console.log(param);
-    // console.log('====================================');
     parsedParameters[paramIn].push(param);
   });
   return {
@@ -40,8 +33,22 @@ function parseParams(api, definitions) {
     summary,
     consumes,
     operationId,
-    tags
+    tags,
+    responses,
   };
+}
+
+function parseSchemaParamType(param) {
+  const { description, required, schema, name } = param;
+  const { type, items } = schema;
+  return parseParamType({
+    type,
+    name,
+    required,
+    description,
+    items,
+    definitonType: '',
+  });
 }
 
 // integer/strring/array/object/enum/boolean
@@ -51,28 +58,45 @@ function parseParamType(param = {}) {
   }
   const {
     type,
+    name,
+    schema,
     required = false,
     items,
-
     description = '',
-    enum: valueEnum = {}
+    enum: valueEnum = {},
+    definitionType,
   } = param;
+  let paramType = type;
+  if (!type && schema) {
+    return parseSchemaParamType(param);
+  }
+  if (!type && typeof param === 'object') {
+    paramType = 'object';
+  }
   const parsedEnum = Object.values(valueEnum);
-  if (type === 'integer' || type === 'float' || type === 'double') {
-    return { type: 'number', description, required, enum: parsedEnum };
+  if (
+    paramType === 'integer' ||
+    paramType === 'float' ||
+    paramType === 'double'
+  ) {
+    return { type: 'number', name, description, required, enum: parsedEnum };
   }
   if (type === 'array') {
-    let parsedItems = null;
-    if (Object.prototype.call(items, 'properties')) {
-      parsedItems = parseParamType({ ...items, type: 'object' });
-    } else {
-      parsedItems = parseParamType(items);
-    }
-    return { type, valueType: parsedItems, required };
+    return parseArrayParamType(
+      items,
+      paramType,
+      required,
+      definitionType,
+      description,
+      name
+    );
   }
   // TODO: 解析enum
   // TODO: 解析object
-  if (type === 'object' || Object.prototype.call(param, 'properties')) {
+  if (
+    type === 'object' ||
+    Object.prototype.hasOwnProperty.call(param, 'properties')
+  ) {
     const { properties, required = {} } = param;
     const requireStatus = Object.values(required).reduce((a, b) => {
       return (a[b] = 1);
@@ -82,15 +106,39 @@ function parseParamType(param = {}) {
       const property = properties[i];
       const propertyFinal = {
         ...property,
-        required: requireStatus[i] || false
+        required: requireStatus[i] || false,
       };
       result[i] = parseParamType(propertyFinal);
     }
     return result;
   }
-  return { type, description, enum: parsedEnum };
+  return { type, name, description, enum: parsedEnum, definitionType };
 }
 
 module.exports = {
-  parseParams
+  parseParams,
+  parseParamType,
 };
+function parseArrayParamType(
+  items,
+  type,
+  required,
+  definitionType,
+  description,
+  name
+) {
+  let parsedItems = null;
+  if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
+    parsedItems = parseParamType({ ...items, type: 'object' });
+  } else {
+    parsedItems = parseParamType({ ...items, required, definitionType });
+  }
+  return {
+    type,
+    valueType: { type: 'object', ...parsedItems },
+    required,
+    definitionType,
+    description,
+    name,
+  };
+}
