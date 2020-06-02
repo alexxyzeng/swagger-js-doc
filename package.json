@@ -1,6 +1,6 @@
 {
   "name": "swagger-to-jsdoc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "parse swagger-doc into js-doc, generate api service and mock data files",
   "main": "index.js",
   "scripts": {
