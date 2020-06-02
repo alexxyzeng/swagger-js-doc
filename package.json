@@ -4,8 +4,7 @@
   "description": "parse swagger-doc into js-doc, generate api service and mock data files",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "rejoice": "node ./writeTpl.js"
+    "test": "jest"
   },
   "bin": {
     "generate": "./bin/generate.js"
