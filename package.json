@@ -1,13 +1,13 @@
 {
-  "name": "@xyz/swagger-js-doc",
-  "version": "0.0.1",
+  "name": "swagger-to-jsdoc",
+  "version": "1.0.1",
   "description": "parse swagger-doc into js-doc, generate api service and mock data files",
   "main": "index.js",
   "scripts": {
     "test": "jest"
   },
   "bin": {
-    "generate": "./bin/generate.js"
+    "generate-doc": "bin/generate.js"
   },
   "repository": {
     "type": "git",
@@ -29,10 +29,8 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "@types/eslint": "^6.1.3",
-    "@types/jest": "^25.2.2",
-    "@types/node-fetch": "^2.5.4",
-    "eslint": "^6.7.2",
-    "jest": "^26.0.1"
+    "@types/node-fetch": "^2.5.7",
+    "eslint": "6.7.2",
+    "jest": "26.0.1"
   }
 }
