@@ -32,13 +32,13 @@ function generateFiles(paths, definitions, methods = Methods) {
     if (!fs.existsSync(targetPath)) {
       fs.mkdirSync(targetPath);
     }
-    fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
+    // fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
+    // fs.writeFileSync(
+    //   `${targetPath}/original.js`,
+    //   JSON.stringify(result, null, 2)
+    // );
     fs.writeFileSync(
-      `${targetPath}/original.js`,
-      JSON.stringify(result, null, 2)
-    );
-    fs.writeFileSync(
-      `${targetPath}/parsed.js`,
+      `${targetPath}/service.js`,
       parseApiInfo(result, definitions)
     );
   });

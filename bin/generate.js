@@ -17,11 +17,11 @@ fetch(swaggerDocUrl)
   .then((res) => res.json())
   .then((json) => {
     const { paths, definitions } = json;
-    const parsedDefinitions = parseDefinitions(definitions);
-    fs.writeFileSync(
-      'definitions.js',
-      JSON.stringify(parsedDefinitions, null, 2)
-    );
+    // const parsedDefinitions = parseDefinitions(definitions);
+    // fs.writeFileSync(
+    //   'definitions.js',
+    //   JSON.stringify(parsedDefinitions, null, 2)
+    // );
     generateFiles(paths, definitions);
   })
   .catch(console.log);
