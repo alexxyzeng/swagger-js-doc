@@ -12,7 +12,7 @@ if (!baseUrl) {
   );
 }
 const swaggerDocUrl = `${baseUrl}${swaggerDocPath}`;
-
+global.callCount = {};
 fetch(swaggerDocUrl)
   .then((res) => res.json())
   .then((json) => {

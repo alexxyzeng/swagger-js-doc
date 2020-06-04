@@ -4,7 +4,7 @@
  * @summary <%= InterfaceSummary %>
  * @description <%= InterfaceDescription %>
  * @param {object} params
- <%= InterfaceParamsProps %>
+  <%= InterfaceParamsProps %>
  * @return {Promise<<%= ReturnValueType %>>}
 */
 export function <%= InterfaceName %>(<%= InterfaceParams %>) {

@@ -33,6 +33,7 @@ function getResponseDefinition(schema, definitions) {
     if (isValidDefinitionType(value)) {
       const subDefinitionType = parseDefinitionType(value);
       if (subDefinitionType === definitionType) {
+        console.log(schema);
         return;
       }
       const subDefinition = getResponseDefinition(value, definitions);

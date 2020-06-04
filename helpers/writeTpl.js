@@ -70,9 +70,8 @@ function parseApiInfo(apiInfo, definitions) {
       .replace(API_SERVICE_PARAM_TPL, paramStr.length === 0 ? '' : 'params')
       .replace(API_SERVICE_URL_TPL, url)
       .replace(API_SERVICE_METHOD_PARAM_TPL, methodParams)
-      .replace(API_SERVICE_RETURN_VALUE, responseName)
-      .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr);
-
+      .replace(API_SERVICE_PARAM_PROPS_TPL, paramStr)
+      .replace(API_SERVICE_RETURN_VALUE, responseName);
     infos += serviceInfo;
     infos += '\n';
   }
