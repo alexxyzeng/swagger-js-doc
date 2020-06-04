@@ -1,4 +1,4 @@
-**
+/**
  * @typedef {<%= DefinitionType %>} <%= DefinitionName %>
   <%= DefinitionPropropety %>
  *
