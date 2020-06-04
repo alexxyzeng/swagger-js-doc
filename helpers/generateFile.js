@@ -38,7 +38,7 @@ function generateFiles(paths, definitions, methods = Methods) {
     //   JSON.stringify(result, null, 2)
     // );
     fs.writeFileSync(
-      `${targetPath}/parsed.js`,
+      `${targetPath}/service.js`,
       parseApiInfo(result, definitions)
     );
   });
