@@ -12,14 +12,26 @@ function parseResponse(responses, definitions, responseName) {
   const { 200: successResponse } = responses;
   const { schema } = successResponse;
   const definition = getResponseDefinition(schema, definitions);
-
+  console.log('====================================');
+  console.log(responseName, '--- definition');
+  console.log(schema)
+  fs.writeFileSync('test.js', JSON.stringify(definition, null, 2))
+  console.log('====================================');
   if (!definition) {
     return;
   }
   if (!global.typedefs) {
     global.typedefs = {};
   }
-  parseParameter(parseParamType(definition), responseName, {});
+  const parsedParams = parseParamType(definition);
+  console.log('====================================');
+  console.log(parsedParams, '--- params');
+  fs.appendFileSync('test.js', JSON.stringify(parsedParams, null, 2))
+  console.log('====================================');
+  parseParameter(parsedParams, responseName, {});
+  // console.log('====================================');
+  // console.log(global.typedefs);
+  // console.log('====================================');
   const response = parseToDefs(global.typedefs);
   return response;
 }
@@ -33,7 +45,8 @@ function getResponseDefinition(schema, definitions) {
     if (isValidDefinitionType(value)) {
       const subDefinitionType = parseDefinitionType(value);
       if (subDefinitionType === definitionType) {
-        console.log(schema);
+        // console.log(items, '--- items')
+        // console.log(schema);
         return;
       }
       const subDefinition = getResponseDefinition(value, definitions);
@@ -44,6 +57,11 @@ function getResponseDefinition(schema, definitions) {
     if (type === 'array' && isValidDefinitionType(items)) {
       const subDefinitionType = parseDefinitionType(items);
       if (subDefinitionType === definitionType) {
+        // console.log(items, '--- items array')
+        // console.log('====================================');
+        // console.log(value);
+        // console.log('====================================');
+        console.log(value)
         return;
       }
       const subDefinition = getResponseDefinition(items, definitions);
@@ -55,6 +73,9 @@ function getResponseDefinition(schema, definitions) {
       };
     }
   });
+  // console.log('====================================');
+  // console.log(definition.properties, '--- definition');
+  // console.log('====================================');
   return definition;
 }
 

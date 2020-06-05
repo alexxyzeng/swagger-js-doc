@@ -35,6 +35,9 @@ function parseArrayParameter(param, paramName, typedefs) {
   if (global.typedefs) {
     global.typedefs[name] = { name, result, description };
   }
+  console.log('====================================');
+  console.log(paramName, type, name, description);
+  console.log('====================================');
   return { paramName, type, itemType: name, description };
 }
 

@@ -127,12 +127,15 @@ function parseArrayParamType(
   description,
   name
 ) {
+  // FIXME: items只包括type
+  // FIXME: items不存在
   let parsedItems = null;
   if (Object.prototype.hasOwnProperty.call(items, 'properties')) {
     parsedItems = parseParamType({ ...items, type: 'object' });
   } else {
     parsedItems = parseParamType({ ...items, required, definitionType });
   }
+  console.log(parsedItems, '--- parsed items')
   return {
     type,
     valueType: { type: 'object', ...parsedItems },
