@@ -75,7 +75,7 @@ function parseMethodParameters(parameters) {
   const { body, query } = parameters;
   let result = '{}';
   if (query.length > 0) {
-    result = '{ params: { ...params.query }';
+    result = '{ params: { ...params.query }}';
   }
   if (body.length > 0) {
     if (result !== '{}') {
