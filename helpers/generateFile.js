@@ -17,9 +17,9 @@ function generateFiles(paths, definitions, methods = Methods) {
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
-    if (key !== '/facilityType/find') {
-      return;
-    }
+    // if (key !== '/facilityType/find') {
+    //   return;
+    // }
     apiInfos.forEach((apiInfo) => {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {
@@ -32,11 +32,11 @@ function generateFiles(paths, definitions, methods = Methods) {
     if (!fs.existsSync(targetPath)) {
       fs.mkdirSync(targetPath);
     }
-    fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
-    fs.writeFileSync(
-      `${targetPath}/original.js`,
-      JSON.stringify(result, null, 2)
-    );
+    // fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
+    // fs.writeFileSync(
+    //   `${targetPath}/original.js`,
+    //   JSON.stringify(result, null, 2)
+    // );
     fs.writeFileSync(
       `${targetPath}/service.js`,
       parseApiInfo(result, definitions)

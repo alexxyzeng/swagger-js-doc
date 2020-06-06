@@ -12,11 +12,11 @@ function parseResponse(responses, definitions, responseName) {
   const { 200: successResponse } = responses;
   const { schema } = successResponse;
   const definition = getResponseDefinition(schema, definitions);
-  console.log('====================================');
-  console.log(responseName, '--- definition');
-  console.log(schema)
-  fs.writeFileSync('test.js', JSON.stringify(definition, null, 2))
-  console.log('====================================');
+  // console.log('====================================');
+  // console.log(responseName, '--- definition');
+  // console.log(schema)
+  // fs.writeFileSync('test.js', JSON.stringify(definition, null, 2))
+  // console.log('====================================');
   if (!definition) {
     return;
   }
@@ -24,10 +24,10 @@ function parseResponse(responses, definitions, responseName) {
     global.typedefs = {};
   }
   const parsedParams = parseParamType(definition);
-  console.log('====================================');
-  console.log(parsedParams, '--- params');
-  fs.appendFileSync('test.js', JSON.stringify(parsedParams, null, 2))
-  console.log('====================================');
+  // console.log('====================================');
+  // console.log(parsedParams, '--- params');
+  // fs.appendFileSync('test.js', JSON.stringify(parsedParams, null, 2))
+  // console.log('====================================');
   parseParameter(parsedParams, responseName, {});
   // console.log('====================================');
   // console.log(global.typedefs);
