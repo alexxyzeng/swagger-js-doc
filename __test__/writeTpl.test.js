@@ -1,10 +1,13 @@
 const {
   parsePathAndParametersToString,
-  parseParameter,
   parseQuery,
-  parseArrayParameter,
   // parseQueries,
-} = require('../writeTpl');
+} = require('../helpers/writeTpl');
+
+const {
+  parseParameter,
+  parseArrayParameter,
+} = require('../helpers/parseParamToString');
 
 describe('parse parameters and path', () => {
   it('parse path', () => {
