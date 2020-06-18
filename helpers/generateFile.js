@@ -3,7 +3,7 @@ const { Methods } = require('../const/methods');
 const { parseParams } = require('./parseParameters');
 const { parseApiInfo } = require('./writeTpl');
 
-function generateFiles(paths, definitions, methods = Methods) {
+function generateFiles(paths, definitions, path, methods = Methods) {
   if (!fs.existsSync('dist')) {
     fs.mkdirSync('dist');
   }
@@ -17,9 +17,9 @@ function generateFiles(paths, definitions, methods = Methods) {
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
-    // if (key !== '/facilityType/find') {
-    //   return;
-    // }
+    if (path && key !== path) {
+      return;
+    }
     apiInfos.forEach((apiInfo) => {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {

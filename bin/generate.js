@@ -3,9 +3,9 @@ const process = require('process');
 const fetch = require('node-fetch');
 const fs = require('fs');
 
-const { swaggerDocPath, generateFiles, parseDefinitions } = require('../index');
+const { swaggerDocPath, generateFiles, /** parseDefinitions */ } = require('../index');
 
-const [baseUrl] = process.argv.slice(2);
+const [baseUrl, path] = process.argv.slice(2);
 if (!baseUrl) {
   throw new Error(
     'The baseUrl is required. Please configure the base url in the command'
@@ -22,6 +22,6 @@ fetch(swaggerDocUrl)
     //   'definitions.js',
     //   JSON.stringify(parsedDefinitions, null, 2)
     // );
-    generateFiles(paths, definitions);
+    generateFiles(paths, definitions, path);
   })
   .catch(console.log);
