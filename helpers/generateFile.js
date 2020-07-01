@@ -3,13 +3,13 @@ const { Methods } = require('../const/methods');
 const { parseParams } = require('./parseParameters');
 const { parseApiInfo } = require('./writeTpl');
 
-function generateFiles(paths, definitions, path, methods = Methods) {
+function generateFiles(paths, definitions, apiPath, methods = Methods) {
   if (!fs.existsSync('dist')) {
     fs.mkdirSync('dist');
   }
   const pathList = Object.entries(paths);
   const availableMethodsSet = new Set(Object.values(methods));
-
+  
   pathList.forEach((path) => {
     const [key, value] = path;
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
@@ -17,7 +17,7 @@ function generateFiles(paths, definitions, path, methods = Methods) {
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
-    if (path && key !== path) {
+    if (apiPath && key !== apiPath) {
       return;
     }
     apiInfos.forEach((apiInfo) => {
@@ -32,7 +32,7 @@ function generateFiles(paths, definitions, path, methods = Methods) {
     if (!fs.existsSync(targetPath)) {
       fs.mkdirSync(targetPath);
     }
-    // fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
+    fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
     // fs.writeFileSync(
     //   `${targetPath}/original.js`,
     //   JSON.stringify(result, null, 2)

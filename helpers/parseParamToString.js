@@ -24,20 +24,19 @@ function parseArrayParameter(param, paramName, typedefs) {
   const { type: valueItemType, itemType } = valueType;
 
   const parsedType = itemType || valueItemType;
+  if (!parsedType) {
+    return { paramName, type, itemType: global.parentName + 'Item', description }
+  }
+  global.parentName = paramName
   if (['string', 'number', 'boolean'].includes(parsedType)) {
     return { paramName, type, itemType: parsedType, description };
   }
-
-  const parser = parserMap[itemType || valueItemType] || parseObjectParameter;
+  const parser = parserMap[parsedType] || parseObjectParameter;
   const name = paramName + 'Item';
   const result = parser(valueType, name, typedefs);
-
   if (global.typedefs) {
     global.typedefs[name] = { name, result, description };
   }
-  // console.log('====================================');
-  // console.log(paramName, type, name, description);
-  // console.log('====================================');
   return { paramName, type, itemType: name, description };
 }
 

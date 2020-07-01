@@ -192,11 +192,11 @@ describe('parse parameters', () => {
     });
   });
   it('check is valid type', () => {
-    // expect(
-    //   isValidDefinitionType({
-    //     schema: { type: 'array', items: { type: 'integer', format: 'int64' } },
-    //   })
-    // ).toBeFalsy();
+    expect(
+      isValidDefinitionType({
+        schema: { type: 'array', items: { type: 'integer', format: 'int64' } },
+      })
+    ).toBeFalsy();
   });
   it('parse primitive type array', () => {
     expect(

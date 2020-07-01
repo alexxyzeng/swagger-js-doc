@@ -73,6 +73,7 @@ function parseParamType(param = {}) {
   if (!type && typeof param === 'object') {
     paramType = 'object';
   }
+  // TODO: 增加对enum的解析
   const parsedEnum = Object.values(valueEnum);
   if (
     paramType === 'integer' ||
