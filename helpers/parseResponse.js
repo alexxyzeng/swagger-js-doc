@@ -35,7 +35,7 @@ function getResponseDefinition(schema, definitions) {
       if (subDefinitionType === definitionType) {
         // console.log(items, '--- items')
         // console.log(schema);
-        console.log(definition, '----- definition')
+        // console.log(definition, '----- definition')
         return;
       }
       const subDefinition = getResponseDefinition(value, definitions);
@@ -46,10 +46,10 @@ function getResponseDefinition(schema, definitions) {
     if (type === 'array' && isValidDefinitionType(items)) {
       const subDefinitionType = parseDefinitionType(items);
       if (subDefinitionType === definitionType) {
-        console.log('====================================');
-        console.log(definition, '----- definition ----', definitionType)
-        console.log(value);
-        console.log('====================================');
+        // console.log('====================================');
+        // console.log(definition, '----- definition ----', definitionType)
+        // console.log(value);
+        // console.log('====================================');
         return;
       }
       const subDefinition = getResponseDefinition(items, definitions);

@@ -63,7 +63,7 @@ function parseParamType(param = {}) {
     required = false,
     items,
     description = '',
-    enum: valueEnum = {},
+    enum: valueEnum = [],
     definitionType,
   } = param;
   let paramType = type;
@@ -75,6 +75,12 @@ function parseParamType(param = {}) {
   }
   // TODO: 增加对enum的解析
   const parsedEnum = Object.values(valueEnum);
+  if (parsedEnum.length > 0) {
+    console.log('====================================');
+    console.log(parsedEnum, '---- enum');
+    console.log(param);
+    console.log('====================================');
+  }
   if (
     paramType === 'integer' ||
     paramType === 'float' ||

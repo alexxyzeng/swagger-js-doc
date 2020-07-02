@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const fs = require('fs');
 
 const { swaggerDocPath, generateFiles, /** parseDefinitions */ } = require('../index');
+console.log(process.cwd(), '---- cwd');
 
 const [baseUrl, path] = process.argv.slice(2);
 if (!baseUrl) {
