@@ -5,5 +5,5 @@
 <%= EnumProperties %>
  */
 export const <%= EnumName %> = {
-  <%= EnumInfos %>
+<%= EnumInfos %>
 }

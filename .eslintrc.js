@@ -17,6 +17,7 @@ module.exports = {
   rules: {
     'no-console': 'off',
     indent: [2, 2],
-    semi: 2
+    semi: 2,
+    'max-len': ['error', { code: 120 }]
   },
 };

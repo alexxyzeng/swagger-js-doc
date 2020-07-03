@@ -4,6 +4,7 @@ const {
   parseDefinition,
   isValidDefinitionType,
 } = require('./parseDefinitions');
+const { parseEnumStrToDef } = require('./parseEnum');
 
 function parseParams(api, definitions) {
   const { parameters, summary, consumes, operationId, tags, responses } = api;
@@ -73,20 +74,15 @@ function parseParamType(param = {}) {
   if (!type && typeof param === 'object') {
     paramType = 'object';
   }
-  // TODO: 增加对enum的解析
-  const parsedEnum = Object.values(valueEnum);
-  if (parsedEnum.length > 0) {
-    console.log('====================================');
-    console.log(parsedEnum, '---- enum');
-    console.log(param);
-    console.log('====================================');
+  if (valueEnum.length > 0) {
+    parseEnumStrToDef(param);
   }
   if (
     paramType === 'integer' ||
     paramType === 'float' ||
     paramType === 'double'
   ) {
-    return { type: 'number', name, description, required, enum: parsedEnum };
+    return { type: 'number', name, description, required };
   }
   if (type === 'array') {
     return parseArrayParamType(
@@ -124,7 +120,6 @@ function parseParamType(param = {}) {
     type,
     name,
     description,
-    enum: parsedEnum,
     definitionType,
     required,
   };
