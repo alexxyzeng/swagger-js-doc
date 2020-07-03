@@ -1,0 +1,2 @@
+   /** <%= EnumPropertyDescription %> */
+   <%= EnumPropertyName %>: <%= EnumPropertyValue %>,

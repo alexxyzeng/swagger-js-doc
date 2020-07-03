@@ -1,0 +1,1 @@
+ * @property {<%= EnumPropertyType %>} <%= EnumName %>.<%= EnumPropertyName %> <%= EnumPropertyDescription %>
