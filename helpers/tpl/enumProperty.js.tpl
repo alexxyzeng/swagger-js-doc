@@ -1,1 +1,1 @@
- * @property {<%= EnumPropertyType %>} <%= EnumName %>.<%= EnumPropertyName %> <%= EnumPropertyDescription %>
+ * @property {<%= EnumPropertyType %>} <%= EnumName %>.<%= EnumPropertyName %> - <%= EnumPropertyDescription %>
