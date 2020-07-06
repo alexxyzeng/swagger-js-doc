@@ -49,7 +49,7 @@ function parseApiInfo(apiInfo, definitions) {
     const link = `${base}${tag}/${operationId}`;
     const responseName = `${operationId}Response`;
     // TODO: 增加自定义方法名
-    const response = parseResponse(responses, definitions, responseName);
+    parseResponse(responses, definitions, responseName);
     const {
       url,
       // params,

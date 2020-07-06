@@ -1,0 +1,3 @@
+{
+  '<%= MockReqeustMethod %> <%= MockRequestPath %>': <%= MockResponse %>
+}

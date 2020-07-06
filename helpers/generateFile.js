@@ -51,16 +51,10 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
   });
   const enumContent = parseEnumConfigToString(global.enumConfig);
   fs.writeFileSync(`${outputPath}/enum.js`, enumContent);
+  // eslint-disable-next-line no-unused-vars
   const { hasNew, ...enumNameConfig } = global.enumNameConfig;
-  // const enumConfigList = Object.entries(enumNameConfig);
-  // const reverseEnumNameConfig = {};
-  // enumConfigList.forEach(item => {
-  //   const [key, value] = item;
-  //   reverseEnumNameConfig[value] = key;
-  // });
   fs.writeFileSync(`${outputPath}/enumNameConfig.json`, JSON.stringify(enumNameConfig, null, 2));
   fs.writeFileSync(`${outputPath}/enumNameConfigBak.json`, JSON.stringify(enumNameConfig, null, 2));
-  // fs.writeFileSync(`${outputPath}/reverseEnumNameConfig.json`, JSON.stringify(reverseEnumNameConfig, null, 2));
   console.log(chalk.blue.bold('Enum success generated. You can manually checkout ') + chalk.white.bgRed.bold(` ${outputPath}/enumNameConfig.json `) + chalk.blue.bold(' and update enum name using') + chalk.yellow(' npx rename-enum '));
 }
 

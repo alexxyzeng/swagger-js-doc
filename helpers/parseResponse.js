@@ -20,7 +20,10 @@ function parseResponse(responses, definitions, responseName) {
   }
   const parsedParams = parseParamType(definition);
   parseParameter(parsedParams, responseName, {});
+  const responseData = global.typedefs[responseName];
+  console.log(parseResponseToMockData(responseData.result).data);
   const response = parseToDefs(global.typedefs);
+  // TODO: 解析mock数据
   return response;
 }
 
@@ -64,7 +67,38 @@ function getResponseDefinition(schema, definitions) {
   return definition;
 }
 
+function parseResponseToMockData(result) {
+  let mockData = {};
+  if (result instanceof Array) {
+  } else {
+    for (let i in result) {
+      const item = result[i];
+      if (!item) {
+        continue;
+      }
+      const { paramName, type } = item;
+      if (type === 'array') {
+        const { itemType } = item;
+        console.log(item, '---- item');
+
+        mockData[i] = [parseResponseToMockData(item)];
+      }
+      else if (type === 'string') {
+        mockData[i] = '';
+      } else if (type === 'number') {
+        mockData[i] = paramName === 'code' ? 200 : 0;
+      } else if (type === 'boolean') {
+        mockData[i] = false;
+      } else if (type === null || type === undefined) {
+        mockData[i] = parseResponseToMockData(result[i]);
+      }
+    }
+  }
+  return mockData;
+}
+
 module.exports = {
   parseResponse,
   getResponseDefinition,
 };
+
