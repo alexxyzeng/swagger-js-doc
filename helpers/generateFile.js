@@ -46,7 +46,7 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
     if (!fs.existsSync(targetPath)) {
       fs.mkdirSync(targetPath);
     }
-    fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
+    // fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
     const { service, mock } = parseApiInfo(result, definitions);
     fs.writeFileSync(
       `${targetPath}/service.js`,
