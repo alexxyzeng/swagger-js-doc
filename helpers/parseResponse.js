@@ -21,10 +21,10 @@ function parseResponse(responses, definitions, responseName) {
   const parsedParams = parseParamType(definition);
   parseParameter(parsedParams, responseName, {});
   const responseData = global.typedefs[responseName];
-  console.log(parseResponseToMockData(responseData.result).data);
+  const mock = parseResponseToMockData(responseData.result, { code: 200 }, global.typedefs);
   const response = parseToDefs(global.typedefs);
   // TODO: 解析mock数据
-  return response;
+  return { mock, response };
 }
 
 function getResponseDefinition(schema, definitions) {
@@ -67,35 +67,70 @@ function getResponseDefinition(schema, definitions) {
   return definition;
 }
 
-function parseResponseToMockData(result) {
-  let mockData = {};
-  if (result instanceof Array) {
-  } else {
-    for (let i in result) {
-      const item = result[i];
-      if (!item) {
-        continue;
-      }
-      const { paramName, type } = item;
-      if (type === 'array') {
-        const { itemType } = item;
-        console.log(item, '---- item');
+function parseMockStringData({ paramName }, defaultValue) {
+  if (defaultValue[paramName]) {
+    return defaultValue[paramName];
+  }
+  return '';
+}
 
-        mockData[i] = [parseResponseToMockData(item)];
-      }
-      else if (type === 'string') {
-        mockData[i] = '';
-      } else if (type === 'number') {
-        mockData[i] = paramName === 'code' ? 200 : 0;
-      } else if (type === 'boolean') {
-        mockData[i] = false;
-      } else if (type === null || type === undefined) {
-        mockData[i] = parseResponseToMockData(result[i]);
-      }
+function parseMockNumberData({ paramName }, defaultValue) {
+  if (defaultValue[paramName]) {
+    return defaultValue[paramName];
+  }
+  return 1;
+}
+
+function parseMockBooleanData({ paramName }, defaultValue) {
+  if (defaultValue[paramName]) {
+    return defaultValue[paramName];
+  }
+  return true;
+}
+
+
+function parseMockObjectData(param, defaultValue, definitions) {
+  fs.writeFileSync('aaa.js', JSON.stringify(param, null, 2));
+  fs.appendFileSync('aaa.js', '\n\n' + JSON.stringify(definitions, null, 2));
+  const { itemType } = param;
+  const definition = definitions[itemType];
+  if (!definition) {
+    console.log(param, '---- no defintiion');
+    return {};
+  }
+  const item = definition.result;
+  return parseResponseToMockData(item, defaultValue, definitions);
+}
+
+function parseMockArrayData(param, defaultValue, definitions) {
+  const { itemType } = param;
+  const parser = parseMockDataDict[itemType] || parseMockObjectData;
+  return [parser(param, defaultValue, definitions)];
+}
+
+const parseMockDataDict = {
+  string: parseMockStringData,
+  number: parseMockNumberData,
+  boolean: parseMockBooleanData,
+  array: parseMockArrayData
+};
+
+
+function parseResponseToMockData(result, defaultValue = {}, definitions) {
+  let mockData = {};
+  for (let i in result) {
+    const item = result[i];
+    if (!item) {
+      continue;
     }
+    const { type } = item;
+    const parser = parseMockDataDict[type] || parseResponseToMockData;
+    mockData[i] = parser(item, defaultValue, definitions);
   }
   return mockData;
 }
+
+
 
 module.exports = {
   parseResponse,

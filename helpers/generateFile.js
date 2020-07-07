@@ -15,6 +15,9 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
   if (!fs.existsSync(outputPath)) {
     fs.mkdirSync(outputPath);
   }
+  if (!Array.isArray(methods) || methods.length === 0) {
+    methods = Methods;
+  }
   const pathList = Object.entries(paths);
   const availableMethodsSet = new Set(Object.values(methods));
   global.enumNameConfig = {};
@@ -44,10 +47,12 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
       fs.mkdirSync(targetPath);
     }
     fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
+    const { service, mock } = parseApiInfo(result, definitions);
     fs.writeFileSync(
       `${targetPath}/service.js`,
-      parseApiInfo(result, definitions)
+      service
     );
+    fs.writeFileSync(`${targetPath}/mock.js`, JSON.stringify(mock, null, 2));
   });
   const enumContent = parseEnumConfigToString(global.enumConfig);
   fs.writeFileSync(`${outputPath}/enum.js`, enumContent);
@@ -55,7 +60,7 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
   const { hasNew, ...enumNameConfig } = global.enumNameConfig;
   fs.writeFileSync(`${outputPath}/enumNameConfig.json`, JSON.stringify(enumNameConfig, null, 2));
   fs.writeFileSync(`${outputPath}/enumNameConfigBak.json`, JSON.stringify(enumNameConfig, null, 2));
-  console.log(chalk.blue.bold('Enum success generated. You can manually checkout ') + chalk.white.bgRed.bold(` ${outputPath}/enumNameConfig.json `) + chalk.blue.bold(' and update enum name using') + chalk.yellow(' npx rename-enum '));
+  console.log(chalk.blue.bold('Enum successfully generated. You can manually checkout ') + chalk.white.bgRed.bold(` ${outputPath}/enumNameConfig.json `) + chalk.blue.bold(' and update enum name using') + chalk.yellow(' npx rename-enum '));
 }
 
 module.exports = {

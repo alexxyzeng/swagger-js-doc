@@ -33,7 +33,9 @@ function parseApiInfo(apiInfo, definitions) {
   let infos = '';
   const base = baseUrl + swaggerUIPath + swaggerBasePath;
   const { path, methods } = apiInfo;
+  console.log(path, '---- path');
   global.typedefs = {};
+  let mockData = {};
   for (let methodName in methods) {
     const method = methods[methodName];
     const {
@@ -49,7 +51,8 @@ function parseApiInfo(apiInfo, definitions) {
     const link = `${base}${tag}/${operationId}`;
     const responseName = `${operationId}Response`;
     // TODO: 增加自定义方法名
-    parseResponse(responses, definitions, responseName);
+    const { mock } = parseResponse(responses, definitions, responseName);
+    mockData[`${methodName} ${path}`] = mock;
     const {
       url,
       // params,
@@ -79,7 +82,7 @@ function parseApiInfo(apiInfo, definitions) {
   if (defStr.length > 0) {
     infos = defStr + '\n' + infos;
   }
-  return infos;
+  return { service: infos, mock: mockData };
 }
 
 /**
