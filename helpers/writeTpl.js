@@ -127,7 +127,7 @@ function parseBodies(body, result, operationId) {
 
     const paramType = parsedParamType === 'array' ? `[${itemType}]` : paramName;
     bodyParams.push(
-      ` * @param {${paramType}} params.body - 请求体 ${description}`
+      `* @param {${paramType}} params.body - 请求体 ${description}`
     );
 
     result.params.bodies = bodyParams.join('\n');
