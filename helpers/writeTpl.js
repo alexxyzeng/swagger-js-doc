@@ -33,7 +33,6 @@ function parseApiInfo(apiInfo, definitions) {
   let infos = '';
   const base = baseUrl + swaggerUIPath + swaggerBasePath;
   const { path, methods } = apiInfo;
-  console.log(path, '---- path');
   global.typedefs = {};
   let mockData = {};
   for (let methodName in methods) {

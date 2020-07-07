@@ -24,15 +24,18 @@ function parseArrayParameter(param, paramName, typedefs) {
   const { type: valueItemType, itemType } = valueType;
 
   const parsedType = itemType || valueItemType;
+  const name = global.typedefs[global.parentName] ? global.parentName + 'Item' : global.parentName;
+  // TODO: 查找对应
   if (!parsedType) {
-    return { paramName, type, itemType: global.parentName + 'Item', description }
+    return { paramName, type, itemType: name, description };
   }
-  global.parentName = paramName
+  global.parentName = paramName;
   if (['string', 'number', 'boolean'].includes(parsedType)) {
     return { paramName, type, itemType: parsedType, description };
   }
   const parser = parserMap[parsedType] || parseObjectParameter;
-  const name = paramName + 'Item';
+
+  // const name = paramName + 'Item';
   const result = parser(valueType, name, typedefs);
   if (global.typedefs) {
     global.typedefs[name] = { name, result, description };
@@ -44,6 +47,7 @@ function parseObjectParameter(param, paramName) {
   if (!param || typeof param !== 'object') {
     return null;
   }
+  global.parentName = paramName;
   let result = {};
   const keys = Object.keys(param);
   try {

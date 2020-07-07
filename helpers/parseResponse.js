@@ -21,24 +21,23 @@ function parseResponse(responses, definitions, responseName) {
   const parsedParams = parseParamType(definition);
   parseParameter(parsedParams, responseName, {});
   const responseData = global.typedefs[responseName];
+  global.callCount = {};
   const mock = parseResponseToMockData(responseData.result, { code: 200 }, global.typedefs);
   const response = parseToDefs(global.typedefs);
-  // TODO: 解析mock数据
   return { mock, response };
 }
 
 function getResponseDefinition(schema, definitions) {
   const definitionType = parseDefinitionType(schema);
   const definition = definitions[definitionType];
-  // FIXME: 递归查询多重definition
   const { properties = {} } = definition;
   Object.entries(properties).forEach(([key, value]) => {
     if (isValidDefinitionType(value)) {
       const subDefinitionType = parseDefinitionType(value);
       if (subDefinitionType === definitionType) {
-        // console.log(items, '--- items')
-        // console.log(schema);
-        // console.log(definition, '----- definition')
+        console.log(items, '--- items');
+        console.log(schema);
+        console.log(definition, '----- definition');
         return;
       }
       const subDefinition = getResponseDefinition(value, definitions);
@@ -67,22 +66,26 @@ function getResponseDefinition(schema, definitions) {
   return definition;
 }
 
+function isEmpty(param) {
+  return param === null || param === undefined;
+}
+
 function parseMockStringData({ paramName }, defaultValue) {
-  if (defaultValue[paramName]) {
+  if (!isEmpty(defaultValue[paramName])) {
     return defaultValue[paramName];
   }
-  return '';
+  return 'string';
 }
 
 function parseMockNumberData({ paramName }, defaultValue) {
-  if (defaultValue[paramName]) {
+  if (!isEmpty(defaultValue[paramName])) {
     return defaultValue[paramName];
   }
   return 1;
 }
 
 function parseMockBooleanData({ paramName }, defaultValue) {
-  if (defaultValue[paramName]) {
+  if (!isEmpty(defaultValue[paramName])) {
     return defaultValue[paramName];
   }
   return true;
@@ -90,12 +93,14 @@ function parseMockBooleanData({ paramName }, defaultValue) {
 
 
 function parseMockObjectData(param, defaultValue, definitions) {
-  fs.writeFileSync('aaa.js', JSON.stringify(param, null, 2));
-  fs.appendFileSync('aaa.js', '\n\n' + JSON.stringify(definitions, null, 2));
-  const { itemType } = param;
+  const { itemType, paramName } = param;
   const definition = definitions[itemType];
-  if (!definition) {
-    console.log(param, '---- no defintiion');
+  if (!global.callCount[paramName]) {
+    global.callCount[paramName] = 1;
+  } else {
+    global.callCount[paramName] += 1;
+  }
+  if (!definition || global.callCount[paramName] >= 5) {
     return {};
   }
   const item = definition.result;
@@ -103,7 +108,15 @@ function parseMockObjectData(param, defaultValue, definitions) {
 }
 
 function parseMockArrayData(param, defaultValue, definitions) {
-  const { itemType } = param;
+  const { itemType, paramName } = param;
+  if (!global.callCount[paramName]) {
+    global.callCount[paramName] = 1;
+  } else {
+    global.callCount[paramName] += 1;
+  }
+  if (global.callCount[paramName] >= 5) {
+    return [];
+  }
   const parser = parseMockDataDict[itemType] || parseMockObjectData;
   return [parser(param, defaultValue, definitions)];
 }

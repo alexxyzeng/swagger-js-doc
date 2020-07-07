@@ -12,9 +12,9 @@ if (!baseUrl) {
   );
 }
 
-if (!path) {
-  throw new Error(chalk.red('The path is required. Please configure base url in the command line'));
-}
+// if (!path) {
+//   throw new Error(chalk.red('The path is required. Please configure base url in the command line'));
+// }
 
 const swaggerDocUrl = `${baseUrl}${swaggerDocPath}`;
 global.callCount = {};
