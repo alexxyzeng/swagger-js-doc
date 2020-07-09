@@ -48,10 +48,6 @@ function getResponseDefinition(schema, definitions) {
     if (type === 'array' && isValidDefinitionType(items)) {
       const subDefinitionType = parseDefinitionType(items);
       if (subDefinitionType === definitionType) {
-        // console.log('====================================');
-        // console.log(definition, '----- definition ----', definitionType)
-        // console.log(value);
-        // console.log('====================================');
         return;
       }
       const subDefinition = getResponseDefinition(items, definitions);
@@ -131,6 +127,7 @@ const parseMockDataDict = {
 
 function parseResponseToMockData(result, defaultValue = {}, definitions) {
   let mockData = {};
+
   for (let i in result) {
     const item = result[i];
     if (!item) {
@@ -140,6 +137,11 @@ function parseResponseToMockData(result, defaultValue = {}, definitions) {
     const parser = parseMockDataDict[type] || parseResponseToMockData;
     mockData[i] = parser(item, defaultValue, definitions);
   }
+
+  // console.log('====================================');
+  // console.log(result, '--- result');
+  // console.log(mockData);
+  // console.log('====================================');
   return mockData;
 }
 

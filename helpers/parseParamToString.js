@@ -22,9 +22,15 @@ function parseArrayParameter(param, paramName, typedefs) {
   const { type, valueType, description } = param;
 
   const { type: valueItemType, itemType } = valueType;
-
   const parsedType = itemType || valueItemType;
-  const name = global.typedefs[global.parentName] ? global.parentName + 'Item' : global.parentName;
+
+  // const name = global.typedefs[global.parentName] ? global.parentName + 'Item' : global.parentName;
+  let name = '';
+  if (parsedType) {
+    name = paramName + 'Item';
+  } else {
+    name = global.typedefs[global.parentName] ? global.parentName + 'Item' : global.parentName;
+  }
   // TODO: 查找对应
   if (!parsedType) {
     return { paramName, type, itemType: name, description };
