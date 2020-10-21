@@ -6,12 +6,28 @@ const { parseParams } = require('./parseParameters');
 const { parseApiInfo } = require('./writeTpl');
 const { parseEnumConfigToString } = require('./parseEnum');
 
-const outputPath = 'dist';
 
-const enumNameConfigPath = process.cwd() + '/' + outputPath + '/enumNameConfig.json';
-
-
-function generateFiles(paths, definitions, apiPath, methods = Methods) {
+/**
+ * 
+ * @param {string[]} paths 
+ * @param {object} definitions 
+ * @param {string} apiPath 
+ * @param {string[]} methods 
+ * @param {string} outputPath 
+ * @param {string} routePaths 
+ * @param {string} servicePath 
+ */
+function generateFiles(
+  paths,
+  definitions,
+  apiPath,
+  methods = Methods,
+  baseUrl,
+  outputPath = 'dist',
+  // routePaths,
+  // servicePath = 'service'
+) {
+  const enumNameConfigPath = process.cwd() + '/' + outputPath + '/enumNameConfig.json';
   if (!fs.existsSync(outputPath)) {
     fs.mkdirSync(outputPath);
   }
@@ -28,6 +44,7 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
   pathList.forEach((path) => {
     const [key, value] = path;
     const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
+    // TODO: 指定路径和路径名称
     const targetPath = `${outputPath}/${relativePath}`;
     const apiInfos = Object.entries(value);
     let result = {};
@@ -46,8 +63,9 @@ function generateFiles(paths, definitions, apiPath, methods = Methods) {
     if (!fs.existsSync(targetPath)) {
       fs.mkdirSync(targetPath);
     }
+    // 重写路径定义
     fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
-    const { service, mock } = parseApiInfo(result, definitions);
+    const { service, mock } = parseApiInfo(result, definitions, baseUrl);
     fs.writeFileSync(
       `${targetPath}/service.js`,
       service

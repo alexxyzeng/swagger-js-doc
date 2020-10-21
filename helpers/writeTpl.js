@@ -18,7 +18,6 @@ const {
   API_SERVICE_RETURN_VALUE,
 } = require('../const/tpl');
 
-const [baseUrl] = process.argv.slice(2);
 // const apiInfo = require('./data');
 const tpl =
   fs.readFileSync(path.resolve(__dirname + '/tpl/service.js.tpl')) + '';
@@ -29,7 +28,7 @@ const {
   parseParameter,
 } = require('./parseParamToString');
 
-function parseApiInfo(apiInfo, definitions) {
+function parseApiInfo(apiInfo, definitions, baseUrl) {
   let infos = '';
   const base = baseUrl + swaggerUIPath + swaggerBasePath;
   const { path, methods } = apiInfo;
@@ -49,7 +48,6 @@ function parseApiInfo(apiInfo, definitions) {
     const [tag] = tags;
     const link = `${base}${tag}/${operationId}`;
     const responseName = `${operationId}Response`;
-    // TODO: 增加自定义方法名
     const { mock } = parseResponse(responses, definitions, responseName);
     mockData[`${methodName} ${path}`] = mock;
     const {
@@ -61,6 +59,7 @@ function parseApiInfo(apiInfo, definitions) {
       .filter((item) => item !== undefined)
       .join('\n');
     const methodParams = parseMethodParameters(parameters);
+    // TODO: 修改API名称
     const serviceInfo = tpl
       .replace(API_SERVICE_DEFINITION, path)
       .replace(API_SERVICE_DOC_URL_TPL, link)
