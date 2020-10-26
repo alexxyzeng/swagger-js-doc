@@ -67,6 +67,7 @@ function parseEnumDescToEnumArr(enumDesc, param) {
 
 function parseEnumToString(enumInfo) {
   const { type, name, description, enumArr } = enumInfo;
+  const enumName = `swagger_enum_${name}`;
   const enumProperties = [];
   const enumInfos = [];
   // TODO: 根据配置去读取名称
@@ -74,7 +75,7 @@ function parseEnumToString(enumInfo) {
     const { desc, enumKey, enumValue } = enumItem;
     enumProperties.push(
       enumPropertyTpl.replace(ENUM_DEFINITION_PROPERTY_TYPE, type)
-        .replace(ENUM_DEFINITION_NAME, name)
+        .replace(ENUM_DEFINITION_NAME, enumName)
         .replace(ENUM_DEFINITION_PROPERTY_NAME, enumKey)
         .replace(ENUM_DEFINITION_PROPERTY_VALUE, enumValue)
         .replace(ENUM_DEFINITION_PROPERTY_DESCRIPTION, desc)
@@ -87,7 +88,7 @@ function parseEnumToString(enumInfo) {
   });
   return enumTpl.replace(ENUM_DEFINITION_DESCRIPTION, description.trim())
     .replace(ENUM_DEFINITION_PROPERTIES, enumProperties.join('\n'))
-    .replace(ENUM_DEFINITION_NAME, name)
+    .replace(ENUM_DEFINITION_NAME, enumName)
     .replace(ENUM_DEFINITION_INFOS, enumInfos.join('\n'));
 }
 
