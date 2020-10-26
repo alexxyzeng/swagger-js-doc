@@ -1,21 +1,21 @@
-const fs = require('fs');
-const chalk = require('chalk');
+const fs = require("fs");
+const chalk = require("chalk");
 
-const { Methods } = require('../const/methods');
-const { parseParams } = require('./parseParameters');
-const { parseApiInfo } = require('./writeTpl');
-const { parseEnumConfigToString } = require('./parseEnum');
-const { resolve } = require('path');
+const { Methods } = require("../const/methods");
+const { parseParams } = require("./parseParameters");
+const { parseApiInfo } = require("./writeTpl");
+const { parseEnumConfigToString } = require("./parseEnum");
+const { resolve } = require("path");
 
 /**
- * 
- * @param {string[]} paths 
- * @param {object} definitions 
- * @param {string} apiPath 
- * @param {string[]} methods 
- * @param {string} outputPath 
- * @param {string} routePaths 
- * @param {string} servicePath 
+ *
+ * @param {string[]} paths
+ * @param {object} definitions
+ * @param {string} apiPath
+ * @param {string[]} methods
+ * @param {string} outputPath
+ * @param {string} routePaths
+ * @param {string} servicePath
  */
 function generateFiles(
   paths,
@@ -23,11 +23,12 @@ function generateFiles(
   apiPath,
   methods = Methods,
   baseUrl,
-  outputPath = 'dist',
+  outputPath = "dist"
   // routePaths,
   // servicePath = 'service'
 ) {
-  const enumNameConfigPath = process.cwd() + '/' + outputPath + '/enumNameConfig.json';
+  const enumNameConfigPath =
+    process.cwd() + "/" + outputPath + "/enumNameConfig.json";
   if (!fs.existsSync(outputPath)) {
     fs.mkdirSync(outputPath);
   }
@@ -39,11 +40,13 @@ function generateFiles(
   global.enumNameConfig = {};
   global.enumConfig = {};
   if (fs.existsSync(enumNameConfigPath)) {
-    global.enumNameConfig = JSON.parse(fs.readFileSync(enumNameConfigPath) || '{}');
+    global.enumNameConfig = JSON.parse(
+      fs.readFileSync(enumNameConfigPath) || "{}"
+    );
   }
-  pathList.forEach((path) => {
+  pathList.forEach(path => {
     const [key, value] = path;
-    const relativePath = key.replace(/\//g, '_').substr(1, key.length - 1);
+    const relativePath = key.replace(/\//g, "_").substr(1, key.length - 1);
     // TODO: 指定路径和路径名称
     const targetPath = `${outputPath}/${relativePath}`;
     const apiInfos = Object.entries(value);
@@ -52,7 +55,7 @@ function generateFiles(
     if (apiPath && key !== apiPath) {
       return;
     }
-    apiInfos.forEach((apiInfo) => {
+    apiInfos.forEach(apiInfo => {
       const [method, methodInfo] = apiInfo;
       if (availableMethodsSet.has(method)) {
         const parsedMethod = parseParams(methodInfo, definitions);
@@ -66,22 +69,28 @@ function generateFiles(
     // 重写路径定义
     fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
     const { service, mock } = parseApiInfo(result, definitions, baseUrl);
-    fs.writeFileSync(
-      `${targetPath}/service.js`,
-      service
-    );
-    fs.writeFileSync(`${targetPath}/mock.js`, JSON.stringify(mock, null, 2));
+    fs.writeFileSync(`${targetPath}/service.js`, service);
+    fs.writeFileSync(`${targetPath}/mock.js`, mock);
   });
   const enumContent = parseEnumConfigToString(global.enumConfig);
   fs.writeFileSync(`${outputPath}/enum.js`, enumContent);
   // eslint-disable-next-line no-unused-vars
   const { hasNew, ...enumNameConfig } = global.enumNameConfig;
-  fs.writeFileSync(`${outputPath}/enumNameConfig.json`, JSON.stringify(enumNameConfig, null, 2));
-  fs.writeFileSync(`${outputPath}/enumNameConfigBak.json`, JSON.stringify(enumNameConfig, null, 2));
-  console.log(chalk.blue.bold('Enum successfully generated. You can manually checkout ') + chalk.white.bgRed.bold(` ${outputPath}/enumNameConfig.json `) + chalk.blue.bold(' and update enum name using') + chalk.yellow(' npx rename-enum '));
+  fs.writeFileSync(
+    `${outputPath}/enumNameConfig.json`,
+    JSON.stringify(enumNameConfig, null, 2)
+  );
+  fs.writeFileSync(
+    `${outputPath}/enumNameConfigBak.json`,
+    JSON.stringify(enumNameConfig, null, 2)
+  );
+  console.log(
+    chalk.blue.bold("Enum successfully generated. You can manually checkout ") +
+      chalk.white.bgRed.bold(` ${outputPath}/enumNameConfig.json `) +
+      chalk.blue.bold(" and update enum name using") +
+      chalk.yellow(" npx rename-enum ")
+  );
 }
-
-
 
 // {
 //   pathItem: {
@@ -180,9 +189,7 @@ function generateFiles(
 // }
 
 function generateFile(pathInfo, definitions, apiPath, options) {
-  const { baseUrl, mockPath, pagePath } = options;
-  // pathList.forEach((path) => {
-  //   const [key, value] = path;
+  const { baseUrl, mockPath, pagePath, serviceTag = "service" } = options;
   const { pathItem, path: pathUrl, fileName, names } = pathInfo;
   const { path, methods: methodList } = pathItem;
   let result = {};
@@ -193,17 +200,16 @@ function generateFile(pathInfo, definitions, apiPath, options) {
   });
   result = { path, methods };
   const { service, mock } = parseApiInfo(result, definitions, baseUrl);
-  const servicePath = resolve(pagePath, pathUrl);
+  const servicePath = `${pagePath}${pathUrl}/${serviceTag}`;
   if (!fs.existsSync(servicePath)) {
     fs.mkdirSync(servicePath);
   }
-  fs.writeFileSync(resolve(servicePath, fileName), service);
+  fs.writeFileSync(resolve(servicePath, `${fileName}.js`), service);
   if (!fs.existsSync(mockPath)) {
     fs.mkdirSync(mockPath);
   }
-  fs.writeFileSync(resolve(mockPath, fileName), JSON.stringify(mock, null, 2));
+  fs.writeFileSync(resolve(mockPath, `${fileName}.js`), mock);
 }
-
 
 module.exports = {
   generateFiles,

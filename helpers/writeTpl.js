@@ -49,7 +49,7 @@ function parseApiInfo(apiInfo, definitions, baseUrl) {
     const link = `${base}${tag}/${operationId}`;
     const responseName = `${operationId}Response`;
     const { mock } = parseResponse(responses, definitions, responseName);
-    mockData[`${methodName} ${path}`] = mock;
+    mockData[`${methodName.toUpperCase()} ${path}`] = mock;
     const {
       url,
       // params,
@@ -80,7 +80,7 @@ function parseApiInfo(apiInfo, definitions, baseUrl) {
   if (defStr.length > 0) {
     infos = defStr + '\n' + infos;
   }
-  return { service: infos, mock: mockData };
+  return { service: infos, mock: `export default ` + JSON.stringify(mockData, null, 2) };
 }
 
 /**
