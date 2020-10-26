@@ -28,13 +28,15 @@ const {
   parseParameter,
 } = require('./parseParamToString');
 
-function parseApiInfo(apiInfo, definitions, baseUrl) {
+function parseApiInfo(apiInfo, definitions, { baseUrl, names }) {
   let infos = '';
   const base = baseUrl + swaggerUIPath + swaggerBasePath;
   const { path, methods } = apiInfo;
   global.typedefs = {};
   let mockData = {};
+  
   for (let methodName in methods) {
+    
     const method = methods[methodName];
     const {
       parameters,
@@ -44,10 +46,11 @@ function parseApiInfo(apiInfo, definitions, baseUrl) {
       description = '',
       responses,
     } = method;
+    const name = names ? (names[operationId] || operationId) : operationId;
     const tagStr = tags.join(',');
     const [tag] = tags;
     const link = `${base}${tag}/${operationId}`;
-    const responseName = `${operationId}Response`;
+    const responseName = `${name}Response`;
     const { mock } = parseResponse(responses, definitions, responseName);
     mockData[`${methodName.toUpperCase()} ${path}`] = mock;
     const {
@@ -66,7 +69,7 @@ function parseApiInfo(apiInfo, definitions, baseUrl) {
       .replace(API_SERVICE_TAGS_TPL, tagStr)
       .replace(API_SERVICE_SUMMARY_TPL, summary)
       .replace(API_SERVICE_DESCRIPTION_TPL, description)
-      .replace(API_SERVICE_NAME_TPL, operationId)
+      .replace(API_SERVICE_NAME_TPL, methodName)
       .replace(API_SERVICE_METHOD_TPL, methodName)
       .replace(API_SERVICE_PARAM_TPL, paramStr.length === 0 ? '' : 'params')
       .replace(API_SERVICE_URL_TPL, url)

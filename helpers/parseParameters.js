@@ -6,7 +6,7 @@ const {
 } = require('./parseDefinitions');
 const { parseEnumStrToDef } = require('./parseEnum');
 
-function parseParams(api, definitions) {
+function parseParams(api, definitions, { name }) {
   const { parameters, summary, consumes, operationId, tags, responses } = api;
   const parsedParameters = { body: [], path: [], query: [] };
   parameters.forEach((parameter) => {
