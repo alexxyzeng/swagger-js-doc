@@ -193,7 +193,6 @@ function generateFile(pathInfo, definitions, apiPath, options) {
   });
   result = { path, methods };
   const { service, mock } = parseApiInfo(result, definitions, baseUrl);
-  fs.writeFileSync('service.js', service);
   const servicePath = resolve(pagePath, pathUrl);
   if (!fs.existsSync(servicePath)) {
     fs.mkdirSync(servicePath);
