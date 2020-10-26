@@ -68,7 +68,7 @@ function generateFiles(
     }
     // 重写路径定义
     fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
-    const { service, mock } = parseApiInfo(result, definitions, { baseUrl});
+    const { service, mock } = parseApiInfo(result, definitions, { baseUrl });
     fs.writeFileSync(`${targetPath}/service.js`, service);
     fs.writeFileSync(`${targetPath}/mock.js`, mock);
   });
@@ -189,7 +189,13 @@ function generateFiles(
 // }
 
 function generateFile(pathInfo, definitions, apiPath, options) {
-  const { baseUrl, mockPath, pagePath, serviceTag = "service", configPath } = options;
+  const {
+    swaggerUrl,
+    mockPath,
+    pagePath,
+    serviceTag = "service",
+    configPath
+  } = options;
   const { pathItem, path: pathUrl, fileName, names } = pathInfo;
   const { path, methods: methodList } = pathItem;
   let result = {};
@@ -200,7 +206,10 @@ function generateFile(pathInfo, definitions, apiPath, options) {
     methods[methodName] = parseParams(methodInfo, definitions);
   });
   result = { path, methods };
-  const { service, mock } = parseApiInfo(result, definitions, { baseUrl, names });
+  const { service, mock } = parseApiInfo(result, definitions, {
+    baseUrl: swaggerUrl,
+    names
+  });
   const servicePath = `${pagePath}${pathUrl}/${serviceTag}`;
   if (!fs.existsSync(servicePath)) {
     fs.mkdirSync(servicePath);
