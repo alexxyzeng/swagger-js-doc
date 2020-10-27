@@ -28,6 +28,7 @@ fetch(swaggerDocUrl)
     //   JSON.stringify(parsedDefinitions, null, 2)
     // );
     generateFiles(paths, definitions, path, methods, baseUrl);
+    
   })
   .catch(console.log);
 

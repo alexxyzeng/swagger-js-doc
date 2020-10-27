@@ -51,7 +51,7 @@ function parseApiInfo(apiInfo, definitions, { baseUrl, names }) {
     const [tag] = tags;
     const link = `${base}${tag}/${operationId}`;
     const responseName = `${name}Response`;
-    const { mock } = parseResponse(responses, definitions, responseName);
+    const { mock } = parseResponse(responses, definitions, name);
     mockData[`${methodName.toUpperCase()} ${path}`] = mock;
     const {
       url,
@@ -79,7 +79,7 @@ function parseApiInfo(apiInfo, definitions, { baseUrl, names }) {
     infos += serviceInfo;
     infos += '\n';
   }
-  const defStr = parseToDefs(global.typedefs);
+  const defStr = parseToDefs(global.typedefs, true);
   if (defStr.length > 0) {
     infos = defStr + '\n' + infos;
   }
@@ -108,7 +108,7 @@ function parsePath(path, url, result) {
     path.forEach((pathItem) => {
       const { type, description } = pathItem;
       url = url.replace(`{${description}}`, '${params.' + description + '}');
-      paths.push(`* @param {${type}} params.${description} - path`);
+      paths.push(` * @param {${type}} params.${description} - path`);
     });
     result.params.paths = paths.join('\n');
   }
@@ -140,7 +140,7 @@ function parseBodies(body, result, operationId) {
 function parseQuery(query) {
   const { type, name, description, valueType } = query;
   const parsedType = type !== 'array' ? type : `[${valueType.type}]`;
-  return `* @param {${parsedType}} params.query.${name} - ${description}`;
+  return ` * @param {${parsedType}} params.query.${name} - ${description}`;
 }
 
 function parseQueries(query, result) {

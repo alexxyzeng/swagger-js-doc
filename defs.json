@@ -1,0 +1,2361 @@
+{
+  "addProcessesItem": {
+    "name": "addProcessesItem",
+    "result": {
+      "type": null,
+      "additionalBy": {
+        "paramName": "additionalBy",
+        "type": "number",
+        "description": "追加人ID"
+      },
+      "additionalByAvatar": {
+        "paramName": "additionalByAvatar",
+        "type": "string",
+        "description": "追加人头像"
+      },
+      "additionalByName": {
+        "paramName": "additionalByName",
+        "type": "string",
+        "description": "追加人"
+      },
+      "approveOpinion": {
+        "paramName": "approveOpinion",
+        "type": "string",
+        "description": "审核意见"
+      },
+      "approveStatus": {
+        "paramName": "approveStatus",
+        "type": "string",
+        "description": "审核情况 1-待审核 2-通过 3-不通过 {待审核=Unchecked-1, 通过=Pass-2, 不通过=Reject-3}"
+      },
+      "approveTime": {
+        "paramName": "approveTime",
+        "type": "string",
+        "description": "审核时间"
+      },
+      "approver": {
+        "paramName": "approver",
+        "type": "string",
+        "description": "审核人"
+      },
+      "approverId": {
+        "paramName": "approverId",
+        "type": "number",
+        "description": "审核人ID"
+      },
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "demandId": {
+        "paramName": "demandId",
+        "type": "number",
+        "description": "需求ID"
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "最后的修改时间"
+      },
+      "processOpinion": {
+        "paramName": "processOpinion",
+        "type": "string",
+        "description": "追加处理意见"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      }
+    },
+    "description": "追加处理记录"
+  },
+  "fileTypesItem": {
+    "name": "fileTypesItem",
+    "result": {
+      "type": null,
+      "contentType": {
+        "paramName": "contentType",
+        "type": "string",
+        "description": "文件ContentType"
+      },
+      "fileId": {
+        "paramName": "fileId",
+        "type": "number",
+        "description": "文件Id"
+      },
+      "fileName": {
+        "paramName": "fileName",
+        "type": "string",
+        "description": "文件名称"
+      },
+      "fileSize": {
+        "paramName": "fileSize",
+        "type": "number",
+        "description": "文件大小"
+      },
+      "fileType": {
+        "paramName": "fileType",
+        "type": "string",
+        "description": "文件类型 文件类型{图片=Image-1, 视频=Video-2, 音频=Voice-3, 附件=Attachment-4}"
+      },
+      "ossUrl": {
+        "paramName": "ossUrl",
+        "type": "string",
+        "description": "ossUrl文件下载地址"
+      },
+      "path": {
+        "paramName": "path",
+        "type": "string",
+        "description": "公共上传服务返回id，用于下载"
+      },
+      "storeFileName": {
+        "paramName": "storeFileName",
+        "type": "string",
+        "description": "存储文件名，用于返回ossUrl地址"
+      },
+      "thumbnailOssUrl": {
+        "paramName": "thumbnailOssUrl",
+        "type": "string",
+        "description": "ossUrl文件下载地址"
+      },
+      "thumbnailPath": {
+        "paramName": "thumbnailPath",
+        "type": "string",
+        "description": "缩略图公共上传服务返回id，用于下载"
+      },
+      "thumbnailStoreFileName": {
+        "paramName": "thumbnailStoreFileName",
+        "type": "string",
+        "description": "缩略图存储文件名，用于返回ossUrl地址"
+      },
+      "thumbnailUrl": {
+        "paramName": "thumbnailUrl",
+        "type": "string",
+        "description": "公共服务文件下载地址"
+      },
+      "url": {
+        "paramName": "url",
+        "type": "string",
+        "description": "公共服务文件下载地址"
+      }
+    },
+    "description": ""
+  },
+  "files": {
+    "name": "files",
+    "result": {
+      "fileTypes": {
+        "paramName": "fileTypes",
+        "type": "array",
+        "itemType": "fileTypesItem",
+        "description": ""
+      }
+    }
+  },
+  "demandTypeInfo": {
+    "name": "demandTypeInfo",
+    "result": {
+      "code": {
+        "paramName": "code",
+        "type": "string",
+        "description": "需求类型编码"
+      },
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "description": {
+        "paramName": "description",
+        "type": "string",
+        "description": "需求描述"
+      },
+      "files": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "isRefOrder": {
+        "paramName": "isRefOrder",
+        "type": "string",
+        "description": "是否关联工单 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "isVisiblePhotograph": {
+        "paramName": "isVisiblePhotograph",
+        "type": "string",
+        "description": "随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "isVisiblePhotographOfParent": {
+        "paramName": "isVisiblePhotographOfParent",
+        "type": "string",
+        "description": "上级随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "最后的修改时间"
+      },
+      "parentId": {
+        "paramName": "parentId",
+        "type": "number",
+        "description": "父ID"
+      },
+      "pathName": {
+        "paramName": "pathName",
+        "type": "string",
+        "description": "全称"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "sort": {
+        "paramName": "sort",
+        "type": "number",
+        "description": "排序"
+      },
+      "typeName": {
+        "paramName": "typeName",
+        "type": "string",
+        "description": "类型名称"
+      }
+    }
+  },
+  "satisfactionsItem": {
+    "name": "satisfactionsItem",
+    "result": {
+      "type": {
+        "paramName": "type",
+        "type": "string",
+        "description": "类型 {服务质量=Quality-1, 服务速度=Speed-2, 服务态度=Attitude-3}"
+      },
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "demandId": {
+        "paramName": "demandId",
+        "type": "number",
+        "description": "需求ID"
+      },
+      "evaluateId": {
+        "paramName": "evaluateId",
+        "type": "number",
+        "description": "评价ID"
+      },
+      "grade": {
+        "paramName": "grade",
+        "type": "string",
+        "description": "评级"
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "maxStar": {
+        "paramName": "maxStar",
+        "type": "number",
+        "description": "最大星数"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "最后的修改时间"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "score": {
+        "paramName": "score",
+        "type": "number",
+        "description": "分值"
+      },
+      "star": {
+        "paramName": "star",
+        "type": "number",
+        "description": "当前星数"
+      }
+    },
+    "description": "需求评价满意度"
+  },
+  "evaluate": {
+    "name": "evaluate",
+    "result": {
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "creator": {
+        "paramName": "creator",
+        "type": "number",
+        "description": "创建者"
+      },
+      "demandId": {
+        "paramName": "demandId",
+        "type": "number",
+        "description": "需求ID"
+      },
+      "evaluateBy": {
+        "paramName": "evaluateBy",
+        "type": "number",
+        "description": "评价人"
+      },
+      "feedback": {
+        "paramName": "feedback",
+        "type": "string",
+        "description": "反馈意见"
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "modifier": {
+        "paramName": "modifier",
+        "type": "number",
+        "description": "修改者"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "修改时间"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "remark": {
+        "paramName": "remark",
+        "type": "string",
+        "description": "备注"
+      },
+      "satisfactions": {
+        "paramName": "satisfactions",
+        "type": "array",
+        "itemType": "satisfactionsItem",
+        "description": "需求评价满意度"
+      },
+      "type": {
+        "paramName": "type",
+        "type": "string",
+        "description": "类型：评价、回访 {评价=Evaluate-1, 回访=Visit-2}"
+      }
+    }
+  },
+  "processesItem": {
+    "name": "processesItem",
+    "result": {
+      "type": null,
+      "content": {
+        "paramName": "content",
+        "type": "string",
+        "description": "跟进内容"
+      },
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "creator": {
+        "paramName": "creator",
+        "type": "number",
+        "description": "创建者"
+      },
+      "creatorName": {
+        "paramName": "creatorName",
+        "type": "string",
+        "description": "创建人名称"
+      },
+      "demandId": {
+        "paramName": "demandId",
+        "type": "number",
+        "description": "需求ID"
+      },
+      "files": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "otherData": {
+        "paramName": "otherData",
+        "type": "string",
+        "description": "其他数据"
+      },
+      "processBy": {
+        "paramName": "processBy",
+        "type": "number",
+        "description": "处理人ID"
+      },
+      "processType": {
+        "paramName": "processType",
+        "type": "string",
+        "description": "处理类型 {创建=Create-1, 审核=Approve-2, 更新=Update-3, 跟进=Follow-4, 建单=CreateOrder-5, 处理完成=Done-6, 验证=Confirm-7, 评价=Evaluate-8, 回访=Visit-9, 取消=Cancel-10, 转派=Redeploy-11, 追加处理=Additional-12, 评论=Comment-13}"
+      },
+      "processTypeDesc": {
+        "paramName": "processTypeDesc",
+        "type": "string",
+        "description": "处理类型描述"
+      },
+      "processorAvatarUrl": {
+        "paramName": "processorAvatarUrl",
+        "type": "string",
+        "description": "处理人头像地址"
+      },
+      "processorName": {
+        "paramName": "processorName",
+        "type": "string",
+        "description": "处理人名称"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "refId": {
+        "paramName": "refId",
+        "type": "number",
+        "description": "关联ID"
+      },
+      "refType": {
+        "paramName": "refType",
+        "type": "number",
+        "description": "关联类型"
+      },
+      "remark": {
+        "paramName": "remark",
+        "type": "string",
+        "description": "备注"
+      }
+    },
+    "description": "处理记录"
+  },
+  "sourceIcon": {
+    "name": "sourceIcon",
+    "result": {
+      "fileTypes": {
+        "paramName": "fileTypes",
+        "type": "array",
+        "itemType": "fileTypesItem",
+        "description": ""
+      }
+    }
+  },
+  "spacesItem": {
+    "name": "spacesItem",
+    "result": {
+      "type": null,
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "spBuildingId": {
+        "paramName": "spBuildingId",
+        "type": "number",
+        "description": "大楼ID"
+      },
+      "spBuildingName": {
+        "paramName": "spBuildingName",
+        "type": "string",
+        "description": "大楼名称"
+      },
+      "spFloorId": {
+        "paramName": "spFloorId",
+        "type": "number",
+        "description": "楼层ID"
+      },
+      "spFloorName": {
+        "paramName": "spFloorName",
+        "type": "string",
+        "description": "楼层名称"
+      },
+      "spSpaceId": {
+        "paramName": "spSpaceId",
+        "type": "number",
+        "description": "空间ID"
+      },
+      "spSpaceName": {
+        "paramName": "spSpaceName",
+        "type": "string",
+        "description": "空间名称"
+      }
+    },
+    "description": "空间位置列表"
+  },
+  "spaceInfo": {
+    "name": "spaceInfo",
+    "result": {
+      "spaces": {
+        "paramName": "spaces",
+        "type": "array",
+        "itemType": "spacesItem",
+        "description": "空间列表"
+      }
+    }
+  },
+  "traceFiles": {
+    "name": "traceFiles",
+    "result": {
+      "fileTypes": {
+        "paramName": "fileTypes",
+        "type": "array",
+        "itemType": "fileTypesItem",
+        "description": ""
+      }
+    }
+  },
+  "workTeamsItem": {
+    "name": "workTeamsItem",
+    "result": {
+      "type": null,
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": ""
+      },
+      "name": {
+        "paramName": "name",
+        "type": "string",
+        "description": ""
+      }
+    },
+    "description": "工作组列表"
+  },
+  "workordersItem": {
+    "name": "workordersItem",
+    "result": {
+      "type": null,
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "demandId": {
+        "paramName": "demandId",
+        "type": "number",
+        "description": "需求ID"
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "最后的修改时间"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "status": {
+        "paramName": "status",
+        "type": "string",
+        "description": "工单状态 {创建=Create-1, 待派工=WaitWork-2, 待抢单=WaitGrabOrder-3, 待接单=WaitOrder-4, 待完成=WaitFinish-5, 已暂停=Pause-6, 待料中=WaitMaterial-8, 已完成=Finish-9, 已终止=Over-10, 待转单=PendingOrder-11, 待存档=NoArchived-12, 已存档=Archived-13, 待派工_临时=TempNoWork-14, 待接单_退单_临时=TempNoOrder_Refund-151, 暂停_退单_临时=TempPause_Refund-152, 待完成_退单_临时=TempNoFinish_Refund-153, 待完成_临时=TempNoFinish-16, 已完成待验证_临时=TempFinish-17, 待存档_临时=TempNoArchive-18, 异常=Error-19, 待审批=NoApproval-20}"
+      },
+      "workorderCode": {
+        "paramName": "workorderCode",
+        "type": "string",
+        "description": "工单编码"
+      },
+      "workorderId": {
+        "paramName": "workorderId",
+        "type": "number",
+        "description": "工单ID"
+      }
+    },
+    "description": "工单列表"
+  },
+  "contentItem": {
+    "name": "contentItem",
+    "result": {
+      "type": null,
+      "addProcesses": {
+        "paramName": "addProcesses",
+        "type": "array",
+        "itemType": "addProcessesItem",
+        "description": "追加处理记录"
+      },
+      "appellation": {
+        "paramName": "appellation",
+        "type": "string",
+        "description": "称谓"
+      },
+      "code": {
+        "paramName": "code",
+        "type": "string",
+        "description": "需求编码"
+      },
+      "company": {
+        "paramName": "company",
+        "type": "string",
+        "description": "公司名称"
+      },
+      "completeTime": {
+        "paramName": "completeTime",
+        "type": "string",
+        "description": "完成时间"
+      },
+      "completionDuration": {
+        "paramName": "completionDuration",
+        "type": "number",
+        "description": "完成时长(分钟)"
+      },
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "creator": {
+        "paramName": "creator",
+        "type": "number",
+        "description": "创建者"
+      },
+      "creatorName": {
+        "paramName": "creatorName",
+        "type": "string",
+        "description": "创建者名称"
+      },
+      "customerId": {
+        "paramName": "customerId",
+        "type": "number",
+        "description": "客户ID"
+      },
+      "demandPathName": {
+        "paramName": "demandPathName",
+        "type": "string",
+        "description": "需求路径名称"
+      },
+      "demandTypeId": {
+        "paramName": "demandTypeId",
+        "type": "number",
+        "description": "需求类型ID"
+      },
+      "demandTypeInfo": {
+        "code": {
+          "paramName": "code",
+          "type": "string",
+          "description": "需求类型编码"
+        },
+        "createTime": {
+          "paramName": "createTime",
+          "type": "string",
+          "description": "创建时间"
+        },
+        "description": {
+          "paramName": "description",
+          "type": "string",
+          "description": "需求描述"
+        },
+        "files": {
+          "fileTypes": {
+            "paramName": "fileTypes",
+            "type": "array",
+            "itemType": "fileTypesItem",
+            "description": ""
+          }
+        },
+        "id": {
+          "paramName": "id",
+          "type": "number",
+          "description": "由程序分配的唯一ID"
+        },
+        "isRefOrder": {
+          "paramName": "isRefOrder",
+          "type": "string",
+          "description": "是否关联工单 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "isVisiblePhotograph": {
+          "paramName": "isVisiblePhotograph",
+          "type": "string",
+          "description": "随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "isVisiblePhotographOfParent": {
+          "paramName": "isVisiblePhotographOfParent",
+          "type": "string",
+          "description": "上级随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "modifyTime": {
+          "paramName": "modifyTime",
+          "type": "string",
+          "description": "最后的修改时间"
+        },
+        "parentId": {
+          "paramName": "parentId",
+          "type": "number",
+          "description": "父ID"
+        },
+        "pathName": {
+          "paramName": "pathName",
+          "type": "string",
+          "description": "全称"
+        },
+        "projectId": {
+          "paramName": "projectId",
+          "type": "number",
+          "description": "项目ID"
+        },
+        "sort": {
+          "paramName": "sort",
+          "type": "number",
+          "description": "排序"
+        },
+        "typeName": {
+          "paramName": "typeName",
+          "type": "string",
+          "description": "类型名称"
+        }
+      },
+      "demandTypeName": {
+        "paramName": "demandTypeName",
+        "type": "string",
+        "description": "需求类型名称"
+      },
+      "demandTypePathName": {
+        "paramName": "demandTypePathName",
+        "type": "string",
+        "description": "需求类型全称"
+      },
+      "demandTypeRefId": {
+        "paramName": "demandTypeRefId",
+        "type": "number",
+        "description": "需求类型改关联ID"
+      },
+      "department": {
+        "paramName": "department",
+        "type": "string",
+        "description": "部门"
+      },
+      "departmentId": {
+        "paramName": "departmentId",
+        "type": "number",
+        "description": "部门id"
+      },
+      "departmentPathName": {
+        "paramName": "departmentPathName",
+        "type": "string",
+        "description": "部门全称"
+      },
+      "description": {
+        "paramName": "description",
+        "type": "string",
+        "description": "需求描述"
+      },
+      "email": {
+        "paramName": "email",
+        "type": "string",
+        "description": "电子信箱"
+      },
+      "employeeId": {
+        "paramName": "employeeId",
+        "type": "number",
+        "description": "员工ID"
+      },
+      "evaluate": {
+        "createTime": {
+          "paramName": "createTime",
+          "type": "string",
+          "description": "创建时间"
+        },
+        "creator": {
+          "paramName": "creator",
+          "type": "number",
+          "description": "创建者"
+        },
+        "demandId": {
+          "paramName": "demandId",
+          "type": "number",
+          "description": "需求ID"
+        },
+        "evaluateBy": {
+          "paramName": "evaluateBy",
+          "type": "number",
+          "description": "评价人"
+        },
+        "feedback": {
+          "paramName": "feedback",
+          "type": "string",
+          "description": "反馈意见"
+        },
+        "id": {
+          "paramName": "id",
+          "type": "number",
+          "description": "由程序分配的唯一ID"
+        },
+        "modifier": {
+          "paramName": "modifier",
+          "type": "number",
+          "description": "修改者"
+        },
+        "modifyTime": {
+          "paramName": "modifyTime",
+          "type": "string",
+          "description": "修改时间"
+        },
+        "projectId": {
+          "paramName": "projectId",
+          "type": "number",
+          "description": "项目ID"
+        },
+        "remark": {
+          "paramName": "remark",
+          "type": "string",
+          "description": "备注"
+        },
+        "satisfactions": {
+          "paramName": "satisfactions",
+          "type": "array",
+          "itemType": "satisfactionsItem",
+          "description": "需求评价满意度"
+        },
+        "type": {
+          "paramName": "type",
+          "type": "string",
+          "description": "类型：评价、回访 {评价=Evaluate-1, 回访=Visit-2}"
+        }
+      },
+      "evaluateStatus": {
+        "paramName": "evaluateStatus",
+        "type": "string",
+        "description": "评价状态 {未评价=No-1, 手动评价=YesHand-2, 自动评价=YesAuto-3}"
+      },
+      "expectEndTime": {
+        "paramName": "expectEndTime",
+        "type": "string",
+        "description": "预计结束时间"
+      },
+      "expectStartTime": {
+        "paramName": "expectStartTime",
+        "type": "string",
+        "description": "预计开始时间"
+      },
+      "feedback": {
+        "paramName": "feedback",
+        "type": "string",
+        "description": "反馈意见"
+      },
+      "files": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "fromEmail": {
+        "paramName": "fromEmail",
+        "type": "string",
+        "description": "来源信箱"
+      },
+      "hasPermission": {
+        "paramName": "hasPermission",
+        "type": "string",
+        "description": "是否有权限 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "isComplete": {
+        "paramName": "isComplete",
+        "type": "string",
+        "description": "是否完成 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "isFromEmail": {
+        "paramName": "isFromEmail",
+        "type": "string",
+        "description": "是否来自邮件 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "isRefOrder": {
+        "paramName": "isRefOrder",
+        "type": "string",
+        "description": "是否关联工单"
+      },
+      "isReqScope": {
+        "paramName": "isReqScope",
+        "type": "string",
+        "description": "是否必填位置 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "modifier": {
+        "paramName": "modifier",
+        "type": "number",
+        "description": "修改者"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "修改时间"
+      },
+      "orderNum": {
+        "paramName": "orderNum",
+        "type": "number",
+        "description": "关联的工单数量"
+      },
+      "origin": {
+        "paramName": "origin",
+        "type": "number",
+        "description": "第三方来源：1-随手拍"
+      },
+      "phone": {
+        "paramName": "phone",
+        "type": "string",
+        "description": "手机号"
+      },
+      "position": {
+        "paramName": "position",
+        "type": "string",
+        "description": "职位"
+      },
+      "processes": {
+        "paramName": "processes",
+        "type": "array",
+        "itemType": "processesItem",
+        "description": "处理记录"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "projectName": {
+        "paramName": "projectName",
+        "type": "string",
+        "description": "项目名称"
+      },
+      "responseDuration": {
+        "paramName": "responseDuration",
+        "type": "number",
+        "description": "响应时长(分钟)"
+      },
+      "source": {
+        "paramName": "source",
+        "type": "number",
+        "description": "来源"
+      },
+      "sourceDesc": {
+        "paramName": "sourceDesc",
+        "type": "string",
+        "description": "来源描述"
+      },
+      "sourceIcon": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "spaceInfo": {
+        "spaces": {
+          "paramName": "spaces",
+          "type": "array",
+          "itemType": "spacesItem",
+          "description": "空间列表"
+        }
+      },
+      "spaces": {
+        "paramName": "spaces",
+        "type": "array",
+        "itemType": "spacesItem",
+        "description": "空间位置列表"
+      },
+      "status": {
+        "paramName": "status",
+        "type": "string",
+        "description": "状态 {待审核=PendingCheck-1, 待处理=PendingDispose-2, 跟进中=Follow-3, 已建单=CreatedOrder-4, 待验证=PendingConfirm-5, 待评价=PendingEvaluate-6, 已完成=Done-7, 已评价=Evaluate-9, 已取消=Cancel-8}"
+      },
+      "tel": {
+        "paramName": "tel",
+        "type": "string",
+        "description": "电话"
+      },
+      "tenantId": {
+        "paramName": "tenantId",
+        "type": "number",
+        "description": "租户ID"
+      },
+      "traceFiles": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "unreadCommonCount": {
+        "paramName": "unreadCommonCount",
+        "type": "number",
+        "description": "未读评论数"
+      },
+      "userId": {
+        "paramName": "userId",
+        "type": "number",
+        "description": "报障人用户Id"
+      },
+      "userType": {
+        "paramName": "userType",
+        "type": "string",
+        "description": "用户类型 {员工=User-1, 客户=Clientele-2, 其他=Other-9}"
+      },
+      "username": {
+        "paramName": "username",
+        "type": "string",
+        "description": "报账人名称"
+      },
+      "visitStatus": {
+        "paramName": "visitStatus",
+        "type": "string",
+        "description": "回访状态 {未回访=No-1, 已回访=Yes-2}"
+      },
+      "workTeams": {
+        "paramName": "workTeams",
+        "type": "array",
+        "itemType": "workTeamsItem",
+        "description": "工作组列表"
+      },
+      "workorders": {
+        "paramName": "workorders",
+        "type": "array",
+        "itemType": "workordersItem",
+        "description": "工单列表"
+      }
+    },
+    "description": "内容"
+  },
+  "pageable": {
+    "name": "pageable",
+    "result": {
+      "pageNumber": {
+        "paramName": "pageNumber",
+        "type": "number",
+        "description": "当前页"
+      },
+      "pageSize": {
+        "paramName": "pageSize",
+        "type": "number",
+        "description": "每页条数"
+      },
+      "pageSort": {
+        "paramName": "pageSort",
+        "type": "array",
+        "itemType": "string",
+        "description": "排序"
+      }
+    }
+  },
+  "findUsingGET_4data": {
+    "name": "findUsingGET_4data",
+    "result": {
+      "content": {
+        "paramName": "content",
+        "type": "array",
+        "itemType": "contentItem",
+        "description": "内容"
+      },
+      "currentSize": {
+        "paramName": "currentSize",
+        "type": "number",
+        "description": "当前页条数"
+      },
+      "first": {
+        "paramName": "first",
+        "type": "boolean",
+        "description": "是否第一页"
+      },
+      "last": {
+        "paramName": "last",
+        "type": "boolean",
+        "description": "是否最后一页"
+      },
+      "pageNumber": {
+        "paramName": "pageNumber",
+        "type": "number",
+        "description": "当前页"
+      },
+      "pageSize": {
+        "paramName": "pageSize",
+        "type": "number",
+        "description": "每页条数"
+      },
+      "pageable": {
+        "pageNumber": {
+          "paramName": "pageNumber",
+          "type": "number",
+          "description": "当前页"
+        },
+        "pageSize": {
+          "paramName": "pageSize",
+          "type": "number",
+          "description": "每页条数"
+        },
+        "pageSort": {
+          "paramName": "pageSort",
+          "type": "array",
+          "itemType": "string",
+          "description": "排序"
+        }
+      },
+      "totalElements": {
+        "paramName": "totalElements",
+        "type": "number",
+        "description": "总条数"
+      },
+      "totalPages": {
+        "paramName": "totalPages",
+        "type": "number",
+        "description": "总页数"
+      }
+    }
+  },
+  "findUsingGET_4Response": {
+    "name": "findUsingGET_4Response",
+    "result": {
+      "code": {
+        "paramName": "code",
+        "type": "number",
+        "description": "业务响应状态"
+      },
+      "data": {
+        "content": {
+          "paramName": "content",
+          "type": "array",
+          "itemType": "contentItem",
+          "description": "内容"
+        },
+        "currentSize": {
+          "paramName": "currentSize",
+          "type": "number",
+          "description": "当前页条数"
+        },
+        "first": {
+          "paramName": "first",
+          "type": "boolean",
+          "description": "是否第一页"
+        },
+        "last": {
+          "paramName": "last",
+          "type": "boolean",
+          "description": "是否最后一页"
+        },
+        "pageNumber": {
+          "paramName": "pageNumber",
+          "type": "number",
+          "description": "当前页"
+        },
+        "pageSize": {
+          "paramName": "pageSize",
+          "type": "number",
+          "description": "每页条数"
+        },
+        "pageable": {
+          "pageNumber": {
+            "paramName": "pageNumber",
+            "type": "number",
+            "description": "当前页"
+          },
+          "pageSize": {
+            "paramName": "pageSize",
+            "type": "number",
+            "description": "每页条数"
+          },
+          "pageSort": {
+            "paramName": "pageSort",
+            "type": "array",
+            "itemType": "string",
+            "description": "排序"
+          }
+        },
+        "totalElements": {
+          "paramName": "totalElements",
+          "type": "number",
+          "description": "总条数"
+        },
+        "totalPages": {
+          "paramName": "totalPages",
+          "type": "number",
+          "description": "总页数"
+        }
+      },
+      "message": {
+        "paramName": "message",
+        "type": "string",
+        "description": "消息"
+      },
+      "traceId": {
+        "paramName": "traceId",
+        "type": "string",
+        "description": "用于链路追踪的ID"
+      }
+    }
+  },
+  "createUsingPOST_3data": {
+    "name": "createUsingPOST_3data",
+    "result": {
+      "addProcesses": {
+        "paramName": "addProcesses",
+        "type": "array",
+        "itemType": "addProcessesItem",
+        "description": "追加处理记录"
+      },
+      "appellation": {
+        "paramName": "appellation",
+        "type": "string",
+        "description": "称谓"
+      },
+      "code": {
+        "paramName": "code",
+        "type": "string",
+        "description": "需求编码"
+      },
+      "company": {
+        "paramName": "company",
+        "type": "string",
+        "description": "公司名称"
+      },
+      "completeTime": {
+        "paramName": "completeTime",
+        "type": "string",
+        "description": "完成时间"
+      },
+      "completionDuration": {
+        "paramName": "completionDuration",
+        "type": "number",
+        "description": "完成时长(分钟)"
+      },
+      "createTime": {
+        "paramName": "createTime",
+        "type": "string",
+        "description": "创建时间"
+      },
+      "creator": {
+        "paramName": "creator",
+        "type": "number",
+        "description": "创建者"
+      },
+      "creatorName": {
+        "paramName": "creatorName",
+        "type": "string",
+        "description": "创建者名称"
+      },
+      "customerId": {
+        "paramName": "customerId",
+        "type": "number",
+        "description": "客户ID"
+      },
+      "demandPathName": {
+        "paramName": "demandPathName",
+        "type": "string",
+        "description": "需求路径名称"
+      },
+      "demandTypeId": {
+        "paramName": "demandTypeId",
+        "type": "number",
+        "description": "需求类型ID"
+      },
+      "demandTypeInfo": {
+        "code": {
+          "paramName": "code",
+          "type": "string",
+          "description": "需求类型编码"
+        },
+        "createTime": {
+          "paramName": "createTime",
+          "type": "string",
+          "description": "创建时间"
+        },
+        "description": {
+          "paramName": "description",
+          "type": "string",
+          "description": "需求描述"
+        },
+        "files": {
+          "fileTypes": {
+            "paramName": "fileTypes",
+            "type": "array",
+            "itemType": "fileTypesItem",
+            "description": ""
+          }
+        },
+        "id": {
+          "paramName": "id",
+          "type": "number",
+          "description": "由程序分配的唯一ID"
+        },
+        "isRefOrder": {
+          "paramName": "isRefOrder",
+          "type": "string",
+          "description": "是否关联工单 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "isVisiblePhotograph": {
+          "paramName": "isVisiblePhotograph",
+          "type": "string",
+          "description": "随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "isVisiblePhotographOfParent": {
+          "paramName": "isVisiblePhotographOfParent",
+          "type": "string",
+          "description": "上级随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "modifyTime": {
+          "paramName": "modifyTime",
+          "type": "string",
+          "description": "最后的修改时间"
+        },
+        "parentId": {
+          "paramName": "parentId",
+          "type": "number",
+          "description": "父ID"
+        },
+        "pathName": {
+          "paramName": "pathName",
+          "type": "string",
+          "description": "全称"
+        },
+        "projectId": {
+          "paramName": "projectId",
+          "type": "number",
+          "description": "项目ID"
+        },
+        "sort": {
+          "paramName": "sort",
+          "type": "number",
+          "description": "排序"
+        },
+        "typeName": {
+          "paramName": "typeName",
+          "type": "string",
+          "description": "类型名称"
+        }
+      },
+      "demandTypeName": {
+        "paramName": "demandTypeName",
+        "type": "string",
+        "description": "需求类型名称"
+      },
+      "demandTypePathName": {
+        "paramName": "demandTypePathName",
+        "type": "string",
+        "description": "需求类型全称"
+      },
+      "demandTypeRefId": {
+        "paramName": "demandTypeRefId",
+        "type": "number",
+        "description": "需求类型改关联ID"
+      },
+      "department": {
+        "paramName": "department",
+        "type": "string",
+        "description": "部门"
+      },
+      "departmentId": {
+        "paramName": "departmentId",
+        "type": "number",
+        "description": "部门id"
+      },
+      "departmentPathName": {
+        "paramName": "departmentPathName",
+        "type": "string",
+        "description": "部门全称"
+      },
+      "description": {
+        "paramName": "description",
+        "type": "string",
+        "description": "需求描述"
+      },
+      "email": {
+        "paramName": "email",
+        "type": "string",
+        "description": "电子信箱"
+      },
+      "employeeId": {
+        "paramName": "employeeId",
+        "type": "number",
+        "description": "员工ID"
+      },
+      "evaluate": {
+        "createTime": {
+          "paramName": "createTime",
+          "type": "string",
+          "description": "创建时间"
+        },
+        "creator": {
+          "paramName": "creator",
+          "type": "number",
+          "description": "创建者"
+        },
+        "demandId": {
+          "paramName": "demandId",
+          "type": "number",
+          "description": "需求ID"
+        },
+        "evaluateBy": {
+          "paramName": "evaluateBy",
+          "type": "number",
+          "description": "评价人"
+        },
+        "feedback": {
+          "paramName": "feedback",
+          "type": "string",
+          "description": "反馈意见"
+        },
+        "id": {
+          "paramName": "id",
+          "type": "number",
+          "description": "由程序分配的唯一ID"
+        },
+        "modifier": {
+          "paramName": "modifier",
+          "type": "number",
+          "description": "修改者"
+        },
+        "modifyTime": {
+          "paramName": "modifyTime",
+          "type": "string",
+          "description": "修改时间"
+        },
+        "projectId": {
+          "paramName": "projectId",
+          "type": "number",
+          "description": "项目ID"
+        },
+        "remark": {
+          "paramName": "remark",
+          "type": "string",
+          "description": "备注"
+        },
+        "satisfactions": {
+          "paramName": "satisfactions",
+          "type": "array",
+          "itemType": "satisfactionsItem",
+          "description": "需求评价满意度"
+        },
+        "type": {
+          "paramName": "type",
+          "type": "string",
+          "description": "类型：评价、回访 {评价=Evaluate-1, 回访=Visit-2}"
+        }
+      },
+      "evaluateStatus": {
+        "paramName": "evaluateStatus",
+        "type": "string",
+        "description": "评价状态 {未评价=No-1, 手动评价=YesHand-2, 自动评价=YesAuto-3}"
+      },
+      "expectEndTime": {
+        "paramName": "expectEndTime",
+        "type": "string",
+        "description": "预计结束时间"
+      },
+      "expectStartTime": {
+        "paramName": "expectStartTime",
+        "type": "string",
+        "description": "预计开始时间"
+      },
+      "feedback": {
+        "paramName": "feedback",
+        "type": "string",
+        "description": "反馈意见"
+      },
+      "files": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "fromEmail": {
+        "paramName": "fromEmail",
+        "type": "string",
+        "description": "来源信箱"
+      },
+      "hasPermission": {
+        "paramName": "hasPermission",
+        "type": "string",
+        "description": "是否有权限 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "id": {
+        "paramName": "id",
+        "type": "number",
+        "description": "由程序分配的唯一ID"
+      },
+      "isComplete": {
+        "paramName": "isComplete",
+        "type": "string",
+        "description": "是否完成 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "isFromEmail": {
+        "paramName": "isFromEmail",
+        "type": "string",
+        "description": "是否来自邮件 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "isRefOrder": {
+        "paramName": "isRefOrder",
+        "type": "string",
+        "description": "是否关联工单"
+      },
+      "isReqScope": {
+        "paramName": "isReqScope",
+        "type": "string",
+        "description": "是否必填位置 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "modifier": {
+        "paramName": "modifier",
+        "type": "number",
+        "description": "修改者"
+      },
+      "modifyTime": {
+        "paramName": "modifyTime",
+        "type": "string",
+        "description": "修改时间"
+      },
+      "orderNum": {
+        "paramName": "orderNum",
+        "type": "number",
+        "description": "关联的工单数量"
+      },
+      "origin": {
+        "paramName": "origin",
+        "type": "number",
+        "description": "第三方来源：1-随手拍"
+      },
+      "phone": {
+        "paramName": "phone",
+        "type": "string",
+        "description": "手机号"
+      },
+      "position": {
+        "paramName": "position",
+        "type": "string",
+        "description": "职位"
+      },
+      "processes": {
+        "paramName": "processes",
+        "type": "array",
+        "itemType": "processesItem",
+        "description": "处理记录"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "projectName": {
+        "paramName": "projectName",
+        "type": "string",
+        "description": "项目名称"
+      },
+      "responseDuration": {
+        "paramName": "responseDuration",
+        "type": "number",
+        "description": "响应时长(分钟)"
+      },
+      "source": {
+        "paramName": "source",
+        "type": "number",
+        "description": "来源"
+      },
+      "sourceDesc": {
+        "paramName": "sourceDesc",
+        "type": "string",
+        "description": "来源描述"
+      },
+      "sourceIcon": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "spaceInfo": {
+        "spaces": {
+          "paramName": "spaces",
+          "type": "array",
+          "itemType": "spacesItem",
+          "description": "空间列表"
+        }
+      },
+      "spaces": {
+        "paramName": "spaces",
+        "type": "array",
+        "itemType": "spacesItem",
+        "description": "空间位置列表"
+      },
+      "status": {
+        "paramName": "status",
+        "type": "string",
+        "description": "状态 {待审核=PendingCheck-1, 待处理=PendingDispose-2, 跟进中=Follow-3, 已建单=CreatedOrder-4, 待验证=PendingConfirm-5, 待评价=PendingEvaluate-6, 已完成=Done-7, 已评价=Evaluate-9, 已取消=Cancel-8}"
+      },
+      "tel": {
+        "paramName": "tel",
+        "type": "string",
+        "description": "电话"
+      },
+      "tenantId": {
+        "paramName": "tenantId",
+        "type": "number",
+        "description": "租户ID"
+      },
+      "traceFiles": {
+        "fileTypes": {
+          "paramName": "fileTypes",
+          "type": "array",
+          "itemType": "fileTypesItem",
+          "description": ""
+        }
+      },
+      "unreadCommonCount": {
+        "paramName": "unreadCommonCount",
+        "type": "number",
+        "description": "未读评论数"
+      },
+      "userId": {
+        "paramName": "userId",
+        "type": "number",
+        "description": "报障人用户Id"
+      },
+      "userType": {
+        "paramName": "userType",
+        "type": "string",
+        "description": "用户类型 {员工=User-1, 客户=Clientele-2, 其他=Other-9}"
+      },
+      "username": {
+        "paramName": "username",
+        "type": "string",
+        "description": "报账人名称"
+      },
+      "visitStatus": {
+        "paramName": "visitStatus",
+        "type": "string",
+        "description": "回访状态 {未回访=No-1, 已回访=Yes-2}"
+      },
+      "workTeams": {
+        "paramName": "workTeams",
+        "type": "array",
+        "itemType": "workTeamsItem",
+        "description": "工作组列表"
+      },
+      "workorders": {
+        "paramName": "workorders",
+        "type": "array",
+        "itemType": "workordersItem",
+        "description": "工单列表"
+      }
+    }
+  },
+  "createUsingPOST_3Response": {
+    "name": "createUsingPOST_3Response",
+    "result": {
+      "code": {
+        "paramName": "code",
+        "type": "number",
+        "description": "业务响应状态"
+      },
+      "data": {
+        "addProcesses": {
+          "paramName": "addProcesses",
+          "type": "array",
+          "itemType": "addProcessesItem",
+          "description": "追加处理记录"
+        },
+        "appellation": {
+          "paramName": "appellation",
+          "type": "string",
+          "description": "称谓"
+        },
+        "code": {
+          "paramName": "code",
+          "type": "string",
+          "description": "需求编码"
+        },
+        "company": {
+          "paramName": "company",
+          "type": "string",
+          "description": "公司名称"
+        },
+        "completeTime": {
+          "paramName": "completeTime",
+          "type": "string",
+          "description": "完成时间"
+        },
+        "completionDuration": {
+          "paramName": "completionDuration",
+          "type": "number",
+          "description": "完成时长(分钟)"
+        },
+        "createTime": {
+          "paramName": "createTime",
+          "type": "string",
+          "description": "创建时间"
+        },
+        "creator": {
+          "paramName": "creator",
+          "type": "number",
+          "description": "创建者"
+        },
+        "creatorName": {
+          "paramName": "creatorName",
+          "type": "string",
+          "description": "创建者名称"
+        },
+        "customerId": {
+          "paramName": "customerId",
+          "type": "number",
+          "description": "客户ID"
+        },
+        "demandPathName": {
+          "paramName": "demandPathName",
+          "type": "string",
+          "description": "需求路径名称"
+        },
+        "demandTypeId": {
+          "paramName": "demandTypeId",
+          "type": "number",
+          "description": "需求类型ID"
+        },
+        "demandTypeInfo": {
+          "code": {
+            "paramName": "code",
+            "type": "string",
+            "description": "需求类型编码"
+          },
+          "createTime": {
+            "paramName": "createTime",
+            "type": "string",
+            "description": "创建时间"
+          },
+          "description": {
+            "paramName": "description",
+            "type": "string",
+            "description": "需求描述"
+          },
+          "files": {
+            "fileTypes": {
+              "paramName": "fileTypes",
+              "type": "array",
+              "itemType": "fileTypesItem",
+              "description": ""
+            }
+          },
+          "id": {
+            "paramName": "id",
+            "type": "number",
+            "description": "由程序分配的唯一ID"
+          },
+          "isRefOrder": {
+            "paramName": "isRefOrder",
+            "type": "string",
+            "description": "是否关联工单 是否枚举{否=No-0, 是=Yes-1}"
+          },
+          "isVisiblePhotograph": {
+            "paramName": "isVisiblePhotograph",
+            "type": "string",
+            "description": "随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+          },
+          "isVisiblePhotographOfParent": {
+            "paramName": "isVisiblePhotographOfParent",
+            "type": "string",
+            "description": "上级随手拍是否可见 是否枚举{否=No-0, 是=Yes-1}"
+          },
+          "modifyTime": {
+            "paramName": "modifyTime",
+            "type": "string",
+            "description": "最后的修改时间"
+          },
+          "parentId": {
+            "paramName": "parentId",
+            "type": "number",
+            "description": "父ID"
+          },
+          "pathName": {
+            "paramName": "pathName",
+            "type": "string",
+            "description": "全称"
+          },
+          "projectId": {
+            "paramName": "projectId",
+            "type": "number",
+            "description": "项目ID"
+          },
+          "sort": {
+            "paramName": "sort",
+            "type": "number",
+            "description": "排序"
+          },
+          "typeName": {
+            "paramName": "typeName",
+            "type": "string",
+            "description": "类型名称"
+          }
+        },
+        "demandTypeName": {
+          "paramName": "demandTypeName",
+          "type": "string",
+          "description": "需求类型名称"
+        },
+        "demandTypePathName": {
+          "paramName": "demandTypePathName",
+          "type": "string",
+          "description": "需求类型全称"
+        },
+        "demandTypeRefId": {
+          "paramName": "demandTypeRefId",
+          "type": "number",
+          "description": "需求类型改关联ID"
+        },
+        "department": {
+          "paramName": "department",
+          "type": "string",
+          "description": "部门"
+        },
+        "departmentId": {
+          "paramName": "departmentId",
+          "type": "number",
+          "description": "部门id"
+        },
+        "departmentPathName": {
+          "paramName": "departmentPathName",
+          "type": "string",
+          "description": "部门全称"
+        },
+        "description": {
+          "paramName": "description",
+          "type": "string",
+          "description": "需求描述"
+        },
+        "email": {
+          "paramName": "email",
+          "type": "string",
+          "description": "电子信箱"
+        },
+        "employeeId": {
+          "paramName": "employeeId",
+          "type": "number",
+          "description": "员工ID"
+        },
+        "evaluate": {
+          "createTime": {
+            "paramName": "createTime",
+            "type": "string",
+            "description": "创建时间"
+          },
+          "creator": {
+            "paramName": "creator",
+            "type": "number",
+            "description": "创建者"
+          },
+          "demandId": {
+            "paramName": "demandId",
+            "type": "number",
+            "description": "需求ID"
+          },
+          "evaluateBy": {
+            "paramName": "evaluateBy",
+            "type": "number",
+            "description": "评价人"
+          },
+          "feedback": {
+            "paramName": "feedback",
+            "type": "string",
+            "description": "反馈意见"
+          },
+          "id": {
+            "paramName": "id",
+            "type": "number",
+            "description": "由程序分配的唯一ID"
+          },
+          "modifier": {
+            "paramName": "modifier",
+            "type": "number",
+            "description": "修改者"
+          },
+          "modifyTime": {
+            "paramName": "modifyTime",
+            "type": "string",
+            "description": "修改时间"
+          },
+          "projectId": {
+            "paramName": "projectId",
+            "type": "number",
+            "description": "项目ID"
+          },
+          "remark": {
+            "paramName": "remark",
+            "type": "string",
+            "description": "备注"
+          },
+          "satisfactions": {
+            "paramName": "satisfactions",
+            "type": "array",
+            "itemType": "satisfactionsItem",
+            "description": "需求评价满意度"
+          },
+          "type": {
+            "paramName": "type",
+            "type": "string",
+            "description": "类型：评价、回访 {评价=Evaluate-1, 回访=Visit-2}"
+          }
+        },
+        "evaluateStatus": {
+          "paramName": "evaluateStatus",
+          "type": "string",
+          "description": "评价状态 {未评价=No-1, 手动评价=YesHand-2, 自动评价=YesAuto-3}"
+        },
+        "expectEndTime": {
+          "paramName": "expectEndTime",
+          "type": "string",
+          "description": "预计结束时间"
+        },
+        "expectStartTime": {
+          "paramName": "expectStartTime",
+          "type": "string",
+          "description": "预计开始时间"
+        },
+        "feedback": {
+          "paramName": "feedback",
+          "type": "string",
+          "description": "反馈意见"
+        },
+        "files": {
+          "fileTypes": {
+            "paramName": "fileTypes",
+            "type": "array",
+            "itemType": "fileTypesItem",
+            "description": ""
+          }
+        },
+        "fromEmail": {
+          "paramName": "fromEmail",
+          "type": "string",
+          "description": "来源信箱"
+        },
+        "hasPermission": {
+          "paramName": "hasPermission",
+          "type": "string",
+          "description": "是否有权限 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "id": {
+          "paramName": "id",
+          "type": "number",
+          "description": "由程序分配的唯一ID"
+        },
+        "isComplete": {
+          "paramName": "isComplete",
+          "type": "string",
+          "description": "是否完成 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "isFromEmail": {
+          "paramName": "isFromEmail",
+          "type": "string",
+          "description": "是否来自邮件 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "isRefOrder": {
+          "paramName": "isRefOrder",
+          "type": "string",
+          "description": "是否关联工单"
+        },
+        "isReqScope": {
+          "paramName": "isReqScope",
+          "type": "string",
+          "description": "是否必填位置 是否枚举{否=No-0, 是=Yes-1}"
+        },
+        "modifier": {
+          "paramName": "modifier",
+          "type": "number",
+          "description": "修改者"
+        },
+        "modifyTime": {
+          "paramName": "modifyTime",
+          "type": "string",
+          "description": "修改时间"
+        },
+        "orderNum": {
+          "paramName": "orderNum",
+          "type": "number",
+          "description": "关联的工单数量"
+        },
+        "origin": {
+          "paramName": "origin",
+          "type": "number",
+          "description": "第三方来源：1-随手拍"
+        },
+        "phone": {
+          "paramName": "phone",
+          "type": "string",
+          "description": "手机号"
+        },
+        "position": {
+          "paramName": "position",
+          "type": "string",
+          "description": "职位"
+        },
+        "processes": {
+          "paramName": "processes",
+          "type": "array",
+          "itemType": "processesItem",
+          "description": "处理记录"
+        },
+        "projectId": {
+          "paramName": "projectId",
+          "type": "number",
+          "description": "项目ID"
+        },
+        "projectName": {
+          "paramName": "projectName",
+          "type": "string",
+          "description": "项目名称"
+        },
+        "responseDuration": {
+          "paramName": "responseDuration",
+          "type": "number",
+          "description": "响应时长(分钟)"
+        },
+        "source": {
+          "paramName": "source",
+          "type": "number",
+          "description": "来源"
+        },
+        "sourceDesc": {
+          "paramName": "sourceDesc",
+          "type": "string",
+          "description": "来源描述"
+        },
+        "sourceIcon": {
+          "fileTypes": {
+            "paramName": "fileTypes",
+            "type": "array",
+            "itemType": "fileTypesItem",
+            "description": ""
+          }
+        },
+        "spaceInfo": {
+          "spaces": {
+            "paramName": "spaces",
+            "type": "array",
+            "itemType": "spacesItem",
+            "description": "空间列表"
+          }
+        },
+        "spaces": {
+          "paramName": "spaces",
+          "type": "array",
+          "itemType": "spacesItem",
+          "description": "空间位置列表"
+        },
+        "status": {
+          "paramName": "status",
+          "type": "string",
+          "description": "状态 {待审核=PendingCheck-1, 待处理=PendingDispose-2, 跟进中=Follow-3, 已建单=CreatedOrder-4, 待验证=PendingConfirm-5, 待评价=PendingEvaluate-6, 已完成=Done-7, 已评价=Evaluate-9, 已取消=Cancel-8}"
+        },
+        "tel": {
+          "paramName": "tel",
+          "type": "string",
+          "description": "电话"
+        },
+        "tenantId": {
+          "paramName": "tenantId",
+          "type": "number",
+          "description": "租户ID"
+        },
+        "traceFiles": {
+          "fileTypes": {
+            "paramName": "fileTypes",
+            "type": "array",
+            "itemType": "fileTypesItem",
+            "description": ""
+          }
+        },
+        "unreadCommonCount": {
+          "paramName": "unreadCommonCount",
+          "type": "number",
+          "description": "未读评论数"
+        },
+        "userId": {
+          "paramName": "userId",
+          "type": "number",
+          "description": "报障人用户Id"
+        },
+        "userType": {
+          "paramName": "userType",
+          "type": "string",
+          "description": "用户类型 {员工=User-1, 客户=Clientele-2, 其他=Other-9}"
+        },
+        "username": {
+          "paramName": "username",
+          "type": "string",
+          "description": "报账人名称"
+        },
+        "visitStatus": {
+          "paramName": "visitStatus",
+          "type": "string",
+          "description": "回访状态 {未回访=No-1, 已回访=Yes-2}"
+        },
+        "workTeams": {
+          "paramName": "workTeams",
+          "type": "array",
+          "itemType": "workTeamsItem",
+          "description": "工作组列表"
+        },
+        "workorders": {
+          "paramName": "workorders",
+          "type": "array",
+          "itemType": "workordersItem",
+          "description": "工单列表"
+        }
+      },
+      "message": {
+        "paramName": "message",
+        "type": "string",
+        "description": "消息"
+      },
+      "traceId": {
+        "paramName": "traceId",
+        "type": "string",
+        "description": "用于链路追踪的ID"
+      }
+    }
+  },
+  "workorderListItem": {
+    "name": "workorderListItem",
+    "result": {
+      "type": null,
+      "departmentId": {
+        "paramName": "departmentId",
+        "type": "number",
+        "description": "部门ID"
+      },
+      "description": {
+        "paramName": "description",
+        "type": "string",
+        "description": "工单描述"
+      },
+      "facilities": {
+        "paramName": "facilities",
+        "type": "array",
+        "itemType": "number",
+        "description": "设备列表"
+      },
+      "files": {
+        "type": null,
+        "name": null,
+        "description": null,
+        "definitionType": null,
+        "required": null
+      },
+      "isRefFacility": {
+        "paramName": "isRefFacility",
+        "type": "string",
+        "description": "是否关联设备 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "phone": {
+        "paramName": "phone",
+        "type": "string",
+        "description": "手机号"
+      },
+      "priorityId": {
+        "paramName": "priorityId",
+        "type": "number",
+        "description": "优先级ID"
+      },
+      "serviceTypeId": {
+        "paramName": "serviceTypeId",
+        "type": "number",
+        "description": "服务类型ID"
+      },
+      "serviceTypeRefId": {
+        "paramName": "serviceTypeRefId",
+        "type": "number",
+        "description": "服务类型关联ID"
+      },
+      "slaId": {
+        "paramName": "slaId",
+        "type": "number",
+        "description": "SLA"
+      },
+      "spaces": {
+        "paramName": "spaces",
+        "type": "array",
+        "itemType": "spacesItem",
+        "description": "空间位置列表"
+      },
+      "userId": {
+        "paramName": "userId",
+        "type": "number",
+        "description": "报障人ID"
+      },
+      "userName": {
+        "paramName": "userName",
+        "type": "string",
+        "description": "报障人名称"
+      },
+      "userType": {
+        "paramName": "userType",
+        "type": "string",
+        "description": "保障人类型 {员工=User-1, 客户=Clientele-2, 其他=Other-9}"
+      },
+      "workorderType": {
+        "paramName": "workorderType",
+        "type": "string",
+        "description": "工单类型 {内部报修=Internal-1, 外部报修=External-2, 计划性维护=PlannedMaintenance-3, 内部或外部报修=Mix-4}"
+      }
+    },
+    "description": "工单信息列表"
+  },
+  "createUsingPOST_3Body": {
+    "name": "createUsingPOST_3Body",
+    "result": {
+      "appellation": {
+        "paramName": "appellation",
+        "type": "string",
+        "description": "称谓"
+      },
+      "company": {
+        "paramName": "company",
+        "type": "string",
+        "description": "公司名称"
+      },
+      "customerId": {
+        "paramName": "customerId",
+        "type": "number",
+        "description": "客户ID"
+      },
+      "demandTypeRefId": {
+        "paramName": "demandTypeRefId",
+        "type": "number",
+        "description": "需求类型改关联ID"
+      },
+      "department": {
+        "paramName": "department",
+        "type": "string",
+        "description": "部门"
+      },
+      "departmentId": {
+        "paramName": "departmentId",
+        "type": "number",
+        "description": "部门id"
+      },
+      "description": {
+        "paramName": "description",
+        "type": "string",
+        "description": "需求描述"
+      },
+      "email": {
+        "paramName": "email",
+        "type": "string",
+        "description": "电子信箱"
+      },
+      "employeeId": {
+        "paramName": "employeeId",
+        "type": "number",
+        "description": "员工ID"
+      },
+      "expectEndTime": {
+        "paramName": "expectEndTime",
+        "type": "string",
+        "description": "预计结束时间"
+      },
+      "expectStartTime": {
+        "paramName": "expectStartTime",
+        "type": "string",
+        "description": "预计开始时间"
+      },
+      "files": {
+        "type": null,
+        "name": null,
+        "description": null,
+        "definitionType": null,
+        "required": null
+      },
+      "fromEmail": {
+        "paramName": "fromEmail",
+        "type": "string",
+        "description": "来源信箱"
+      },
+      "isFromEmail": {
+        "paramName": "isFromEmail",
+        "type": "string",
+        "description": "是否来自邮件 是否枚举{否=No-0, 是=Yes-1}"
+      },
+      "phone": {
+        "paramName": "phone",
+        "type": "string",
+        "description": "手机号"
+      },
+      "position": {
+        "paramName": "position",
+        "type": "string",
+        "description": "职位"
+      },
+      "projectId": {
+        "paramName": "projectId",
+        "type": "number",
+        "description": "项目ID"
+      },
+      "source": {
+        "paramName": "source",
+        "type": "number",
+        "description": "来源"
+      },
+      "spaces": {
+        "paramName": "spaces",
+        "type": "array",
+        "itemType": "spacesItem",
+        "description": "空间位置列表"
+      },
+      "tel": {
+        "paramName": "tel",
+        "type": "string",
+        "description": "电话"
+      },
+      "userType": {
+        "paramName": "userType",
+        "type": "string",
+        "description": "用户类型，0：其他；1：员工；2：客户； {员工=User-1, 客户=Clientele-2, 其他=Other-9}"
+      },
+      "username": {
+        "paramName": "username",
+        "type": "string",
+        "description": "报障人名称"
+      },
+      "workorderList": {
+        "paramName": "workorderList",
+        "type": "array",
+        "itemType": "workorderListItem",
+        "description": "工单信息列表"
+      }
+    }
+  }
+}

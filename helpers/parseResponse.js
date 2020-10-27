@@ -8,7 +8,8 @@ const { parseParamType } = require('./parseParameters');
 const { parseParameter } = require('./parseParamToString');
 // const definitions
 
-function parseResponse(responses, definitions, responseName) {
+function parseResponse(responses, definitions, name) {
+  const responseName = `${name}Response`;
   const { 200: successResponse } = responses;
   const { schema } = successResponse;
   const definition = getResponseDefinition(schema, definitions);
@@ -19,11 +20,11 @@ function parseResponse(responses, definitions, responseName) {
     global.typedefs = {};
   }
   const parsedParams = parseParamType(definition);
-  parseParameter(parsedParams, responseName, {});
+  parseParameter(parsedParams, responseName, {}, true, name);
   const responseData = global.typedefs[responseName];
   global.callCount = {};
   const mock = parseResponseToMockData(responseData.result, { code: 200 }, global.typedefs);
-  const response = parseToDefs(global.typedefs);
+  const response = parseToDefs(global.typedefs, true, name);
   return { mock, response };
 }
 
@@ -35,9 +36,7 @@ function getResponseDefinition(schema, definitions) {
     if (isValidDefinitionType(value)) {
       const subDefinitionType = parseDefinitionType(value);
       if (subDefinitionType === definitionType) {
-        console.log(items, '--- items');
         console.log(schema);
-        console.log(definition, '----- definition');
         return;
       }
       const subDefinition = getResponseDefinition(value, definitions);

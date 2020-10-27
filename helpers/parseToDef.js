@@ -16,8 +16,10 @@ const parserMap = {
   array: parseArrayTypeToProp,
 };
 
-function parseToDefs(defs) {
+function parseToDefs(defs, needPrefix) {
   let parsedResult = [];
+  // console.log(defs, '---- defs');
+  fs.writeFileSync('defs.json', JSON.stringify(defs, null, 2));
   const defList = Object.entries(defs);
   defList.forEach((def) => {
     const [key, value] = def;
@@ -27,9 +29,14 @@ function parseToDefs(defs) {
       .replace(API_DEFINITION_TYPE, 'object')
       .replace(API_DEFINITION_NAME, key.trim());
     let parsedDefs = [];
+    
+    const isResponse = key.endsWith('Response');
+    const showPrefix = needPrefix && isResponse;
+    const prefix = key.replace('Response', '');
     keys.forEach((key) => {
       const value = result[key];
-      const parsedDef = parseToDef(value, key);
+      const prefixStr = showPrefix ? prefix : undefined;
+      const parsedDef = parseToDef(value, key, prefixStr);
       parsedDefs.push(parsedDef);
     });
     typeName = typeName.replace(
@@ -41,13 +48,16 @@ function parseToDefs(defs) {
   return parsedResult.join('\n\n');
 }
 
-function parseToDef(value, key) {
+function parseToDef(value, key, prefix) {
   if (!value) {
     return '';
   }
   const { type } = value;
   const parser = parserMap[type] || parseObjectTypeToProp;
-  return parser(value, key);
+  const keyList = Array.from(key);
+  const [initialKey, ...restKey] = keyList;
+  const finalKey = !type && prefix ? `${prefix}${initialKey.toUpperCase()}${restKey.join('')}` : key;
+  return parser(value, finalKey);
 }
 
 // TODO: 完善对应的解析

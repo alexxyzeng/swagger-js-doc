@@ -37,7 +37,7 @@ function parseEnumStrToDef(param) {
   if (!name) {
     global.enumNameConfig.hasNew = true;
     name = md5(enumDef);
-    global.enumNameConfig[enumDef] = name;
+    global.enumNameConfig[enumDef] = `swagger_enum_${name}`;
   }
   if (!global.enumConfig) {
     global.enumConfig = {};

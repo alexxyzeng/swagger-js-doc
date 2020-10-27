@@ -116,85 +116,12 @@ function generateFiles(
 //   names: { updateRegionUsingPUT: 'updateRegion' }
 // }
 
-// {
-//   tags: ['workorder'],
-//     summary: '查询未派工执行人',
-//       operationId: 'findWorkerUsingGET',
-//         consumes: ['application/json'],
-//           produces: ['*/*'],
-//             parameters: [
-//               {
-//                 name: 'df-account-id',
-//                 in: 'header',
-//                 required: false,
-//                 type: 'string'
-//               },
-//               {
-//                 name: 'df-tenant-id',
-//                 in: 'header',
-//                 required: false,
-//                 type: 'string'
-//               },
-//               {
-//                 name: 'df-project-id',
-//                 in: 'header',
-//                 required: false,
-//                 type: 'string'
-//               },
-//               {
-//                 name: 'df-partition-id',
-//                 in: 'header',
-//                 required: false,
-//                 type: 'string'
-//               },
-//               {
-//                 name: 'workorderId',
-//                 in: 'path',
-//                 description: 'workorderId',
-//                 required: true,
-//                 type: 'integer',
-//                 format: 'int64'
-//               }
-//             ],
-//               responses: {
-//     '200': { description: 'OK', schema: [Object] },
-//     '401': { description: 'Unauthorized' },
-//     '403': { description: 'Forbidden' },
-//     '404': { description: 'Not Found' }
-//   }
-// }
-
-// {
-//   tags: [ 'app-index' ],
-//   summary: '离线数据是否有更新',
-//   operationId: 'offlineDataHasUpdateUsingGET',
-//   consumes: [ 'application/json' ],
-//   produces: [ '*/*' ],
-//   parameters: [
-//     [Object], [Object],
-//     [Object], [Object],
-//     [Object], [Object],
-//     [Object], [Object],
-//     [Object], [Object],
-//     [Object], [Object]
-//   ],
-//   responses: {
-//     '200': [Object],
-//     '401': [Object],
-//     '403': [Object],
-//     '404': [Object]
-//   },
-//   tagDesc: [ 'APP首页' ],
-//   methodName: 'get'
-// }
-
 function generateFile(pathInfo, definitions, apiPath, options) {
   const {
     swaggerUrl,
     mockPath,
     pagePath,
     serviceTag = "service",
-    configPath
   } = options;
   const { pathItem, path: pathUrl, fileName, names } = pathInfo;
   const { path, methods: methodList } = pathItem;
@@ -202,7 +129,6 @@ function generateFile(pathInfo, definitions, apiPath, options) {
   let methods = {};
   methodList.forEach(methodInfo => {
     const { methodName } = methodInfo;
-    // TODO: 重命名方法
     methods[methodName] = parseParams(methodInfo, definitions);
   });
   result = { path, methods };
@@ -221,7 +147,47 @@ function generateFile(pathInfo, definitions, apiPath, options) {
   fs.writeFileSync(resolve(mockPath, `${fileName}.js`), mock);
 }
 
+function generateEnums(paths, definitions, options = {}) {
+  const { configPath = 'config', enumPath = 'enums' } = options;
+  const enumNameConfigPath = resolve(configPath, "enumNameConfig.json");
+  if (!fs.existsSync(configPath)) {
+    fs.mkdirSync(configPath);
+  }
+  if (!fs.existsSync(enumPath)) {
+    fs.mkdirSync(enumPath);
+  }
+  
+  const pathList = Object.entries(paths);
+  console.log(pathList.length);
+  global.enumNameConfig = {};
+  global.enumConfig = {};
+  if (fs.existsSync(enumNameConfigPath)) {
+    global.enumNameConfig = JSON.parse(
+      fs.readFileSync(enumNameConfigPath) || "{}"
+    );
+  }
+  pathList.forEach(path => {
+    const [key, value] = path;
+    const apiInfos = Object.entries(value);
+    apiInfos.forEach(apiInfo => {
+      // eslint-disable-next-line no-unused-vars
+      const [method, methodInfo] = apiInfo;
+      parseParams(methodInfo, definitions);
+    });
+  });
+  console.log(global.enumConfig, '--- enum config');
+  const enumContent = parseEnumConfigToString(global.enumConfig);
+  fs.writeFileSync(`${enumPath}/enum.js`, enumContent);
+  // eslint-disable-next-line no-unused-vars
+  const { hasNew, ...enumNameConfig } = global.enumNameConfig;
+  fs.writeFileSync(
+    enumNameConfigPath,
+    JSON.stringify(enumNameConfig, null, 2)
+  );
+}
+
 module.exports = {
   generateFiles,
-  generateFile
+  generateFile,
+  generateEnums
 };

@@ -6,7 +6,7 @@ const parserMap = {
   boolean: parseBasicParameter,
 };
 
-function parseParameter(param, paramName, typedefs) {
+function parseParameter(param, paramName, typedefs, needPrefix, prefix) {
   if (param === undefined) {
     return {};
   }
@@ -15,7 +15,7 @@ function parseParameter(param, paramName, typedefs) {
   if (!parser) {
     return {};
   }
-  return parser(param, paramName, typedefs);
+  return parser(param, paramName, typedefs, needPrefix, prefix);
 }
 
 function parseArrayParameter(param, paramName, typedefs) {
@@ -49,13 +49,17 @@ function parseArrayParameter(param, paramName, typedefs) {
   return { paramName, type, itemType: name, description };
 }
 
-function parseObjectParameter(param, paramName) {
+function parseObjectParameter(param, paramName, defs, needPrefix, prefix) {
   if (!param || typeof param !== 'object') {
     return null;
   }
+  
   global.parentName = paramName;
   let result = {};
   const keys = Object.keys(param);
+  if (paramName === 'files' && global) {
+    console.log(param, '--- param');
+  }
   try {
     keys.forEach((key) => {
       const value = param[key];
@@ -64,11 +68,12 @@ function parseObjectParameter(param, paramName) {
         return {};
       }
       const parser = parserMap[type] || parseObjectParameter;
-
-      result[key] = parser(value, key);
+      const hasPrefix = needPrefix !== undefined && needPrefix === true && type === 'object';
+      const finalKey = hasPrefix ? `${prefix}${key}` : key;
+      result[key] = parser(value, finalKey, undefined, false);
     });
     // global.typedefs[paramName] = result;
-    if (global.typedefs) {
+    if (global.typedefs && !global.typedefs[paramName]) {
       global.typedefs[paramName] = { name: paramName, result };
     }
     return result;
