@@ -37,7 +37,13 @@ function parseEnumStrToDef(param) {
   if (!name) {
     global.enumNameConfig.hasNew = true;
     name = md5(enumDef);
-    global.enumNameConfig[enumDef] = `swagger_enum_${name}`;
+    const finalName = `swagger_enum_${name}`
+    if (!global.enumNameConfig[finalName]) {
+      global.enumNameConfig[finalName] = {
+        name: finalName,
+        def: enumDef
+      };
+    }
   }
   if (!global.enumConfig) {
     global.enumConfig = {};
@@ -65,12 +71,12 @@ function parseEnumDescToEnumArr(enumDesc, param) {
   return enumArr;
 }
 
-function parseEnumToString(enumInfo) {
+function parseEnumToString(enumInfo, nameConfig) {
   const { type, name, description, enumArr } = enumInfo;
-  const enumName = `swagger_enum_${name}`;
+  const defaultName = `swagger_enum_${name}`;
+  const enumName = nameConfig[defaultName] ? nameConfig[defaultName].name || defaultName : defaultName;
   const enumProperties = [];
   const enumInfos = [];
-  // TODO: 根据配置去读取名称
   enumArr.forEach(enumItem => {
     const { desc, enumKey, enumValue } = enumItem;
     enumProperties.push(
@@ -92,9 +98,9 @@ function parseEnumToString(enumInfo) {
     .replace(ENUM_DEFINITION_INFOS, enumInfos.join('\n'));
 }
 
-function parseEnumConfigToString(enumDict) {
+function parseEnumConfigToString(enumDict, nameConfig) {
   const enumList = Object.values(enumDict);
-  return enumList.map(enumInfo => parseEnumToString(enumInfo)).join('\n\n');
+  return enumList.map(enumInfo => parseEnumToString(enumInfo, nameConfig)).join('\n\n');
 }
 
 

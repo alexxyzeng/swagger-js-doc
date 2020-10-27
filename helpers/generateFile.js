@@ -148,8 +148,8 @@ function generateFile(pathInfo, definitions, apiPath, options) {
 }
 
 function generateEnums(paths, definitions, options = {}) {
-  const { configPath = 'config', enumPath = 'enums' } = options;
-  const enumNameConfigPath = resolve(configPath, "enumNameConfig.json");
+  const { configPath = 'config', enumPath = 'enums', enumConfigName = 'enumNameConfig.json' } = options;
+  const enumNameConfigPath = resolve(configPath, enumConfigName);
   if (!fs.existsSync(configPath)) {
     fs.mkdirSync(configPath);
   }
@@ -163,13 +163,10 @@ function generateEnums(paths, definitions, options = {}) {
   if (fs.existsSync(enumNameConfigPath)) {
     global.enumNameConfig = JSON.parse(
       fs.readFileSync(enumNameConfigPath) || "{}"
-    );
+    ) || {};
   }
   pathList.forEach(path => {
     const [key, value] = path;
-    const relativePath = key.replace(/\//g, "_").substr(1, key.length - 1);
-    // TODO: 指定路径和路径名称
-    const targetPath = `dist/${relativePath}`;
     const apiInfos = Object.entries(value);
     let result = {};
     let methods = {};
@@ -179,13 +176,10 @@ function generateEnums(paths, definitions, options = {}) {
       methods[method] = parsedMethod;
     });
     result = { path: key, methods };
-    if (!fs.existsSync(targetPath)) {
-      fs.mkdirSync(targetPath);
-    }
     parseApiInfo(result, definitions, { baseUrl: '' });
   });
-  const enumContent = parseEnumConfigToString(global.enumConfig);
-  fs.writeFileSync(`${enumPath}/enum.js`, enumContent);
+  const enumContent = parseEnumConfigToString(global.enumConfig, global.enumNameConfig);
+  fs.writeFileSync(`${enumPath}/index.js`, enumContent);
   // eslint-disable-next-line no-unused-vars
   const { hasNew, ...enumNameConfig } = global.enumNameConfig;
   fs.writeFileSync(
