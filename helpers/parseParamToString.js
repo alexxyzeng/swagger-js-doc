@@ -57,9 +57,6 @@ function parseObjectParameter(param, paramName, defs, needPrefix, prefix) {
   global.parentName = paramName;
   let result = {};
   const keys = Object.keys(param);
-  if (paramName === 'files' && global) {
-    console.log(param, '--- param');
-  }
   try {
     keys.forEach((key) => {
       const value = param[key];

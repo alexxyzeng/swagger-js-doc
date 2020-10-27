@@ -18,8 +18,6 @@ const parserMap = {
 
 function parseToDefs(defs, needPrefix) {
   let parsedResult = [];
-  // console.log(defs, '---- defs');
-  fs.writeFileSync('defs.json', JSON.stringify(defs, null, 2));
   const defList = Object.entries(defs);
   defList.forEach((def) => {
     const [key, value] = def;

@@ -158,7 +158,6 @@ function generateEnums(paths, definitions, options = {}) {
   }
   
   const pathList = Object.entries(paths);
-  console.log(pathList.length);
   global.enumNameConfig = {};
   global.enumConfig = {};
   if (fs.existsSync(enumNameConfigPath)) {
@@ -168,14 +167,23 @@ function generateEnums(paths, definitions, options = {}) {
   }
   pathList.forEach(path => {
     const [key, value] = path;
+    const relativePath = key.replace(/\//g, "_").substr(1, key.length - 1);
+    // TODO: 指定路径和路径名称
+    const targetPath = `dist/${relativePath}`;
     const apiInfos = Object.entries(value);
+    let result = {};
+    let methods = {};
     apiInfos.forEach(apiInfo => {
-      // eslint-disable-next-line no-unused-vars
       const [method, methodInfo] = apiInfo;
-      parseParams(methodInfo, definitions);
+      const parsedMethod = parseParams(methodInfo, definitions);
+      methods[method] = parsedMethod;
     });
+    result = { path: key, methods };
+    if (!fs.existsSync(targetPath)) {
+      fs.mkdirSync(targetPath);
+    }
+    parseApiInfo(result, definitions, { baseUrl: '' });
   });
-  console.log(global.enumConfig, '--- enum config');
   const enumContent = parseEnumConfigToString(global.enumConfig);
   fs.writeFileSync(`${enumPath}/enum.js`, enumContent);
   // eslint-disable-next-line no-unused-vars
