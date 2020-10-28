@@ -74,7 +74,7 @@ function parseEnumDescToEnumArr(enumDesc, param) {
 function parseEnumToString(enumInfo, nameConfig) {
   const { type, name, description, enumArr } = enumInfo;
   const defaultName = `swagger_enum_${name}`;
-  const enumName = nameConfig[defaultName] ? nameConfig[defaultName].name || defaultName : defaultName;
+  const enumName = nameConfig && nameConfig[defaultName] ? nameConfig[defaultName].name || defaultName : defaultName;
   const enumProperties = [];
   const enumInfos = [];
   enumArr.forEach(enumItem => {
