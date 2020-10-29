@@ -143,15 +143,22 @@ function generateFile(pathInfo, definitions, apiPath, options) {
   if (!fs.existsSync(servicePath)) {
     fs.mkdirSync(servicePath);
   }
-  fs.writeFileSync(resolve(servicePath, `${fileName}.js`), servicePrefix + service);
+  fs.writeFileSync(
+    resolve(servicePath, `${fileName}.js`),
+    servicePrefix + service
+  );
   if (!fs.existsSync(mockPath)) {
     fs.mkdirSync(mockPath);
   }
   fs.writeFileSync(resolve(mockPath, `${fileName}.js`), mock);
 }
 
-function generateEnums(paths, definitions, options = {}) {
-  const { configPath = 'config', enumPath = 'enums', enumConfigName = 'enumNameConfig.json' } = options;
+function generateEnums(paths, definitions, options = {}, payload) {
+  const {
+    configPath = "config",
+    enumPath = "enums",
+    enumConfigName = "enumNameConfig.json"
+  } = options;
   const enumNameConfigPath = resolve(configPath, enumConfigName);
   if (!fs.existsSync(configPath)) {
     fs.mkdirSync(configPath);
@@ -159,15 +166,24 @@ function generateEnums(paths, definitions, options = {}) {
   if (!fs.existsSync(enumPath)) {
     fs.mkdirSync(enumPath);
   }
-  
+
   const pathList = Object.entries(paths);
   global.enumNameConfig = {};
   global.enumConfig = {};
   if (fs.existsSync(enumNameConfigPath)) {
-    global.enumNameConfig = JSON.parse(
-      fs.readFileSync(enumNameConfigPath || "{}")
-    ) || {};
+    global.enumNameConfig =
+      JSON.parse(fs.readFileSync(enumNameConfigPath || "{}")) || {};
   }
+
+  if (payload) {
+    for (let nameKey in payload) {
+      if (!global.enumNameConfig[nameKey]) {
+        global.enumNameConfig[nameKey] = {};
+      }
+      global.enumNameConfig[nameKey].name = payload[nameKey];
+    }
+  }
+
   pathList.forEach(path => {
     const [key, value] = path;
     const apiInfos = Object.entries(value);
@@ -179,16 +195,17 @@ function generateEnums(paths, definitions, options = {}) {
       methods[method] = parsedMethod;
     });
     result = { path: key, methods };
-    parseApiInfo(result, definitions, { baseUrl: '' });
+    parseApiInfo(result, definitions, { baseUrl: "" });
   });
-  const enumContent = parseEnumConfigToString(global.enumConfig, global.enumNameConfig);
+
+  const enumContent = parseEnumConfigToString(
+    global.enumConfig,
+    global.enumNameConfig
+  );
   fs.writeFileSync(`${enumPath}/index.js`, enumContent);
   // eslint-disable-next-line no-unused-vars
   const { hasNew, ...enumNameConfig } = global.enumNameConfig;
-  fs.writeFileSync(
-    enumNameConfigPath,
-    JSON.stringify(enumNameConfig, null, 2)
-  );
+  fs.writeFileSync(enumNameConfigPath, JSON.stringify(enumNameConfig, null, 2));
 }
 
 module.exports = {
