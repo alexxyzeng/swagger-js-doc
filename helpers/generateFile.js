@@ -28,7 +28,7 @@ function generateFiles(
   // servicePath = 'service'
   options = {}
 ) {
-  const { servicePrefix = "import { API } from '@/helpers/api'\n" } = options;
+  const { servicePrefix = "import { API } from '@/helpers/api'" } = options;
   const enumNameConfigPath =
     process.cwd() + "/" + outputPath + "/enumNameConfig.json";
   if (!fs.existsSync(outputPath)) {
@@ -71,7 +71,7 @@ function generateFiles(
     // 重写路径定义
     fs.writeFileSync(`${targetPath}/api.js`, JSON.stringify(path, null, 2));
     const { service, mock } = parseApiInfo(result, definitions, { baseUrl });
-    fs.writeFileSync(`${targetPath}/service.js`, servicePrefix + service);
+    fs.writeFileSync(`${targetPath}/service.js`, servicePrefix + '\n' + service);
     fs.writeFileSync(`${targetPath}/mock.js`, mock);
   });
   const enumContent = parseEnumConfigToString(global.enumConfig);
@@ -124,7 +124,7 @@ function generateFile(pathInfo, definitions, apiPath, options) {
     mockPath,
     pagePath,
     serviceTag = "service",
-    servicePrefix = "import { API } from '@/helpers/api'\n"
+    servicePrefix = "import { API } from '@/helpers/api'"
   } = options;
   const { pathItem, path: pathUrl, fileName, names } = pathInfo;
   const { path, methods: methodList } = pathItem;
@@ -145,7 +145,7 @@ function generateFile(pathInfo, definitions, apiPath, options) {
   }
   fs.writeFileSync(
     resolve(servicePath, `${fileName}.js`),
-    servicePrefix + service
+    servicePrefix + '\n' + service
   );
   if (!fs.existsSync(mockPath)) {
     fs.mkdirSync(mockPath);

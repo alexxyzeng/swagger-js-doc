@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const chalk = require('chalk');
 
 const { swaggerDocPath, generateFiles, /** parseDefinitions */ } = require('../index');
-const { generateEnums } = require('../helpers/generateFile');
+// const { generateEnums } = require('../helpers/generateFile');
 
 const [baseUrl, path, ...methods] = process.argv.slice(2);
 if (!baseUrl) {
@@ -28,7 +28,7 @@ fetch(swaggerDocUrl)
     //   'definitions.js',
     //   JSON.stringify(parsedDefinitions, null, 2)
     // );
-    generateFiles(paths, definitions);
+    generateFiles(paths, definitions, path);
     
   })
   .catch(console.log);

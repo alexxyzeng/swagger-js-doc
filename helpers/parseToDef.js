@@ -52,10 +52,8 @@ function parseToDef(value, key, prefix) {
   }
   const { type } = value;
   const parser = parserMap[type] || parseObjectTypeToProp;
-  const keyList = Array.from(key);
-  const [initialKey, ...restKey] = keyList;
-  const finalKey = !type && prefix ? `${prefix}${initialKey.toUpperCase()}${restKey.join('')}` : key;
-  return parser(value, finalKey);
+  const finalKey = !type && prefix ? `${prefix}${key}` : key;
+  return parser(value, key, finalKey);
 }
 
 // TODO: 完善对应的解析
@@ -69,9 +67,9 @@ function parseArrayTypeToProp(typeDef) {
   return `* @property {[${itemType}]} ${paramName}`;
 }
 
-function parseObjectTypeToProp(typeDef, key) {
+function parseObjectTypeToProp(typeDef, key, propertyKey) {
   // TODO: 增加对object类型的解析
-  return parseBasicTypeToProp({ ...typeDef, type: key, paramName: key });
+  return parseBasicTypeToProp({ ...typeDef, type: propertyKey, paramName: key });
 }
 
 module.exports = {
