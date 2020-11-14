@@ -20,22 +20,37 @@ function parseToDefs(defs, needPrefix) {
   let parsedResult = [];
   const defList = Object.entries(defs);
   defList.forEach((def) => {
-    const [key, value] = def;
+    const [defKey, value] = def;
+    // if (key.includes('seriesItem')) {
+    //   console.log('====================================');
+    //   console.log(value, '---- value');
+    //   console.log('====================================');
+    // }
     const { result } = value;
     const keys = Object.keys(result);
+    if (defKey === 'valueItem') {
+      console.log('====================================');
+      console.log(result);
+      console.log(keys, '----- keys')
+      console.log('====================================');
+      
+    }
     let typeName = tpl
       .replace(API_DEFINITION_TYPE, 'object')
-      .replace(API_DEFINITION_NAME, key.trim());
+      .replace(API_DEFINITION_NAME, defKey.trim());
     let parsedDefs = [];
     
-    const isResponse = key.endsWith('Response');
+    const isResponse = defKey.endsWith('Response');
     const showPrefix = needPrefix && isResponse;
-    const prefix = key.replace('Response', '');
+    const prefix = defKey.replace('Response', '');
     keys.forEach((key) => {
       const value = result[key];
       const prefixStr = showPrefix ? prefix : undefined;
+
       const parsedDef = parseToDef(value, key, prefixStr);
-      parsedDefs.push(parsedDef);
+      if (parsedDef) {
+        parsedDefs.push(parsedDef);
+      }
     });
     typeName = typeName.replace(
       API_DEFINITION_PROPERTY,
@@ -76,3 +91,123 @@ module.exports = {
   parseToDefs,
   parseToDef,
 };
+
+
+const def = {
+  data: {
+    swagger_ui_type: 'array',
+    valueType: {
+      swagger_ui_type: undefined,
+      name: undefined,
+      description: '',
+      definitionType: undefined,
+      required: false
+    },
+    required: false,
+    definitionType: undefined,
+    description: '',
+    name: undefined
+  },
+  name: {
+    swagger_ui_type: 'string',
+    name: undefined,
+    description: '',
+    definitionType: undefined,
+    required: false
+  },
+  type: {
+    swagger_ui_type: 'string',
+    name: undefined,
+    description: '',
+    definitionType: undefined,
+    required: false
+  }
+}
+
+// {
+//   "code": 200,
+//   "data": {
+//     "avgRespInfo": {
+//       "categories": [
+//         "string"
+//       ],
+//       "name": "string",
+//       "series": [
+//         {
+//           "data": [
+//             {}
+//           ],
+//           "name": "string",
+//           "type": "string"
+//         }
+//       ]
+//     },
+//     "demandAndCompRate": {
+//       "data": {
+//         "categories": [
+//           "string"
+//         ],
+//         "series": [
+//           {
+//             "data": [
+//               {}
+//             ],
+//             "name": "string",
+//             "type": "string"
+//           }
+//         ]
+//       },
+//       "name": "string"
+//     },
+//     "evaluateInfo": {
+//       "data": {
+//         "categories": [
+//           "string"
+//         ],
+//         "indicator": [
+//           {
+//             "name": "string"
+//           }
+//         ],
+//         "series": [
+//           {
+//             "data": [
+//               {
+//                 "name": "string",
+//                 "value": [
+//                   {}
+//                 ]
+//               }
+//             ],
+//             "name": "string"
+//           }
+//         ]
+//       },
+//       "name": "string"
+//     },
+//     "projectInfo": [
+//       {
+//         "data": {
+//           "value": {}
+//         },
+//         "name": "string"
+//       }
+//     ],
+//     "statisticInfo": {
+//       "data": {
+//         "columns": [
+//           {
+//             "dataIndex": "string",
+//             "title": "string"
+//           }
+//         ],
+//         "dataSource": [
+//           {}
+//         ]
+//       },
+//       "name": "string"
+//     }
+//   },
+//   "message": "string",
+//   "traceId": "string"
+// }

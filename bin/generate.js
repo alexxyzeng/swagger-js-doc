@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 const process = require('process');
+const fs = require('fs')
 const fetch = require('node-fetch');
 const chalk = require('chalk');
 
-const { swaggerDocPath, generateFiles, /** parseDefinitions */ } = require('../index');
+const { swaggerDocPath, generateFiles, parseDefinitions } = require('../index');
 // const { generateEnums } = require('../helpers/generateFile');
 
 const [baseUrl, path, ...methods] = process.argv.slice(2);
@@ -23,11 +24,11 @@ fetch(swaggerDocUrl)
   .then((res) => res.json())
   .then((json) => {
     const { paths, definitions } = json;
-    // const parsedDefinitions = parseDefinitions(definitions);
-    // fs.writeFileSync(
-    //   'definitions.js',
-    //   JSON.stringify(parsedDefinitions, null, 2)
-    // );
+    const parsedDefinitions = parseDefinitions(definitions);
+    fs.writeFileSync(
+      'definitions.js',
+      JSON.stringify(parsedDefinitions, null, 2)
+    );
     generateFiles(paths, definitions, path);
     
   })

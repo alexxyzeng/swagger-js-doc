@@ -94,30 +94,6 @@ function generateFiles(
   );
 }
 
-// {
-//   pathItem: {
-//     path: '/building/region',
-//     methods: [ [Object] ],
-//     tag: '(基础数据-空间位置)大厦/区域管理',
-//     routes: [
-//       '/',
-//       '/user/home',
-//       '/user',
-//       '/third',
-//       '/third/first',
-//       '/third/second',
-//       '/third/second/first',
-//       '/ttt',
-//       '/ttt/first',
-//       '/ttt/second',
-//       '/ttt/second/first'
-//     ]
-//   },
-//   path: '/third/second',
-//   fileName: 'buildingRegion',
-//   names: { updateRegionUsingPUT: 'updateRegion' }
-// }
-
 function generateFile(pathInfo, definitions, apiPath, options) {
   const {
     swaggerUrl,

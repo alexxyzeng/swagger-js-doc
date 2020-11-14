@@ -36,7 +36,6 @@ function parseApiInfo(apiInfo, definitions, { baseUrl, names }) {
   let mockData = {};
   
   for (let methodName in methods) {
-    
     const method = methods[methodName];
     const {
       parameters,
@@ -125,8 +124,7 @@ function parseBodies(body, result, operationId) {
     const { type } = param;
     const paramName = `${operationId}Body`;
     const parsedParam = parseParameter(param, paramName, {});
-    const { type: parsedParamType, itemType, description } = parsedParam;
-
+    const { swagger_ui_type: parsedParamType, itemType, description } = parsedParam;
     const paramType = parsedParamType === 'array' ? `[${itemType}]` : paramName;
     bodyParams.push(
       `* @param {${paramType}} params.body - 请求体 ${description}`
@@ -138,8 +136,8 @@ function parseBodies(body, result, operationId) {
 }
 
 function parseQuery(query) {
-  const { type, name, description, valueType } = query;
-  const parsedType = type !== 'array' ? type : `[${valueType.type}]`;
+  const { swagger_ui_type, name, description, valueType } = query;
+  const parsedType = swagger_ui_type !== 'array' ? swagger_ui_type : `[${valueType.swagger_ui_type}]`;
   return ` * @param {${parsedType}} params.query.${name} - ${description}`;
 }
 
