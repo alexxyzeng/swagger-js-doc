@@ -153,58 +153,6 @@ function parseArrayParamType(
 }
 
 
-const seriesData = {
-  "type": "object",
-  "properties": {
-    "data": {
-      "type": "array",
-      "items": {}
-    },
-    "name": {
-      "type": "string"
-    },
-    "type": {
-      "type": "string"
-    }
-  }
-}
-
-const parsed = parseParamType(seriesData)
-console.log(parsed)
-
-const result = {
-  data: {
-    swagger_ui_type: 'array',
-    valueType: {
-      type: 'object',
-      swagger_ui_type: undefined,
-      name: undefined,
-      description: '',
-      definitionType: undefined,
-      required: false
-    },
-    required: false,
-    definitionType: undefined,
-    description: '',
-    name: undefined
-  },
-  name: {
-    swagger_ui_type: 'string',
-    name: undefined,
-    description: '',
-    definitionType: undefined,
-    required: false
-  },
-  type: {
-    swagger_ui_type: 'string',
-    name: undefined,
-    description: '',
-    definitionType: undefined,
-    required: false
-  }
-}
-
-
 module.exports = {
   parseParams,
   parseParamType,

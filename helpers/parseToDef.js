@@ -28,13 +28,13 @@ function parseToDefs(defs, needPrefix) {
     // }
     const { result } = value;
     const keys = Object.keys(result);
-    if (defKey === 'valueItem') {
-      console.log('====================================');
-      console.log(result);
-      console.log(keys, '----- keys')
-      console.log('====================================');
+    // if (defKey === 'valueItem') {
+    //   console.log('====================================');
+    //   console.log(result);
+    //   console.log(keys, '----- keys')
+    //   console.log('====================================');
       
-    }
+    // }
     let typeName = tpl
       .replace(API_DEFINITION_TYPE, 'object')
       .replace(API_DEFINITION_NAME, defKey.trim());
